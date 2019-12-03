@@ -8,3 +8,4 @@
 !/.gitignore
 /index_wrbl.php
 /*.zip
+/config/db-local.php

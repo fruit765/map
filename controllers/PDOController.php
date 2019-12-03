@@ -15,9 +15,16 @@ class PDOController extends PDOModel{
 
     private $_conn;
 
-    function __construct(){     
+    function __construct(){ 
         
-        $this->_config = require_once($_SERVER['DOCUMENT_ROOT'].'/config/db.php');
+        if (file_exists($_SERVER['DOCUMENT_ROOT'].'/config/db-local.php')) {
+
+            $this->_config = require_once($_SERVER['DOCUMENT_ROOT'].'/config/db-local.php');
+        }
+        else {
+
+            $this->_config = require_once($_SERVER['DOCUMENT_ROOT'].'/config/db.php');
+        }
 
         $this->_host = $this->_config['host'];        
         $this->_db_name = $this->_config['db_name'];        

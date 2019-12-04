@@ -15,24 +15,8 @@
 
     <link rel="icon" type="image/png" href="img/index.ico" />
   </head>
-  <body ng-controller="myCtrl">  
-    <div class="popup-wrapper">
-      <div class="popup-container">
-        <div class="popup-container-header">
-          <span class="popup-container-header-title">
-            Укажите Ваш город для отображения магазинов на карте
-          </span>
-        </div>
-        <div class="popup-container-content">
-          <span class="popup-container-content-content" >
-            Выбран город: <a href="#" id="autoCityChoice" ng-click="getChosenCityData(cities|filter:autoCity)">{{autoCity}}</a>
-          </span>
-          <span class="popup-container-content-footer">
-            Выбрать <a href="#" onclick="getAnotherCity()">свой город</a>
-          </span>          
-        </div>
-      </div>
-    </div>
+  <body ng-controller="myCtrl">
+
     <div class="header">
       <!-- <h1>Karmy YmapsAPI Test</h1> -->
 
@@ -72,6 +56,8 @@
         <span></span>
       </div>
     </div>    
+
+
     <div class="wrapper map-sidebar-wrapper">     
       <div class="map-btn"><span class="btn-title">Показать список магазинов</span></div>
       <!-- Here goes Map container -->
@@ -112,6 +98,24 @@
               </div>
             </li>
           </ul>
+        </div>
+      </div>
+
+      <div class="choose-city-wrapper">
+        <div class="preloader"></div>
+        <div class="auto-city">
+          <h2>Ваш город - {{autoCity}}?</h2>
+          <div class="btns">
+            <button class="other-city" ng-click="showCityPopup('enter-city')">Выбрать другой</button>
+            <button class="this-city">Да, это мой город</button>
+          </div>
+        </div>
+        <div class="enter-city">
+          <h2>Начните вводить название города</h2>
+          <div class="enter-city-container">
+            <input type="text" name="">
+            <button>Да, это мой город</button>
+          </div>
         </div>
       </div>
     </div>

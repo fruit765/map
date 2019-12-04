@@ -19,6 +19,20 @@ $scope.currCitySlug = "";
 $scope.autoCity = '';
 
 
+$scope.showCityPopup = function(className){
+    $('.map-sidebar-wrapper .map-container, .map-sidebar-wrapper .sidebar').addClass('blur');
+    $('.choose-city-wrapper').children().css('display', 'none');
+    $('.choose-city-wrapper .' + className).css('display', 'block');
+
+    if (className === 'enter-city') {
+        $('.choose-city-wrapper .enter-city .enter-city-container input').focus();
+    }
+}
+
+
+$scope.showCityPopup('preloader');
+
+
 // Центрирование по вертикали элементов zoomControl
 var zoomControl;
 $(window).resize(function(){
@@ -154,7 +168,10 @@ mapPromise.then(function(){
     });     
 })
 /* Get Current User location (if allowed)*/
-new Promise(function(resolve, reject){       
+new Promise(function(resolve, reject){ 
+    setTimeout(function(){
+        reject();
+    }, 5000);
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
             var lat = position.coords.latitude;
@@ -172,10 +189,18 @@ new Promise(function(resolve, reject){
         });              
     }           
 })
-.then(function(result){             
-    $scope.autoCity = result;
-    showCityPopup();
-});
+.then(
+    function(result){             
+        $scope.autoCity = result;
+        $scope.$apply();
+        $scope.showCityPopup('auto-city');
+    },
+    function(){
+        $scope.autoCity = 'Москва';
+        $scope.$apply();
+        $scope.showCityPopup('auto-city');
+    }
+);
     
 /* Choose City Data */
 $scope.getChosenCityData= function(cityData){      

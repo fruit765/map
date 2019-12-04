@@ -71,17 +71,6 @@ function displayCityShops(currCitySlug){
             display: 'block',
         })       
     }
-     
-    function showCityPopup(){
-        $('.popup-wrapper').css({
-            display:'flex',
-        })
-    }
-    function hideCityPopup(){
-        $('.popup-wrapper').css({
-            display:'none',
-        })
-    }
     
     function toggleShopDetails(that){
         $('.is-on').removeClass('is-on').addClass('is-off');        

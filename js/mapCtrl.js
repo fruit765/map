@@ -16,6 +16,7 @@ var changeCityReady = false;
 $scope.cities="";
 $scope.currCityName="";
 $scope.currCitySlug = "";
+$scope.autoCity = '';
 
 
 // Центрирование по вертикали элементов zoomControl
@@ -66,16 +67,16 @@ mapPromise.then(function(){
         $scope.cities = response.data["cities"];
         /* Preload Shop Points */
         $scope.shops="";
-        if($scope.autoCity){                
-            var cityId = getCityIdByName($scope.autoCity);
-            $scope.city = $scope.cities[cityId];
-        }
-        else{
-            //console.log('$scope.autoCity not found');
-            $scope.city = $scope.cities[3];
-            $scope.autoCity = $scope.city.Name;                            
-        } 
-        $scope.city = $scope.cities[3];                     
+        // if($scope.autoCity){                
+        //     var cityId = getCityIdByName($scope.autoCity);
+        //     $scope.city = $scope.cities[cityId];
+        // }
+        // else{
+        //     //console.log('$scope.autoCity not found');
+        //     $scope.city = $scope.cities[108];
+        //     $scope.autoCity = $scope.city.Name;
+        // } 
+        $scope.city = $scope.cities[108];                     
         $scope.currCityName = $scope.city.Name;
         $scope.currCitySlug = $scope.city.Slug;
         myMap.setCenter([$scope.city.Long, $scope.city.Lat], $scope.city.Scale);
@@ -153,12 +154,9 @@ mapPromise.then(function(){
     });     
 })
 /* Get Current User location (if allowed)*/
-$scope.autoCity = new Promise(function(resolve, reject){  
-    setTimeout(function(){
-        reject();
-    }, 5000);      
+new Promise(function(resolve, reject){       
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position){                
+        navigator.geolocation.getCurrentPosition(function(position){
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
             /* Autodefine User location */   
@@ -170,27 +168,14 @@ $scope.autoCity = new Promise(function(resolve, reject){
                 if(response){                              
                     resolve(response.data.response.GeoObjectCollection.featureMember[0].GeoObject.name);
                 }                                                    
-            }, function errorCallback() {
-                reject();
-              });    
+            });    
         });              
-    }
-    else{
-        reject();       
-    }            
+    }           
+})
+.then(function(result){             
+    $scope.autoCity = result;
+    showCityPopup();
 });
-
-$scope.autoCity.then(function(result){             
-    $scope.autoCity = result;        
-    })
-    .catch(function(error){
-        //console.log('autoCity rejected');
-        $('.popup-container-content-content').text("������� �� �������");            
-    })
-    .finally(function(){
-        /* Display Popup window with Response*/ 
-        //showCityPopup();
-    });     
     
 /* Choose City Data */
 $scope.getChosenCityData= function(cityData){      
@@ -204,9 +189,6 @@ $scope.getChosenCityData= function(cityData){
             hideCityPopup();
         })
     }
-    else{
-        $('.popup-container-content-content').html('�������������� ������� ������� ���� �����');
-    }       
 }   
 
 function ClustersPointsCollLoader(){ 

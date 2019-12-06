@@ -63,40 +63,22 @@
       <!-- Here goes Map container -->
       <div id="map" class="map-container">
       </div>
+      
       <!-- Here goes Sidebar container -->
       <div class="sidebar">
         <div class="sidebar-block cities-block">        
-          <h2 class="sidebar-title"><span>ГОРОД:</span> <span class="sidebar-title-city" onclick="toggleCityBlock()">{{currCityName}} </span><span class="sidebar-title-city-arrow" onclick="toggleCityBlock()">&#8249;</span>
+          <h2 class="sidebar-title"><span>Ваш город:</span><span class="sidebar-title-city">{{city.Name}} </span>
             <div class="sidebar-close"></div>
           </h2>         
-          <ul class="sidebar-toggle-list city-block is-off-city">
-            <li class="sidebar-toggle-list-item" ng-model="city" ng-repeat="city in cities">                        
-              <a href="#" ng-click=changeCity(city)>{{city.Name}}</a>      
-            </li>
-          </ul>
-          <div class="cities-block-line"></div>
-        </div>    
-        <div class="sidebar-block shops-block" ng-show="shops">        
-          <ul id="shopList"  class="{{shop.slug}}" ng-repeat="shop in shops">
-            <li id="Zoo{{currIndex}}" class="shops-block-list-item is-white" ng-click="zoomShop(shop, currIndex)" onclick="showShopDetails(this)" ng-init = "currIndex = $index">
-              <div class="shops-block-list-item-header">                
-                <span class="shops-block-list-item-header-text">
-                  {{shop.street_type}} {{shop.street}}, {{shop.house}}
-                </span>
-                <span class="shops-block-list-item-header-header">
-                  {{shop.name}}
-                </span>
-              </div>
-              <div id="shop-details-block" class="is-off">  
-                  <span class="show-on-map">Показать на карте ></span>                               
-                  <span class="shop-details-text">РЕЖИМ РАБОТЫ:</span> 
-                  <span class="shop-details-header">{{shop.hours}}</span>
-                  <span class="shop-details-text">ТЕЛЕФОН:</span>
-                  <span class="shop-details-header">{{shop.phone}}</span>                              
-                  <span class="shop-details-text">САЙТ:</span>
-                  <span class="shop-details-header"><a href="{{shop.site}}" target="_blank">{{shop.site}}</a></span>
-              </div>
-            </li>
+        </div> 
+
+        <div class="sidebar-block shops-block">        
+          <ul ng-repeat="cityShop in cityShops" ng-class="{'active':$first}">
+            <li>{{cityShop.name}}</li>
+            <li>{{cityShop.street_type}} {{cityShop.street}}, {{cityShop.house}}</li>
+            <li>{{cityShop.hours}}</li>
+            <li>{{cityShop.phone}}</li>
+            <li>{{cityShop.site}}</li>
           </ul>
         </div>
       </div>
@@ -107,7 +89,7 @@
           <h2>Ваш город - {{autoCity}}?</h2>
           <div class="btns">
             <button class="other-city" ng-click="showCityPopup('enter-city')">Выбрать другой</button>
-            <button class="this-city">Да, это мой город</button>
+            <button class="this-city" ng-click="confirmAutoCity()">Да, это мой город</button>
           </div>
         </div>
         <div class="enter-city">
@@ -158,6 +140,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+    <script src="js/sidebar.js"></script>
     <script src="js/mapSidebarCtrl.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/mapCtrl.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -168,7 +151,6 @@
     <!-- <script src="node_modules/motion-ui/dist/motion-ui.min.js"></script> -->
 
     <script src="js/menu.js"></script>
-    <script src="js/sidebar.js"></script>
     <script src="js/get-call.js"></script>
     <script src="js/form-validator.js"></script>
     <script src="js/form-dispatcher.js"></script>

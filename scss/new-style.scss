@@ -43,9 +43,10 @@
 }
 
 
-html {
+html, body {
 
     font-size: 16px;
+    height: 100%;
 }
 
 .header {
@@ -235,6 +236,7 @@ html {
     display: flex;
     position: relative;
     overflow: hidden;
+    min-height: calc(100% - 80px);
 
     .map-btn {
 
@@ -312,21 +314,20 @@ html {
 
             .sidebar-title {
 
-                padding-left: 40px;
+                padding-left: 45px;
                 padding-right: 90px;
                 padding-top: 30px;
                 padding-bottom: 20px;
                 margin-bottom: 0;
                 line-height: 16px;
-                font-size: 1.3rem;
+                font-size: 1rem;
+                color: #212529;
 
-                .sidebar-title-city-arrow {
+                .sidebar-title-city {
 
-                    display: inline-block !important;
-                    line-height: 16px !important;
-                    width: 16px !important;
-                    height: 16px !important;
-                    text-align: center !important;
+                    color: #212529;
+                    font-weight: bold;
+                    font-size: 1.3rem;
                 }
 
                 .sidebar-close {
@@ -414,120 +415,83 @@ html {
 
         .shops-block {
 
+            border-top: 0;
+            padding-top: 10px;
             overflow: auto;
-            border: 0;
-            padding-top: 20px;
-        
+
             & > ul {
 
-                background: transparent !important;
-                margin-bottom: 0;
-            
-                .shops-block-list-item {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                margin-bottom: 30px;
+                padding-left: 45px;
+                cursor: pointer;
 
-                    width: auto;
+                &:hover, &.active {
 
-                    &:hover {
+                    background-color: rgba(255, 117, 96, 0.1);
+                }
 
-                        background-color: rgba(232, 191, 162, 0.1) !important;
+                & > li {
+
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    color: #212529;
+                    font-size: 0.625rem;
+                    line-height: 20px;
+                    padding-left: 30px;
+                    margin-top: 10px;
+
+                    &:first-child {
+
+                        margin-top: 0;
                     }
 
-                    .shops-block-list-item-header {
+                    &:nth-child(1) {
 
-                        padding-top: 15px;
-                        padding-bottom: 15px;
-                        cursor: pointer;
+                        text-transform: uppercase;
+                        font-size: 0.875rem;
+                        font-weight: bold;
+                        position: relative;
+                        padding-bottom: 5px;
+                        line-height: normal;
+                        padding-left: 0;
 
-                        .shops-block-list-item-header-text {
+                        &::after {
 
-                            padding: 0 48px 0 40px;
-                            text-transform: uppercase;
-                            font-size: 1rem;
-                            color: rgba(0, 0, 0, 0.8) !important;
-                            letter-spacing: 0.06em;
-
-                            &::before {
-
-                                content: '';
-                                position: absolute;
-                                width: 8px;
-                                height: 5px;
-                                right: 40px;
-                                top: 50%;
-                                margin-top: -2px;
-                                background: url('../img/sidebar-address-arrow.png') center no-repeat;
-                            }
-                        }
-
-                        .shops-block-list-item-header-header {
-
-                            padding: 0 40px;
-                            color: #000;
-                            font-size: 1.4rem;
-                        }
-
-                        & + div {
-
-                            overflow: hidden;
-                            transition: all 1s cubic-bezier(0.55, 0.055, 0.675, 0.19) !important;
-                            opacity: 1 !important;
-                            clip-path: none;
-
-                            &.is-on {
-
-                                height: 168px !important;
-                            }
-
-                            .show-on-map {
-
-                                cursor: pointer;
-                                color: #93b7bb;
-                                letter-spacing: .1em;
-                                text-transform: uppercase;
-                                font-size: 1.4rem;
-                                padding-left: 40px;
-                                padding-right: 40px;
-                                padding-top: 15px;
-                                display: none;
-                            }
-
-                            .shop-details-text {
-
-                                padding-left: 40px;
-                                padding-right: 40px;
-                                text-transform: uppercase;
-                                font-size: 1rem;
-                                color: rgba(0, 0, 0, 0.8) !important;
-                            }
-
-                            .shop-details-header {
-
-                                padding-left: 40px;
-                                padding-right: 40px;
-                                color: #000;
-                                font-weight: normal;
-                                font-size: 1.4rem;
-
-                                & > a {
-
-                                    color: #FF7560;
-                                }
-                            }
+                            content: '';
+                            position: absolute;
+                            width: 43px;
+                            height: 1px;
+                            left: 0;
+                            bottom: 0;
+                            background-color: #212529;
                         }
                     }
 
-                    &.open {
+                    &:nth-child(2) {
 
-                        .shops-block-list-item-header {
+                        font-size: 0.75rem;
+                        font-weight: bold;
+                        padding-left: 0;
+                        margin-top: 0;
+                    }
 
-                            .shops-block-list-item-header-text {
-    
-                                &::before {
+                    &:nth-child(3) {
+                    
+                        background: url('../img/hours.svg') 0 0 no-repeat;
+                    }
 
-                                    transform: rotate(180deg);
-                                }
-                            }
-                        }
+                    &:nth-child(4) {
+                    
+                        background: url('../img/phone.svg') 0 0 no-repeat;
+                    }
+
+                    &:nth-child(5) {
+                    
+                        background: url('../img/site.svg') 0 0 no-repeat;
                     }
                 }
             }

@@ -41,7 +41,8 @@ myApp.controller('myCtrl', function($scope, $http) {
             });
 
             if (index === 0) {
-                placemark.options.set('iconImageSize', [20, 29]);
+                placemark.options.set('iconImageHref', '/img/placemark-active.svg');
+                placemark.options.set('iconImageSize', [17, 25]);
                 placemark.properties.set('active', 1);
             }
 
@@ -62,11 +63,13 @@ myApp.controller('myCtrl', function($scope, $http) {
             if (geoObject.properties.get('type') == 'shopPoint') {
                 if (geoObject.properties.get('id') == id) {
                     geoObject.properties.set('active', 1);
-                    geoObject.options.set('iconImageSize', [20, 29]);
+                    geoObject.options.set('iconImageHref', '/img/placemark-active.svg');
+                    geoObject.options.set('iconImageSize', [17, 25]);
                 }
                 else {
                     if (geoObject.properties.get('active') == 1) {
                         geoObject.properties.set('active', 0);
+                        geoObject.options.set('iconImageHref', '/img/placemark.svg');
                         geoObject.options.set('iconImageSize', [11, 16]);
                     }
                 }

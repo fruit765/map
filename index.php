@@ -73,7 +73,7 @@
         </div> 
 
         <div class="sidebar-block shops-block">        
-          <ul ng-repeat="cityShop in cityShops" ng-class="{'active':$first}">
+          <ul ng-repeat="cityShop in cityShops" ng-class="{'active':$first}" city-id="{{$index}}">
             <li>{{cityShop.name}}</li>
             <li>{{cityShop.street_type}} {{cityShop.street}}, {{cityShop.house}}</li>
             <li>{{cityShop.hours}}</li>

@@ -24,22 +24,64 @@ myApp.controller('myCtrl', function($scope, $http) {
             $scope.showCityPopup('preloader');
             $scope.city = getCityObject($scope.autoCity, $scope.cities);
             $scope.cityShops = getCityShops($scope.city, $scope.shops);
+            $scope.addShopPoints($scope.cityShops);
         }
 
         $('.map-sidebar-wrapper .map-container, .map-sidebar-wrapper .sidebar').removeClass('blur');
         $('.choose-city-wrapper').hide();
     }
     $scope.addShopPoints = function(cityShops){
-        var greenCollection = new ymaps.GeoObjectCollection(null, {
-            preset: 'islands#greenIcon'
+        myMap.geoObjects.removeAll();
+
+        cityShops.forEach(function(shop, index){
+            var placemark = new ymaps.Placemark([shop.lng, shop.lat], {id: index, type: 'shopPoint', active: 0}, {
+                iconLayout: 'default#image',
+                iconImageHref: '/img/placemark.svg',
+                iconImageSize: [11, 16],
+            });
+
+            if (index === 0) {
+                placemark.options.set('iconImageSize', [20, 29]);
+                placemark.properties.set('active', 1);
+            }
+
+            placemark.events.add('click', function(e){
+                $scope.activeShop(e.get('target').properties.get('id'));
+                $('.map-sidebar-wrapper .sidebar').addClass('open');
+            });
+
+            myMap.geoObjects.add(placemark);
         });
 
-        cityShops.forEach(function(shop){
-            greenCollection.add(new ymaps.Placemark([shop.lng, shop.lat]));
-        });
-
-        myMap.geoObjects.add(greenCollection);
+        myMap.setBounds(myMap.geoObjects.getBounds());
     }
+    $scope.activeShop = function(id){
+        myMap.setBounds(myMap.geoObjects.getBounds());
+
+        myMap.geoObjects.each(function(geoObject){
+            if (geoObject.properties.get('type') == 'shopPoint') {
+                if (geoObject.properties.get('id') == id) {
+                    geoObject.properties.set('active', 1);
+                    geoObject.options.set('iconImageSize', [20, 29]);
+                }
+                else {
+                    if (geoObject.properties.get('active') == 1) {
+                        geoObject.properties.set('active', 0);
+                        geoObject.options.set('iconImageSize', [11, 16]);
+                    }
+                }
+            }
+        });
+
+        $('.map-sidebar-wrapper .sidebar .shops-block > ul').removeClass('active');
+        $($('.map-sidebar-wrapper .sidebar .shops-block > ul')[id]).addClass('active');
+    }
+
+
+    $('.map-sidebar-wrapper .sidebar .shops-block').on('click', '> ul', function(){
+        $scope.activeShop($(this).attr('city-id'));
+        $('.map-sidebar-wrapper .sidebar').removeClass('open');
+    });
 
 
     $scope.showCityPopup('preloader');
@@ -86,7 +128,12 @@ myApp.controller('myCtrl', function($scope, $http) {
                 if($scope.shops){
                     $scope.cityShops = getCityShops($scope.city, $scope.shops);
                     $scope.addShopPoints($scope.cityShops);
-                    myMap.setBounds(myMap.geoObjects.getBounds());
+
+                    $(window).resize(function(){
+                        setTimeout(function(){
+                            myMap.setBounds(myMap.geoObjects.getBounds());
+                        }, 0);
+                    });
 
                     /* Get Current User location (if allowed)*/
                     new Promise(function(resolve, reject){ 

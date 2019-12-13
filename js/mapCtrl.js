@@ -1,28 +1,39 @@
 var myApp = angular.module('myApp',[]);
 myApp.controller('myCtrl', function($scope, $http) { 
     /* Init vars */
-    var myMap;
+    var myMap, BalloonContentLayout, BalloonContentLayoutWithoutSite;
 
     $scope.cities = [];
     $scope.city = {};
-    $scope.autoCity = '';
+    $scope.autoCity = {};
     $scope.shops = [];
     $scope.cityShops = [];
+    $scope.searchCityName = '';
+    $scope.searchCities = [];
+    $scope.searchError = '';
 
     /* Controller methods */
     $scope.showCityPopup = function(className){
+        $('.choose-city-wrapper').show();
+
         $('.map-sidebar-wrapper .map-container, .map-sidebar-wrapper .sidebar').addClass('blur');
         $('.choose-city-wrapper').children().css('display', 'none');
         $('.choose-city-wrapper .' + className).css('display', 'block');
 
         if (className === 'enter-city') {
+            $scope.searchCityName = '';
+
             $('.choose-city-wrapper .enter-city .enter-city-container input').focus();
+            setLeftPositionOnSearchCities();
+
+            $('.enter-city-container-controls-error').css('display', 'none');
+            $('.enter-city-container-controls-search-cities').css('display', 'none');
         }
     }
     $scope.confirmAutoCity = function(){
-        if ($scope.autoCity !== 'Москва') {
+        if ($scope.autoCity.Name !== 'Москва') {
             $scope.showCityPopup('preloader');
-            $scope.city = getCityObject($scope.autoCity, $scope.cities);
+            $scope.city = $scope.autoCity;
             $scope.cityShops = getCityShops($scope.city, $scope.shops);
             $scope.addShopPoints($scope.cityShops);
         }
@@ -34,11 +45,34 @@ myApp.controller('myCtrl', function($scope, $http) {
         myMap.geoObjects.removeAll();
 
         cityShops.forEach(function(shop, index){
-            var placemark = new ymaps.Placemark([shop.lng, shop.lat], {id: index, type: 'shopPoint', active: 0}, {
-                iconLayout: 'default#image',
-                iconImageHref: '/img/placemark.svg',
-                iconImageSize: [11, 16],
-            });
+            var balloonLayout;
+
+            if (shop.site) {
+                balloonLayout = BalloonContentLayout;
+            }
+            else {
+                balloonLayout = BalloonContentLayoutWithoutSite;
+            }
+
+            var placemark = new ymaps.Placemark([shop.lng, shop.lat],
+                {
+                    id: index,
+                    type: 'shopPoint',
+                    active: 0,
+                    name: shop.name,
+                    address: shop.street_type + ' ' + shop.street + ', ' + shop.house,
+                    hours: shop.hours,
+                    phone: shop.phone,
+                    site: shop.site,
+                },
+                {
+                    iconLayout: 'default#image',
+                    iconImageHref: '/img/placemark.svg',
+                    iconImageSize: [11, 16],
+                    balloonLayout: balloonLayout,
+                    hideIconOnBalloonOpen: false,
+                }
+            );
 
             if (index === 0) {
                 placemark.options.set('iconImageHref', '/img/placemark-active.svg');
@@ -48,7 +82,6 @@ myApp.controller('myCtrl', function($scope, $http) {
 
             placemark.events.add('click', function(e){
                 $scope.activeShop(e.get('target').properties.get('id'));
-                $('.map-sidebar-wrapper .sidebar').addClass('open');
             });
 
             myMap.geoObjects.add(placemark);
@@ -57,8 +90,6 @@ myApp.controller('myCtrl', function($scope, $http) {
         myMap.setBounds(myMap.geoObjects.getBounds());
     }
     $scope.activeShop = function(id){
-        myMap.setBounds(myMap.geoObjects.getBounds());
-
         myMap.geoObjects.each(function(geoObject){
             if (geoObject.properties.get('type') == 'shopPoint') {
                 if (geoObject.properties.get('id') == id) {
@@ -79,12 +110,77 @@ myApp.controller('myCtrl', function($scope, $http) {
         $('.map-sidebar-wrapper .sidebar .shops-block > ul').removeClass('active');
         $($('.map-sidebar-wrapper .sidebar .shops-block > ul')[id]).addClass('active');
     }
+    $scope.searchCityByName = function(){
+        $scope.searchCities = [];
+        if ($scope.searchCityName !== '') {
+            $scope.cities.forEach(function(cityObject){
+                if (cityObject.Name.toLowerCase().match('^' + $scope.searchCityName.toLowerCase())) {
+                    $scope.searchCities.push(cityObject);
+                }
+            });
+
+            if ($scope.searchCities.length > 0) {
+                $('.enter-city-container-controls-error').css('display', 'none');
+                $('.enter-city-container-controls-search-cities').css('display', 'flex');
+            }
+            else {
+                $scope.searchError = 'Данного города нет!';
+                
+                $('.enter-city-container-controls-search-cities').css('display', 'none');
+                $('.enter-city-container-controls-error').css('display', 'block');
+            }
+        }
+        else {
+            $('.enter-city-container-controls-search-cities').css('display', 'none');
+            $('.enter-city-container-controls-error').css('display', 'none');
+        }
+    }
+    $scope.confirmSearchCity = function(){
+        if ($scope.searchCityName === '') {
+            $scope.searchError = 'Введите название города!';
+
+            $('.enter-city-container-controls-search-cities').css('display', 'none');
+            $('.enter-city-container-controls-error').css('display', 'block');
+        }
+        else {
+            if ($scope.searchCities.length > 0 && $scope.searchCityName.toLowerCase() === $scope.searchCities[0].Name.toLowerCase()) {
+                $('.enter-city-container-controls-search-cities').css('display', 'none');
+                $('.enter-city-container-controls-error').css('display', 'none');
+
+                $scope.showCityPopup('preloader');
+                $scope.city = $scope.searchCities[0];
+                $scope.cityShops = getCityShops($scope.city, $scope.shops);
+                $scope.addShopPoints($scope.cityShops);
+
+                $('.map-sidebar-wrapper .map-container, .map-sidebar-wrapper .sidebar').removeClass('blur');
+                $('.choose-city-wrapper').hide();
+            }
+            else {
+                $scope.searchError = 'Данного города нет!';
+            
+                $('.enter-city-container-controls-search-cities').css('display', 'none');
+                $('.enter-city-container-controls-error').css('display', 'block');
+            }
+        }
+    }
 
 
+    // Обработчики событий на элементах
     $('.map-sidebar-wrapper .sidebar .shops-block').on('click', '> ul', function(){
+        myMap.setBounds(myMap.geoObjects.getBounds());
+        myMap.balloon.close();
         $scope.activeShop($(this).attr('city-id'));
         $('.map-sidebar-wrapper .sidebar').removeClass('open');
     });
+
+    $('.choose-city-wrapper .enter-city').on('click', '.enter-city-container-controls-search-cities .search-city', function(){
+        $scope.searchCityName = $(this).text();
+        $scope.searchCityByName();
+        $scope.$apply();
+
+        $('.enter-city-container-controls-search-cities').css('display', 'none');
+    });
+    // Обработчики событий на элементах КОНЕЦ
 
 
     $scope.showCityPopup('preloader');
@@ -107,8 +203,70 @@ myApp.controller('myCtrl', function($scope, $http) {
                     }
                 }
             });
-            myMap.controls.add(zoomControl);
-            resolve("Welcome to Karmy shops Map!");              
+            myMap.controls.add(zoomControl);  
+            
+            // Стилизуем баллун
+            BalloonContentLayout = ymaps.templateLayoutFactory.createClass([
+                '<div class="balloon-popup">',
+                  '<a class="balloon-popup-close" href="#">X</a>',
+                  '<div class="balloon-popup-content">',
+                    '<ul>',
+                        '<li>{{properties.name}}</li>',
+                        '<li>{{properties.address}}</li>',
+                        '<li>{{properties.hours}}</li>',
+                        '<li>{{properties.phone}}</li>',
+                        '<li>{{properties.site}}</li>',
+                    '</ul>',
+                  '</div>',
+                '</div>'
+              ].join(''), {
+                build: function () {
+                  BalloonContentLayout.superclass.build.call(this);
+                  this.handleClose = $.proxy(this.handleClose, this);
+                  jQuery(this.getParentElement)
+                    .on('click', '.balloon-popup-close', this.handleClose);
+                },
+                clear: function () {
+                  jQuery(this.getParentElement)
+                    .off('click', '.balloon-popup-close', this.handleClose);
+                  BalloonContentLayout.superclass.build.call(this);
+                },
+                handleClose: function () {
+                  this.events.fire('userclose');
+                }
+            });
+
+            BalloonContentLayoutWithoutSite = ymaps.templateLayoutFactory.createClass([
+                '<div class="balloon-popup">',
+                  '<a class="balloon-popup-close" href="#">X</a>',
+                  '<div class="balloon-popup-content">',
+                    '<ul>',
+                        '<li>{{properties.name}}</li>',
+                        '<li>{{properties.address}}</li>',
+                        '<li>{{properties.hours}}</li>',
+                        '<li>{{properties.phone}}</li>',
+                    '</ul>',
+                  '</div>',
+                '</div>'
+              ].join(''), {
+                build: function () {
+                    BalloonContentLayoutWithoutSite.superclass.build.call(this);
+                  this.handleClose = $.proxy(this.handleClose, this);
+                  jQuery(this.getParentElement)
+                    .on('click', '.balloon-popup-close', this.handleClose);
+                },
+                clear: function () {
+                  jQuery(this.getParentElement)
+                    .off('click', '.balloon-popup-close', this.handleClose);
+                    BalloonContentLayoutWithoutSite.superclass.build.call(this);
+                },
+                handleClose: function () {
+                  this.events.fire('userclose');
+                }
+            });
+            // Стилизуем баллун КОНЕЦ
+
+            resolve("Welcome to Karmy shops Map!");
         });        
     })
     .then(function(){
@@ -135,6 +293,7 @@ myApp.controller('myCtrl', function($scope, $http) {
                     $(window).resize(function(){
                         setTimeout(function(){
                             myMap.setBounds(myMap.geoObjects.getBounds());
+                            setLeftPositionOnSearchCities();
                         }, 0);
                     });
 
@@ -152,8 +311,8 @@ myApp.controller('myCtrl', function($scope, $http) {
                                     method: 'GET',       
                                     url: "https://geocode-maps.yandex.ru/1.x/?apikey=6c63b2b7-912b-40f2-a252-2cbdc56042b9&geocode="+lat+","+lng+"&sco=latlong&kind=locality&format=json",
                                 })
-                                .then(function(response) {                    
-                                    if(response){                              
+                                .then(function(response) {
+                                    if(response){
                                         resolve(response.data.response.GeoObjectCollection.featureMember[0].GeoObject.name);
                                     }                                                    
                                 });    
@@ -162,12 +321,12 @@ myApp.controller('myCtrl', function($scope, $http) {
                     })
                     .then(
                         function(result){             
-                            $scope.autoCity = result;
+                            $scope.autoCity = getCityObject(result, $scope.cities);
                             $scope.$apply();
                             $scope.showCityPopup('auto-city');
                         },
                         function(){
-                            $scope.autoCity = 'Москва';
+                            $scope.autoCity = $scope.cities[108];
                             $scope.$apply();
                             $scope.showCityPopup('auto-city');
                         }

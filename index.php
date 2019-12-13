@@ -67,7 +67,7 @@
       <!-- Here goes Sidebar container -->
       <div class="sidebar">
         <div class="sidebar-block cities-block">        
-          <h2 class="sidebar-title"><span>Ваш город:</span><span class="sidebar-title-city">{{city.Name}} </span>
+          <h2 class="sidebar-title"><span>Ваш город:</span><span class="sidebar-title-city" ng-click="showCityPopup('enter-city')">{{city.Name}}</span>
             <div class="sidebar-close"></div>
           </h2>         
         </div> 
@@ -86,7 +86,7 @@
       <div class="choose-city-wrapper">
         <div class="preloader"></div>
         <div class="auto-city">
-          <h2>Ваш город - {{autoCity}}?</h2>
+          <h2>Ваш город - {{autoCity.Name}}?</h2>
           <div class="btns">
             <button class="other-city" ng-click="showCityPopup('enter-city')">Выбрать другой</button>
             <button class="this-city" ng-click="confirmAutoCity()">Да, это мой город</button>
@@ -95,8 +95,14 @@
         <div class="enter-city">
           <h2>Начните вводить название города</h2>
           <div class="enter-city-container">
-            <input type="text" name="">
-            <button>Да, это мой город</button>
+            <div class="enter-city-container-controls">
+              <input type="text" name="search-city-name" ng-model="searchCityName" ng-change="searchCityByName()" value="">
+              <button ng-click="confirmSearchCity()">Да, это мой город</button>
+              <div class="enter-city-container-controls-search-cities">
+                <div class="search-city" ng-repeat="searchCity in searchCities">{{searchCity.Name}}</div>
+              </div>
+              <div class="enter-city-container-controls-error">{{searchError}}</div>
+            </div>
           </div>
         </div>
       </div>

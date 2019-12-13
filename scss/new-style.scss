@@ -482,6 +482,7 @@ html, body {
                     &:nth-child(3) {
                     
                         background: url('../img/hours.svg') 0 0 no-repeat;
+                        margin-top: 15px;
                     }
 
                     &:nth-child(4) {
@@ -511,6 +512,8 @@ html, body {
         position: absolute;
         width: 100%;
         height: 100%;
+        top: 0;
+        left: 0;
         z-index: 3;
         background-color: rgba(27, 11, 6, 0.7);;
 
@@ -580,35 +583,95 @@ html, body {
 
             .enter-city-container {
 
-                display: flex;
-                justify-content: center;
+                text-align: center;
 
-                input {
+                .enter-city-container-controls {
 
-                    flex-basis: 400px;
-                    height: 39px;
-                    line-height: 39px;
-                    border: 0;
-                    border-bottom: 1px solid #fff;
-                    background: transparent;
-                    padding: 0;
-                    font-size: 1rem;
-                    color: #fff;
-                    margin-right: 32px;
-                }
+                    display: flex;
+                    justify-content: center;
+                    position: relative;
 
-                button {
+                    input {
 
-                    padding: 0 33px;
-                    border-radius: 50px;
-                    font-size: 0.875rem;
-                    font-weight: bold;
-                    border: 0;
-                    background: transparent;
-                    box-sizing: border-box;
-                    border: 2px solid #fff;
-                    color: #fff;
-                    line-height: 36px;
+                        display: inline-block;
+                        flex-basis: 400px;
+                        min-width: 0;
+                        height: 39px;
+                        line-height: 39px;
+                        border: 0;
+                        border-bottom: 1px solid #fff;
+                        background: transparent;
+                        padding: 0;
+                        font-size: 1rem;
+                        color: #fff;
+                        margin-right: 32px;
+                        outline: none;
+                    }
+    
+                    button {
+    
+                        padding: 0 33px;
+                        border-radius: 50px;
+                        font-size: 0.875rem;
+                        font-weight: bold;
+                        border: 0;
+                        background: transparent;
+                        box-sizing: border-box;
+                        border: 2px solid #fff;
+                        color: #fff;
+                        line-height: 36px;
+                        flex-shrink: 0;
+                    }
+
+                    .enter-city-container-controls-search-cities {
+
+                        position: absolute;
+                        width: 400px;
+                        top: 60px;
+                        left: 0;
+                        background-color: #fff;
+                        color: rgba(0, 0, 0, 0.75);
+                        font-size: 0.875rem;
+                        display: none;
+                        flex-wrap: wrap;
+                        padding: 25px;
+
+                        .search-city {
+
+                            margin-right: 10px;
+                            cursor: pointer;
+
+                            &::after {
+
+                                content: ','
+                            }
+
+                            &:last-child {
+
+                                margin-right: 0;
+
+                                &::after {
+
+                                    content: ''
+                                }
+                            }
+                        }
+                    }
+
+                    .enter-city-container-controls-error {
+
+                        position: absolute;
+                        width: 400px;
+                        top: 60px;
+                        left: 0;
+                        background-color: #fff;
+                        color: rgba(0, 0, 0, 0.75);
+                        font-size: 0.875rem;
+                        display: none;
+                        flex-wrap: wrap;
+                        padding: 25px;
+                        text-align: left;
+                    }
                 }
             }
         }
@@ -893,6 +956,105 @@ html, body {
     &.show {
 
         opacity: 0.6 !important;
+    }
+}
+
+.balloon-popup {
+
+    min-width: 255px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+
+    .balloon-popup-close {
+
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 20px;
+        right: 20px;
+        background: url('../img/balloon-popup-close.svg') 0 0 no-repeat;
+        font-size: 0;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .balloon-popup-content {
+
+        position: relative;
+        z-index: 1;
+
+        & > ul {
+
+            padding: 0;
+            margin: 0;
+            list-style: none;
+    
+            & > li {
+    
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                color: #212529;
+                font-size: 0.625rem;
+                line-height: 20px;
+                padding-left: 30px;
+                margin-top: 10px;
+    
+                &:first-child {
+    
+                    margin-top: 0;
+                }
+    
+                &:nth-child(1) {
+    
+                    text-transform: uppercase;
+                    font-size: 0.875rem;
+                    font-weight: bold;
+                    position: relative;
+                    padding-bottom: 5px;
+                    line-height: normal;
+                    padding-left: 0;
+    
+                    &::after {
+    
+                        content: '';
+                        position: absolute;
+                        width: 43px;
+                        height: 1px;
+                        left: 0;
+                        bottom: 0;
+                        background-color: #212529;
+                    }
+                }
+    
+                &:nth-child(2) {
+    
+                    font-size: 0.75rem;
+                    font-weight: bold;
+                    padding-left: 0;
+                    margin-top: 0;
+                }
+    
+                &:nth-child(3) {
+                
+                    background: url('../img/hours.svg') 0 0 no-repeat;
+                    margin-top: 15px;
+                }
+    
+                &:nth-child(4) {
+                
+                    background: url('../img/phone.svg') 0 0 no-repeat;
+                }
+    
+                &:nth-child(5) {
+                
+                    background: url('../img/site.svg') 0 0 no-repeat;
+                }
+            }
+        }
     }
 }
 

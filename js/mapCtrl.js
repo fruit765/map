@@ -208,6 +208,7 @@ myApp.controller('myCtrl', function($scope, $http) {
             // Стилизуем баллун
             BalloonContentLayout = ymaps.templateLayoutFactory.createClass([
                 '<div class="balloon-popup">',
+                    '<div class="balloon-finger"></div>',
                   '<a class="balloon-popup-close" href="#">X</a>',
                   '<div class="balloon-popup-content">',
                     '<ul>',
@@ -238,6 +239,7 @@ myApp.controller('myCtrl', function($scope, $http) {
 
             BalloonContentLayoutWithoutSite = ymaps.templateLayoutFactory.createClass([
                 '<div class="balloon-popup">',
+                    '<div class="balloon-finger"></div>',
                   '<a class="balloon-popup-close" href="#">X</a>',
                   '<div class="balloon-popup-content">',
                     '<ul>',

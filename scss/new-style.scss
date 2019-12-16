@@ -968,6 +968,16 @@ html, body {
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
     position: relative;
 
+    .balloon-finger {
+
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        top: -15px;
+        left: 0;
+        background: url('../img/balloon-finger.svg') 0 0 no-repeat;
+    }
+
     .balloon-popup-close {
 
         position: absolute;

@@ -3,6 +3,8 @@ myApp.controller('myCtrl', function($scope, $http) {
     /* Init vars */
     var myMap, BalloonContentLayout, BalloonContentLayoutWithoutSite;
     var backBtnWay = 'modal';
+    var user = detect.parse(navigator.userAgent);
+    var deviceType = user.device.type;
 
     $scope.cities = [];
     $scope.city = {};
@@ -234,6 +236,11 @@ myApp.controller('myCtrl', function($scope, $http) {
 
 
     $scope.showCityPopup('preloader');
+
+
+    if (!(deviceType === 'Desktop' && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+        $('.enter-city-container-controls').addClass('mobile');
+    }
 
         
     /* Promise: GET Map using Y.Maps */

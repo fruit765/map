@@ -688,6 +688,15 @@ html, body {
                         padding: 25px;
                         text-align: left;
                     }
+
+                    &.mobile {
+
+                        .enter-city-container-controls-search-cities, .enter-city-container-controls-error {
+
+                            top: auto;
+                            bottom: 60px;
+                        }
+                    }
                 }
             }
         }

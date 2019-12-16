@@ -148,15 +148,15 @@
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=6c63b2b7-912b-40f2-a252-2cbdc56042b9" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/detect.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.easing.compatibility.js"></script>
+    <script src="js/phone-mask.js"></script>
 
     <script src="js/sidebar.js"></script>
     <script src="js/mapSidebarCtrl.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/mapCtrl.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/jquery.easing.compatibility.js"></script>
-    <script src="js/detect.min.js"></script>
-    <script src="js/phone-mask.js"></script>
     <!-- <script src="node_modules/motion-ui/dist/motion-ui.min.js"></script> -->
 
     <script src="js/menu.js"></script>

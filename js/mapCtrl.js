@@ -2,6 +2,7 @@ var myApp = angular.module('myApp',[]);
 myApp.controller('myCtrl', function($scope, $http) { 
     /* Init vars */
     var myMap, BalloonContentLayout, BalloonContentLayoutWithoutSite;
+    var backBtnWay = 'modal';
 
     $scope.cities = [];
     $scope.city = {};
@@ -22,6 +23,7 @@ myApp.controller('myCtrl', function($scope, $http) {
 
         if (className === 'enter-city') {
             $scope.searchCityName = '';
+            $scope.searchCities = [];
 
             $('.choose-city-wrapper .enter-city .enter-city-container input').focus();
             setLeftPositionOnSearchCities();
@@ -205,6 +207,28 @@ myApp.controller('myCtrl', function($scope, $http) {
         $scope.$apply();
 
         $('.enter-city-container-controls-search-cities').css('display', 'none');
+    });
+
+    $('.back-btn').on('click', function(){
+        switch(backBtnWay) {
+            case 'modal':
+                $scope.showCityPopup('auto-city');
+                break;
+
+            case 'map':
+                $('.map-sidebar-wrapper .map-container, .map-sidebar-wrapper .sidebar').removeClass('blur');
+                $('.choose-city-wrapper').hide();
+                break;
+
+            default:
+                break;
+        }
+    });
+
+    $('.sidebar-title-city').on('click', function(){
+        $scope.showCityPopup('enter-city');
+        $scope.$apply();
+        backBtnWay = 'map';
     });
     // Обработчики событий на элементах КОНЕЦ
 

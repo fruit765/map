@@ -46,6 +46,8 @@
         </li>
 
         <li class="item"><a href="#">Где купить</a></li>
+
+        <li class="item"><a href="http://karmypet.ru/forbreeders">Заводчикам</a></li>
       </ul>
 
       <div id="get-call" class="slide-in-up" data-toggle="modal" data-target="#get-call-modal">Заказать звонок</div>
@@ -67,7 +69,7 @@
       <!-- Here goes Sidebar container -->
       <div class="sidebar">
         <div class="sidebar-block cities-block">        
-          <h2 class="sidebar-title"><span>Ваш город:</span><span class="sidebar-title-city" ng-click="showCityPopup('enter-city')">{{city.Name}}</span>
+          <h2 class="sidebar-title"><span>Ваш город:</span><span class="sidebar-title-city">{{city.Name}}</span>
             <div class="sidebar-close"></div>
           </h2>         
         </div> 
@@ -93,6 +95,7 @@
           </div>
         </div>
         <div class="enter-city">
+          <div class="back-btn"></div>
           <h2>Начните вводить название города</h2>
           <div class="enter-city-container">
             <div class="enter-city-container-controls">

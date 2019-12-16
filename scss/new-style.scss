@@ -573,6 +573,17 @@ html, body {
 
         .enter-city {
 
+            .back-btn {
+
+                position: absolute;
+                width: 50px;
+                height: 23px;
+                top: 40px;
+                left: 40px;
+                background: url('../img/back-btn.svg');
+                cursor: pointer;
+            }
+
             h2 {
 
                 color: #fff;

@@ -81,7 +81,33 @@ myApp.controller('myCtrl', function($scope, $http) {
             }
 
             placemark.events.add('click', function(e){
+                var activeElement, top;
+                var top;
+
                 $scope.activeShop(e.get('target').properties.get('id'));
+
+                activeElement = $('.map-sidebar-wrapper .sidebar .shops-block > ul.active')[0];
+                top = 0;
+
+                $('.map-sidebar-wrapper .sidebar .shops-block > ul').each(function(index, element){
+                    if (element !== activeElement) {
+                        top += $(element).outerHeight(true);
+                    }
+                    else {
+                        return false;
+                    }
+                });
+
+                $('.map-sidebar-wrapper .sidebar .shops-block').stop().animate(
+                    {
+                        scrollTop: top
+                    },
+                    {
+                        duration: 1000,
+                        easing: 'easeInCubic',
+                        queue: false,
+                    }
+                );
             });
 
             myMap.geoObjects.add(placemark);

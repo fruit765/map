@@ -515,7 +515,9 @@ html, body {
         top: 0;
         left: 0;
         z-index: 3;
-        background-color: rgba(27, 11, 6, 0.7);;
+        background-color: rgba(27, 11, 6, 0.7);
+        padding-left: 20px;
+        padding-right: 20px;
 
         & > * {
 
@@ -555,12 +557,14 @@ html, body {
                     box-sizing: border-box;
                     border: 2px solid #fff;
                     line-height: 36px;
+                    margin-left: 35px;
+                    margin-right: 35px;
 
                     &.other-city {
 
                         color: #fff;
                         opacity: 0.5;
-                        margin-right: 70px
+                        margin-bottom: 20px;
                     }
 
                     &.this-city {
@@ -605,7 +609,8 @@ html, body {
                     input {
 
                         display: inline-block;
-                        flex-basis: 400px;
+                        width: 100%;
+                        max-width: 400px;
                         min-width: 0;
                         height: 39px;
                         line-height: 39px;

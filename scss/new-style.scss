@@ -55,9 +55,7 @@ html, body {
     justify-content: space-between;
     align-items: center;
     height: 80px;
-    background-image: linear-gradient(to bottom, rgba(46,24,12,0.9), rgba(46,24,12,0.88)), url('https://static.tildacdn.com/tild3261-6462-4162-b431-643832643438/bg_.png');
-    background-size: 100% auto;
-    background-repeat: no-repeat;
+    background-color: #432f21;
     position: relative;
 
     .logo {
@@ -81,7 +79,6 @@ html, body {
         transition: background-color 0.2s ease-in-out;
         cursor: pointer;
         font-family: 'Geometria-ExtraBold',Arial,sans-serif;
-        //visibility: hidden;
 
         &:hover {
 
@@ -1093,25 +1090,160 @@ html, body {
     }
 }
 
-@media screen and (min-width:981px) {
+.mobile-menu {
 
-    .header {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
 
-        height: 80px !important;
+    .mobile-menu-cover {
 
-        .logo {
+        height: 100%;
+        background-color: #000;
+        opacity: 0;
+    }
 
-            opacity: 1 !important;
+    .mobile-menu-wrapper {
+
+        position: absolute;
+        width: 300px;
+        height: 100%;
+        top: 0;
+        left: -300px;
+        background-color: #111;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+
+        .mobile-menu-wrapper-close {
+
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+    
+            &::before, &::after {
+    
+                content: '';
+                position: absolute;
+                width: 24px;
+                height: 2px;
+                top: 50%;
+                margin-top: -1px;
+                left: 50%;
+                margin-left: -12px;
+                background-color: #fff;
+                transform: rotate(45deg);
+            }
+
+            &::after {
+
+                transform: rotate(-45deg);
+            }
         }
 
-        .menu {
+        .mobile-menu-wrapper-body {
 
-            opacity: 1 !important;
+            padding: 40px 25px 25px 25px;
+            margin-bottom: 10px;
+
+            ul, li {
+
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                font-family: 'Geometria', Arial, sans-serif;
+            }
+
+            & > ul {
+
+                & > li {
+
+                    margin-bottom: 15px;
+
+                    &:last-child {
+
+                        margin-bottom: 0;
+                    }
+
+                    & > a {
+
+                        font-size: 1.3rem;
+                        color: #fff;
+                        text-decoration: none;
+                    }
+
+                    & > ul {
+
+                        margin-top: 10px;
+                        display: none;
+
+                        & > li {
+
+                            margin-bottom: 10px;
+
+                            &:last-child {
+
+                                margin-bottom: 0;
+                            }
+
+                            & > a {
+
+                                font-weight: bold;
+                                font-size: 0.9rem;
+                                color: #fff;
+                                text-decoration: none;
+                            }
+                        }
+                    }
+
+                    & > a {
+
+                        &.open + ul {
+
+                            display: block;
+                        }
+                    }
+                }
+            }
         }
 
-        #get-call {
+        .mobile-menu-wrapper-footer {
 
-            opacity: 1 !important;
+            padding: 0 25px 25px 25px;
+            margin-top: auto;
+
+            .mobile-menu-wrapper-footer-social {
+
+                font-size: 0;
+
+                & > a {
+
+                    display: inline-block;
+                    margin-right: 8px;
+
+                    svg {
+
+                        width: 30px;
+                        height: 30px;
+                        fill: #fff;
+                    }
+                }
+            }
+
+            .mobile-menu-wrapper-footer-right {
+
+                font-family: 'Geometria', Arial, sans-serif;
+                font-size: 0.75rem;
+                color: #fff;
+                margin-top: 20px;
+            }
         }
     }
 }
@@ -1132,57 +1264,18 @@ html, body {
     }
 }
 
-@media screen and (max-width:980px) {
+@media screen and (max-width:1000px) {
 
     .header {
 
-        flex-direction: column;
-        align-items: center;
-        overflow: visible;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 10;
-        justify-content: flex-start;
-        overflow: hidden;
-        background-size: cover;
-
-        &.open {
-
-            overflow: visible;
-        }
-
-        .logo {
-
-            min-width: 0;
-            margin: 40px 0 80px 0;
-            opacity: 0;
-        }
-
         .menu {
 
-            flex-direction: column;
-            margin-bottom: 80px;
-            opacity: 0;
-
-            .item {
-
-                height: 40px;
-                line-height: 40px;
-                padding: 10px 0;
-
-                .sub-menu {
-
-                    top: 65px;
-                }
-            }
+            display: none;
         }
 
         #get-call {
 
-            margin: 0 0 40px 0;
-            opacity: 0;
+            display: none;
         }
 
         .mobile-btn {
@@ -1195,8 +1288,6 @@ html, body {
     }
 
     .map-sidebar-wrapper {
-
-        padding-top: 80px;
 
         .map-btn {
 

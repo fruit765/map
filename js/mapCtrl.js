@@ -72,15 +72,16 @@ myApp.controller('myCtrl', function($scope, $http) {
                 {
                     iconLayout: 'default#image',
                     iconImageHref: '/img/placemark.svg',
-                    iconImageSize: [11, 16],
+                    iconImageSize: [25, 37],
                     balloonLayout: balloonLayout,
+                    balloonOffset: [7, 30],
                     hideIconOnBalloonOpen: false,
                 }
             );
 
             if (index === 0) {
                 placemark.options.set('iconImageHref', '/img/placemark-active.svg');
-                placemark.options.set('iconImageSize', [17, 25]);
+                placemark.options.set('iconImageSize', [34, 50]);
                 placemark.properties.set('active', 1);
             }
 
@@ -128,13 +129,13 @@ myApp.controller('myCtrl', function($scope, $http) {
                 if (geoObject.properties.get('id') == id) {
                     geoObject.properties.set('active', 1);
                     geoObject.options.set('iconImageHref', '/img/placemark-active.svg');
-                    geoObject.options.set('iconImageSize', [17, 25]);
+                    geoObject.options.set('iconImageSize', [34, 50]);
                 }
                 else {
                     if (geoObject.properties.get('active') == 1) {
                         geoObject.properties.set('active', 0);
                         geoObject.options.set('iconImageHref', '/img/placemark.svg');
-                        geoObject.options.set('iconImageSize', [11, 16]);
+                        geoObject.options.set('iconImageSize', [25, 37]);
                     }
                 }
             }

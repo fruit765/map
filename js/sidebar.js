@@ -13,7 +13,7 @@ function sidebarInit(){
 
     sidebarHeight = viewPortHeight - 80;
 
-    $('.map-sidebar-wrapper .map-container, .map-sidebar-wrapper .sidebar').css('height', sidebarHeight + 'px');
+    $('.map-sidebar-wrapper').css('height', sidebarHeight + 'px');
 
     sidebarTitleHeight = $('.map-sidebar-wrapper .sidebar .cities-block .sidebar-title').outerHeight();
 

@@ -44,7 +44,7 @@ $(document).ready(function(){
                 opacity: '0',
             },
             {
-                duration: 300,
+                duration: 400,
                 easing: 'easeInCubic',
                 queue: false,
                 complete: function(){
@@ -58,7 +58,7 @@ $(document).ready(function(){
                 left: '-300px',
             },
             {
-                duration: 300,
+                duration: 400,
                 easing: 'easeInCubic',
                 queue: false,
             }

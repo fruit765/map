@@ -118,6 +118,8 @@ myApp.controller('myCtrl', function($scope, $http) {
         });
 
         myMap.setBounds(myMap.geoObjects.getBounds());
+
+        $('.map-sidebar-wrapper .sidebar .shops-block').scrollTop(0);
     }
     $scope.activeShop = function(id){
         myMap.geoObjects.each(function(geoObject){

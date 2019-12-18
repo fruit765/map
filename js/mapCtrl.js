@@ -86,7 +86,6 @@ myApp.controller('myCtrl', function($scope, $http) {
 
             placemark.events.add('click', function(e){
                 var activeElement, top;
-                var top;
 
                 $scope.activeShop(e.get('target').properties.get('id'));
 
@@ -120,6 +119,8 @@ myApp.controller('myCtrl', function($scope, $http) {
         myMap.setBounds(myMap.geoObjects.getBounds());
 
         $('.map-sidebar-wrapper .sidebar .shops-block').scrollTop(0);
+        $('.map-sidebar-wrapper .sidebar .shops-block > ul.active').removeClass('active');
+        $('.map-sidebar-wrapper .sidebar .shops-block > ul:first-child').addClass('active');
     }
     $scope.activeShop = function(id){
         myMap.geoObjects.each(function(geoObject){
@@ -241,7 +242,7 @@ myApp.controller('myCtrl', function($scope, $http) {
 
 
     if (!(deviceType === 'Desktop' && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-        $('.enter-city-container-controls').addClass('mobile');
+        $('.enter-city-container-controls, .map-sidebar-wrapper .sidebar .shops-block').addClass('mobile');
     }
 
         

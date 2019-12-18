@@ -426,7 +426,12 @@ html, body {
                 padding-left: 45px;
                 cursor: pointer;
 
-                &:hover, &.active {
+                &.active {
+
+                    background-color: rgba(255, 117, 96, 0.1) !important;
+                }
+
+                &:hover {
 
                     background-color: rgba(255, 117, 96, 0.1);
                 }
@@ -491,6 +496,17 @@ html, body {
                     &:nth-child(5) {
                     
                         background: url('../img/site.svg') 0 0 no-repeat;
+                    }
+                }
+            }
+
+            &.mobile {
+
+                & > ul {
+
+                    &:hover {
+
+                        background: transparent;
                     }
                 }
             }

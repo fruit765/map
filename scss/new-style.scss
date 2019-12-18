@@ -538,6 +538,7 @@ html, body {
                 font-size: 3rem;
                 font-weight: bold;
                 margin-bottom: 3rem;
+                text-align: center;
             }
 
             .btns {
@@ -593,6 +594,7 @@ html, body {
                 font-size: 3rem;
                 font-weight: bold;
                 margin-bottom: 3rem;
+                text-align: center;
             }
 
             .enter-city-container {
@@ -1351,6 +1353,17 @@ html, body {
                 }
             }
         }
+
+        .choose-city-wrapper {
+
+            .auto-city, .enter-city {
+
+                h2 {
+
+                    font-size: 2rem;
+                }
+            }
+        }
     }
 
     #get-call-modal {
@@ -1418,6 +1431,23 @@ html, body {
                             padding: 0;
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:360px) {
+
+    .map-sidebar-wrapper {
+
+        .choose-city-wrapper {
+
+            .auto-city, .enter-city {
+
+                h2 {
+
+                    font-size: 1.5rem;
                 }
             }
         }

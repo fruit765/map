@@ -264,7 +264,7 @@ myApp.controller('myCtrl', function($scope, $http) {
                         '<li>{{properties.address}}</li>',
                         '<li>{{properties.hours}}</li>',
                         '<li>{{properties.phone}}</li>',
-                        '<li>{{properties.site}}</li>',
+                        '<li><a href="{{properties.site}}" target="_blank">{{properties.site}}</a></li>',
                     '</ul>',
                   '</div>',
                 '</div>'

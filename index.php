@@ -129,7 +129,7 @@
             <li>{{cityShop.street_type}} {{cityShop.street}}, {{cityShop.house}}</li>
             <li>{{cityShop.hours}}</li>
             <li>{{cityShop.phone}}</li>
-            <li>{{cityShop.site}}</li>
+            <li><a href="{{cityShop.site}}" target="_blank">{{cityShop.site}}</a></li>
           </ul>
         </div>
       </div>

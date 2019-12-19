@@ -496,6 +496,11 @@ html, body {
                     &:nth-child(5) {
                     
                         background: url('../img/site.svg') 0 0 no-repeat;
+
+                        a {
+
+                            color: #212529;
+                        }
                     }
                 }
             }
@@ -1104,6 +1109,11 @@ html, body {
                 &:nth-child(5) {
                 
                     background: url('../img/site.svg') 0 0 no-repeat;
+
+                    a {
+
+                        color: #212529;
+                    }
                 }
             }
         }

@@ -1129,17 +1129,17 @@ html, body {
     width: 300px;
     height: 100%;
     top: 0;
-    left: -300px;
+    right: -300px;
     background-color: #432f21;
     overflow: auto;
     display: flex;
     flex-direction: column;
     z-index: 10;
-    transition: left 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transition: right 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
     &.open {
 
-        left: 0;
+        right: 0;
     }
 
     .mobile-menu-close {

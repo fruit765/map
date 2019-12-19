@@ -7,6 +7,10 @@ function getCityShops(cityObject, shops){
         }
     });
 
+    $('.map-sidebar-wrapper .sidebar .shops-block').scrollTop(0);
+    $('.map-sidebar-wrapper .sidebar .shops-block > ul.active').removeClass('active');
+    $('.map-sidebar-wrapper .sidebar .shops-block > ul:first-child').addClass('active');
+
     return cityShops;
 }
 
@@ -39,4 +43,22 @@ function setLeftPositionOnSearchCities(){
             $('.enter-city-container-controls-error').css({left: '0', width: '100%'});
         }
     }
+}
+
+function scrollToActiveShop(){
+    var activeElement, top;
+
+    activeElement = $('.map-sidebar-wrapper .sidebar .shops-block > ul.active')[0];
+    top = 0;
+
+    $('.map-sidebar-wrapper .sidebar .shops-block > ul').each(function(index, element){
+        if (element !== activeElement) {
+            top += $(element).outerHeight(true);
+        }
+        else {
+            return false;
+        }
+    });
+
+    $('.map-sidebar-wrapper .sidebar .shops-block').scrollTop(top);
 }

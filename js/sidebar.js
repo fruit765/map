@@ -20,11 +20,19 @@ function sidebarInit(){
     sidebarToggleListHeight = sidebarHeight - sidebarTitleHeight;
 
     $('.map-sidebar-wrapper .sidebar .shops-block').css('height', sidebarToggleListHeight + 'px');
+
+    if ($('.map-sidebar-wrapper .sidebar .shops-block > ul.active').length > 0) {
+        scrollToActiveShop();
+    }
 }
 
 $('.map-sidebar-wrapper .map-btn').click(function(){
 
     $(this).parent().children('.sidebar').addClass('open');
+
+    if ($('.map-sidebar-wrapper .sidebar .shops-block > ul.active').length > 0) {
+        scrollToActiveShop();
+    }
 });
 
 $('.map-sidebar-wrapper .sidebar .sidebar-close').click(function(){

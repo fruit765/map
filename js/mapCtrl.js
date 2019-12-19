@@ -2,6 +2,7 @@ var myApp = angular.module('myApp',[]);
 myApp.controller('myCtrl', function($scope, $http) { 
     /* Init vars */
     var myMap, BalloonContentLayout, BalloonContentLayoutWithoutSite;
+    var zoomControl;
     var backBtnWay = 'modal';
     var user = detect.parse(navigator.userAgent);
     var deviceType = user.device.type;
@@ -169,6 +170,20 @@ myApp.controller('myCtrl', function($scope, $http) {
             }
         }
     }
+    $scope.updateZoomControl = function(){
+        myMap.controls.remove(zoomControl);
+
+        zoomControl = new ymaps.control.ZoomControl({
+            options: {
+                size: "small",
+                position: {
+                    top: Math.floor((sidebarHeight - parseInt($('.map-sidebar-wrapper .map-container').css('paddingBottom'), 10))  / 2) - 31,
+                    left: 10
+                }
+            }
+        });
+        myMap.controls.add(zoomControl);
+    }
 
 
     // Обработчики событий на элементах
@@ -231,7 +246,7 @@ myApp.controller('myCtrl', function($scope, $http) {
                 options: {
                     size: "small",
                     position: {
-                        top: Math.floor((sidebarHeight - 75)  / 2) - 31,
+                        top: Math.floor((sidebarHeight - parseInt($('.map-sidebar-wrapper .map-container').css('paddingBottom'), 10))  / 2) - 31,
                         left: 10
                     }
                 }
@@ -329,6 +344,7 @@ myApp.controller('myCtrl', function($scope, $http) {
                         setTimeout(function(){
                             myMap.setBounds(myMap.geoObjects.getBounds());
                             setLeftPositionOnSearchCities();
+                            $scope.updateZoomControl();
                         }, 0);
                     });
 

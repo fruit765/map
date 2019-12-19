@@ -62,6 +62,7 @@
         </li>
 
         <li class="item"><a href="#">Где купить</a></li>
+        <li class="item"><a href="http://karmypet.ru/forbreeders">Заводчикам</a></li>
       </ul>
 
       <div id="get-call" class="slide-in-up" data-toggle="modal" data-target="#get-call-modal">Заказать звонок</div>

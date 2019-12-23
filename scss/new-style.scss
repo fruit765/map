@@ -1465,6 +1465,32 @@ html, body {
     }
 }
 
+@media screen and (max-width:640px) {
+
+    .map-sidebar-wrapper {
+
+        .choose-city-wrapper {
+
+            .enter-city {
+
+                .enter-city-container {
+
+                    .enter-city-container-controls {
+
+                        button {
+
+                            font-size: 0;
+                            background: url('../img/confirm-search-city.svg') center no-repeat;
+                            padding-left: 31px;
+                            padding-right: 31px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width:360px) {
 
     .map-sidebar-wrapper {

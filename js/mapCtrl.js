@@ -94,7 +94,7 @@ myApp.controller('myCtrl', function($scope, $http) {
             myMap.geoObjects.add(placemark);
         });
 
-        myMap.setBounds(myMap.geoObjects.getBounds());
+        $scope.setCorrectZoom();
     }
     $scope.activeShop = function(id){
         myMap.geoObjects.each(function(geoObject){
@@ -184,11 +184,14 @@ myApp.controller('myCtrl', function($scope, $http) {
         });
         myMap.controls.add(zoomControl);
     }
+    $scope.setCorrectZoom = function(){
+        myMap.setBounds(myMap.geoObjects.getBounds(), {checkZoomRange:true});
+    }
 
 
     // Обработчики событий на элементах
     $('.map-sidebar-wrapper .sidebar .shops-block').on('click', '> ul', function(){
-        myMap.setBounds(myMap.geoObjects.getBounds());
+        $scope.setCorrectZoom();
         myMap.balloon.close();
         $scope.activeShop($(this).attr('city-id'));
         $('.map-sidebar-wrapper .sidebar').removeClass('open');
@@ -342,7 +345,7 @@ myApp.controller('myCtrl', function($scope, $http) {
 
                     $(window).resize(function(){
                         setTimeout(function(){
-                            myMap.setBounds(myMap.geoObjects.getBounds());
+                            $scope.setCorrectZoom();
                             setLeftPositionOnSearchCities();
                             $scope.updateZoomControl();
                         }, 0);

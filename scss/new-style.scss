@@ -313,7 +313,7 @@ html, body {
             .sidebar-title {
 
                 padding-left: 45px;
-                padding-right: 90px;
+                padding-right: 70px;
                 padding-top: 30px;
                 padding-bottom: 20px;
                 margin-bottom: 0;
@@ -331,7 +331,7 @@ html, body {
                 .sidebar-close {
     
                     position: absolute;
-                    width: 40px;
+                    width: 70px;
                     height: 100%;
                     top: 0;
                     right: 0;
@@ -346,6 +346,7 @@ html, body {
                         background-color: #222;
                         position: absolute;
                         right: 50%;
+                        margin-top: 5px;
                         margin-right: -11px;
                         top: 50%;
                         margin-left: -11px;
@@ -361,6 +362,7 @@ html, body {
                         background: #222;
                         position: absolute;
                         right: 50%;
+                        margin-top: 5px;
                         margin-right: -11px;
                         top: 50%;
                         margin-left: -11px;
@@ -564,8 +566,8 @@ html, body {
 
             .btns {
 
-                text-align: center;
-                font-size: 0;
+                display: flex;
+                flex-wrap: wrap;
 
                 button {
 
@@ -578,19 +580,18 @@ html, body {
                     box-sizing: border-box;
                     border: 2px solid #fff;
                     line-height: 36px;
-                    margin-left: 35px;
-                    margin-right: 35px;
 
                     &.other-city {
 
                         color: #fff;
                         opacity: 0.5;
-                        margin-bottom: 20px;
+                        margin-right: 35px;
                     }
 
                     &.this-city {
 
                         background-color: #fff;
+                        margin-left: 35px;
                     }
                 }
             }
@@ -1349,6 +1350,8 @@ html, body {
 
                 .sidebar-title {
 
+                    padding-left: 20px;
+
                     .sidebar-close {
     
                         display: block;
@@ -1359,6 +1362,8 @@ html, body {
             .shops-block {
 
                 & > ul {
+
+                    padding-left: 20px;
 
                     .shops-block-list-item {
 
@@ -1483,6 +1488,42 @@ html, body {
                             background: url('../img/confirm-search-city.svg') center no-repeat;
                             padding-left: 31px;
                             padding-right: 31px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:520px) {
+
+    .map-sidebar-wrapper {
+
+        .choose-city-wrapper {
+
+            .auto-city {
+
+                .btns {
+
+                    flex-direction: column;
+                    align-items: center;
+
+                    button {
+
+                        width: 200px;
+
+                        &.other-city {
+
+                            margin-right: 0;
+                            order: 1;
+                        }
+    
+                        &.this-city {
+    
+                            margin-left: 0;
+                            margin-bottom: 20px;
+                            order: 0;
                         }
                     }
                 }

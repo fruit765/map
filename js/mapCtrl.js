@@ -159,6 +159,8 @@ myApp.controller('myCtrl', function($scope, $http) {
                 $scope.cityShops = getCityShops($scope.city, $scope.shops);
                 $scope.addShopPoints($scope.cityShops);
 
+                $('.map-sidebar-wrapper .sidebar').removeClass('open');
+
                 $('.map-sidebar-wrapper .map-container, .map-sidebar-wrapper .sidebar').removeClass('blur');
                 $('.choose-city-wrapper').hide();
             }

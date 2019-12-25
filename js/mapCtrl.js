@@ -200,11 +200,12 @@ myApp.controller('myCtrl', function($scope, $http) {
     });
 
     $('.choose-city-wrapper .enter-city').on('click', '.enter-city-container-controls-search-cities .search-city', function(){
-        $scope.searchCityName = $(this).text();
-        $scope.searchCityByName();
-        $scope.$apply();
-
-        $('.enter-city-container-controls-search-cities').css('display', 'none');
+        var self = this;
+        $scope.$apply(function(){
+            $scope.searchCityName = $(self).text();
+            $scope.searchCityByName();
+            $('.enter-city-container-controls-search-cities').css('display', 'none');
+        });
     });
 
     $('.back-btn').on('click', function(){
@@ -227,6 +228,20 @@ myApp.controller('myCtrl', function($scope, $http) {
         $scope.showCityPopup('enter-city');
         $scope.$apply();
         backBtnWay = 'map';
+    });
+
+    $('.choose-city-wrapper').on('keydown', function(event) {
+        if (event.which == 13) {
+            $scope.$apply(function(){
+                if ($('.choose-city-wrapper .enter-city').css('display') === 'block') {
+                    $scope.confirmSearchCity();
+                }
+
+                if ($('.choose-city-wrapper .auto-city').css('display') === 'block') {
+                    $scope.confirmAutoCity();
+                }
+            });
+        }
     });
     // Обработчики событий на элементах КОНЕЦ
 

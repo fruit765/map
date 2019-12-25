@@ -134,7 +134,7 @@
         </div>
       </div>
 
-      <div class="choose-city-wrapper">
+      <div class="choose-city-wrapper" tabindex="0">
         <div class="preloader"></div>
         <div class="auto-city">
           <h2>Ваш город - {{autoCity.Name}}?</h2>

@@ -46,14 +46,15 @@ function setLeftPositionOnSearchCities(){
 }
 
 function scrollToActiveShop(){
-    var activeElement, top;
+    var top = 0, heightElement;
 
-    activeElement = $('.map-sidebar-wrapper .sidebar .shops-block > ul.active')[0];
-    top = 0;
+    $('.map-sidebar-wrapper .sidebar .shops-block > ul').css('height', 'auto');
 
     $('.map-sidebar-wrapper .sidebar .shops-block > ul').each(function(index, element){
-        if (element !== activeElement) {
-            top += $(element).outerHeight(true);
+        if (!$(element).hasClass('active')) {
+            heightElement = Math.floor($(element).height());
+            $(element).css('height', heightElement + 'px');
+            top += heightElement + 30;
         }
         else {
             return false;

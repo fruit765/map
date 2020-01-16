@@ -14,6 +14,7 @@
     {"Name":"Архипо-Осиповка","Slug":"selo_Arhipo_Osipovka","Long": "44.3707", "Lat":"38.5341", "Scale": "15"},
     {"Name":"Афанасьево","Slug":"pgt_Afanasevo","Long": "58.8682", "Lat":"53.2608", "Scale": "14"},
     {"Name":"Балаково","Slug":"Balakovo","Long": "52.0224", "Lat":"47.7929", "Scale": "13"},
+    {"Name":"Балашиха","Slug":"Balashiha","Long": "55.7402", "Lat":"37.9812", "Scale": "13"},
     {"Name":"Батайск","Slug":"Batajsk","Long": "47.1291", "Lat":"39.7485", "Scale": "13"},
     {"Name":"Бахчисарай","Slug":"Bahchisaraj","Long": "44.75", "Lat":"33.857", "Scale": "15"},
     {"Name":"Белая Холуница","Slug":"Belaya_Holunica","Long": "58.8448", "Lat":"50.8532", "Scale": "14"},

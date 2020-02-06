@@ -43,7 +43,7 @@ $csv = new CSVClass;
 
             <div class="col-6 button-subdiv">
 
-                <form method="post" action="/data_checker.php?save=1&show_reps=0">            
+                <form method="post" action="/add_shops.php?save=1&show_reps=0">            
 
                 <input type="submit" class="btn btn-primary" value="Проверка и запись в БД"/>        
 
@@ -53,7 +53,7 @@ $csv = new CSVClass;
 
             <div class="col-6 button-subdiv">
 
-                <form method="post" action="/data_checker.php?save=2">         
+                <form method="post" action="/add_shops.php?save=2">         
 
                     <input type="submit" class="btn btn-danger" value="Запись в БД (без проверок)"/>
 

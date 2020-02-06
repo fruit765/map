@@ -8,9 +8,9 @@ if(isset($_POST) && !empty($_POST)){
        $post = json_decode($k);
     }     
     $csv = new CSVClass;     
-    if(isset($post->slug) && !empty($post->slug)){
-        $csv->getCityFromDB($post->slug);
-    }
+    // if(isset($post->slug) && !empty($post->slug)){
+    //     $csv->getCityFromDB($post->slug);
+    // }
     if(isset($post->points) && !empty($post->points)){        
         $csv->getCitiesFromDB($post->points);
     }    
@@ -21,7 +21,7 @@ class CSVClass{
     private $_file_url = "/data/test.csv";
     private $_init_file = array();
     private $_file = array();
-    private $_db_table = '`points`';
+    private $_db_table = '`shops`';
     private $_db_data = array();
     private $_new_file_data = array();
     private $_old_file_data = array();
@@ -42,16 +42,9 @@ class CSVClass{
          * 
          * Points check pattern: 'phone';
          */
-        //$this->_checks_array = ['addr', 'point', 'phone_site'];
-        $this->_checks_array = ['addr', 'point'];
-        // $this->_check_patterns= [
-        //     'addr'=>['city','street_type','street','house','apartment'],
-        //     'point'=>['lng','lat'],
-        //     'phone_site'=>['phone','site']
-        // ];
+        $this->_checks_array = ['addr'];
         $this->_check_patterns= [
-            'addr'=>['city','street_type','street','house','apartment'],
-            'point'=>['lng','lat'],            
+            'addr'=>['full_city_name','street_type','street','house','lng','lat'],
         ];
         /**
          * Set $_GET Data to $this->_opt
@@ -264,7 +257,7 @@ class CSVClass{
                 
                 if($this->_new_file_data){
                     
-                    echo '<form method="post" action="/data_checker.php?save=1&flush=1&promise=1">
+                    echo '<form method="post" action="/add_shops.php?save=1&flush=1&promise=1">
                     <input type="submit" class="btn btn-success" value="Perform Save to DB"/>
                     </form>';
                 }
@@ -375,7 +368,7 @@ class CSVClass{
         
                 }
 
-                echo '<br><br><a href="/data_checker.php" class="btn btn-primary"> Back to Start </a>';
+                echo '<br><br><a href="/add_shops.php" class="btn btn-primary"> Back to Start </a>';
                 
         }
         
@@ -543,7 +536,7 @@ class CSVClass{
         }               
         
 
-        echo '<br><br><a href="/data_checker.php" class="btn btn-primary"> Back to Start </a>';
+        echo '<br><br><a href="/add_shops.php" class="btn btn-primary"> Back to Start </a>';
        
 
     }
@@ -606,7 +599,7 @@ class CSVClass{
 
         $this->printDataRow($this->_old_file_data[$this->_opt['update_id']], ['row_style'=>'replace','first_row'=>$this->_opt['update_id'],'row_num'=>$this->_opt['update_id']]);                   
 
-        echo '<form method="post" action="/data_checker.php?save=1&update=2&promise=1&csv_id='.$this->_opt['update_id'].'&db_id='.$this->_db_data[$this->_opt['update_id']]['id'].'">
+        echo '<form method="post" action="/add_shops.php?save=1&update=2&promise=1&csv_id='.$this->_opt['update_id'].'&db_id='.$this->_db_data[$this->_opt['update_id']]['id'].'">
         <br><br><input type="submit" class="btn btn-warning" value="Perform Update DB"/>
         </form>';
 
@@ -675,7 +668,7 @@ class CSVClass{
             echo '<span class="warning-info">No rows affected. Check your Data or DB Connection</span>';
         }  
         
-        echo '<br><br><a href="/data_checker.php?save=1&show_reps=0" class="btn btn-success"> Back to Optimizer </a>';
+        echo '<br><br><a href="/add_shops.php?save=1&show_reps=0" class="btn btn-success"> Back to Optimizer </a>';
 
         return;
     }
@@ -735,7 +728,7 @@ class CSVClass{
 
                     if(isset($params['data'][$row_key]) && !empty($params['data'][$row_key])){                        
     
-                        $data[$row_key]['Update'] = '<form method="post" action="/data_checker.php?save=1&show_reps=0&update_id='.$row_key.'&promise=1"><input type="submit" class="btn btn-warning" value="Update DB"/></form>';
+                        $data[$row_key]['Update'] = '<form method="post" action="/add_shops.php?save=1&show_reps=0&update_id='.$row_key.'&promise=1"><input type="submit" class="btn btn-warning" value="Update DB"/></form>';
                                             
                     }                  
                 }
@@ -1318,7 +1311,7 @@ class CSVClass{
 
             if($row_num >= $csv_start_row){
 
-                $this->_new_file_data[] = $this->screenSimbolsInFields($row, ['name']);
+                $this->_new_file_data[] = $this->screenSimbolsInFields($row, ['title']);
             }
 
             else{
@@ -1413,11 +1406,11 @@ class CSVClass{
         echo json_encode($response);
     }
 
-    public function getCityFromDB($slug){
-        $response = array();
-        $response = $this->_db->getPointsByName($slug);       
-        echo json_encode($response);
-    }
+    // public function getCityFromDB($slug){
+    //     $response = array();
+    //     $response = $this->_db->getPointsByName($slug);       
+    //     echo json_encode($response);
+    // }
 
     public function getCitiesFromDB(){        
         $response = array();

@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/CSVController.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/CSVControllerShops.php');
 
 $csv = new CSVClass;
 

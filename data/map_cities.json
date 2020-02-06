@@ -134,6 +134,7 @@
     {"Name":"Небуг","Slug":"selo_Nebug","Long": "44.1711", "Lat":"39.0029", "Scale": "15"},
     {"Name":"Невинномысск","Slug":"Nevinnomyssk","Long": "44.6352", "Lat":"41.9467", "Scale": "13"},
     {"Name":"Некрасовское","Slug":"pgt_Nekrasovskoe","Long": "57.6796", "Lat":"40.3653", "Scale": "13"},
+    {"Name":"Нижнекамск","Slug":"Nizhnekamsk","Long": "55.6341", "Lat":"51.8091", "Scale": "13"},
     {"Name":"Новая Усмань","Slug":"selo_Novaya_Usman","Long": "51.6563", "Lat":"39.4086", "Scale": "15"},
     {"Name":"Новокубанск","Slug":"Novokubansk","Long": "45.1013", "Lat":"41.0638", "Scale": "13"},
     {"Name":"Новомихайловский","Slug":"pgt_Novomihajlovskij","Long": "44.2523", "Lat":"38.8474", "Scale": "15"},

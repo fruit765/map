@@ -9,33 +9,33 @@ class CSVModel{
     }
 
     public function countDBData(){
-        $query = 'SELECT COUNT(id) AS c_rows FROM shops';
+        $query = 'SELECT COUNT(id) AS c_rows FROM inet_shops';
         $rows_count = $this->_pdo->fetchColQuery($this->_pdo->getConnection(), $query);               
         return  $rows_count;
     }
 
     public function getDBData(){
-        $query = 'SELECT * FROM shops';
+        $query = 'SELECT * FROM inet_shops';
         $result = $this->_pdo->getQuery($this->_pdo->getConnection(), $query);               
         return  $result;
     }
 
     public function getDBDataRow($id){       
         $params[':id'] = $id;
-        $query = 'SELECT * FROM shops WHERE id =:id';
+        $query = 'SELECT * FROM inet_shops WHERE id =:id';
         $result = $this->_pdo->executeQuery($this->_pdo->getConnection(), $query, $params);              
         return  $result;
     }
 
     // public function getPointsByName($slug){      
     //     $params[':city'] = $slug;
-    //     $query = "SELECT * FROM `shops` WHERE `city` =:city";
+    //     $query = "SELECT * FROM `inet_shops` WHERE `city` =:city";
     //     $result = $this->_pdo->executeQuery($this->_pdo->getConnection(), $query, $params);         
     //     return  $result;
     // }
 
     public function getPoints(){    
-        $query = "SELECT * FROM `shops`";
+        $query = "SELECT * FROM `inet_shops`";
         $result = $this->_pdo->getQuery($this->_pdo->getConnection(), $query);         
         return  $result;
     }
@@ -75,7 +75,7 @@ class CSVModel{
 
         $keys_string = implode(',', $keys_array);        
 
-        $query = 'INSERT INTO `shops`('.$keys_string.') VALUES';        
+        $query = 'INSERT INTO `inet_shops`('.$keys_string.') VALUES';        
 
         $values_string = "";
 

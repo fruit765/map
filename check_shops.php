@@ -7,7 +7,7 @@
 
     $start_row = 2;
     $end_row = 1000;
-    $spreadsheetId = '14d5nxcGTJaMtRbEg0TkjhlSA7XHazT8V3AyQyOVA5Es';
+    $spreadsheetId = '1OkzkixNSjeNJkTI_A2X3YsnZMnEdYkke1ibZ3QuZS74';
     $sheet_id = 0;
 
 
@@ -15,12 +15,12 @@
     /**
     * Получаем данные из БД
     *******************************************************/
-    $mysqli = new mysqli('localhost', 'root', '', 'map');
+    $mysqli = new mysqli('localhost', 'root', '', 'map_beta');
     if ($mysqli->connect_errno) {
         die('Не удалось подключиться к MySQL');
     }
     $mysqli->set_charset("utf8");
-    $db_response = $mysqli->query("SELECT * FROM `points` ORDER BY `id` ASC");
+    $db_response = $mysqli->query("SELECT * FROM `shops` ORDER BY `id` ASC");
 
 
 
@@ -35,7 +35,7 @@
     $client->addScope('https://www.googleapis.com/auth/spreadsheets');
     $service = new Google_Service_Sheets($client);
 
-    $range = "Лист1!A$start_row:I$end_row";
+    $range = "Лист1!A$start_row:M$end_row";
     $sheet_response = $service->spreadsheets_values->get($spreadsheetId, $range);
 
 
@@ -80,19 +80,19 @@
     $requests = [];
     $data_arr_rows = [];
     foreach($sheet_response->values as $index => $row_sheet) {
-        $city_sheet = '';
+        $full_city_name_sheet = '';
         if (isset($row_sheet[0]) && !empty($row_sheet[0])) {
-            $city_sheet_array = preg_split('//iu', $row_sheet[0], NULL, PREG_SPLIT_NO_EMPTY);
-            foreach($city_sheet_array as $value) {
+            $full_city_name_sheet_array = preg_split('//iu', $row_sheet[0], NULL, PREG_SPLIT_NO_EMPTY);
+            foreach($full_city_name_sheet_array as $value) {
                 if (preg_match('/^[абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ0-9]$/iu', $value)) {
-                    $city_sheet .= $value;
+                    $full_city_name_sheet .= $value;
                 }
             }
         }
 
         $street_sheet = '';
-        if (isset($row_sheet[3]) && !empty($row_sheet[3])) {
-            $street_sheet_array = preg_split('//iu', $row_sheet[3], NULL, PREG_SPLIT_NO_EMPTY);
+        if (isset($row_sheet[7]) && !empty($row_sheet[7])) {
+            $street_sheet_array = preg_split('//iu', $row_sheet[7], NULL, PREG_SPLIT_NO_EMPTY);
             foreach($street_sheet_array as $value) {
                 if (preg_match('/^[абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ0-9]$/iu', $value)) {
                     $street_sheet .= $value;
@@ -101,8 +101,8 @@
         }
 
         $house_sheet = '';
-        if (isset($row_sheet[4]) && !empty($row_sheet[4])) {
-            $house_sheet_array = preg_split('//iu', $row_sheet[4], NULL, PREG_SPLIT_NO_EMPTY);
+        if (isset($row_sheet[8]) && !empty($row_sheet[8])) {
+            $house_sheet_array = preg_split('//iu', $row_sheet[8], NULL, PREG_SPLIT_NO_EMPTY);
             foreach($house_sheet_array as $value) {
                 if (preg_match('/^[0-9]$/iu', $value)) {
                     $house_sheet .= $value;
@@ -113,17 +113,17 @@
             }
         }
 
-        $compare_result_from_sheet = mb_strtolower($city_sheet . $street_sheet . $house_sheet);
+        $compare_result_from_sheet = mb_strtolower($full_city_name_sheet . $street_sheet . $house_sheet);
 
         $db_response->data_seek(0);
         $data_arr_cols = [];
         while($row = $db_response->fetch_assoc()) {
-            $city_db = '';
-            if (isset($row['city']) && !empty($row['city'])) {
-                $city_db_array = preg_split('//iu', $row['city'], NULL, PREG_SPLIT_NO_EMPTY);
-                foreach($city_db_array as $value) {
+            $full_city_name_db = '';
+            if (isset($row['full_city_name']) && !empty($row['full_city_name'])) {
+                $full_city_name_db_array = preg_split('//iu', $row['full_city_name'], NULL, PREG_SPLIT_NO_EMPTY);
+                foreach($full_city_name_db_array as $value) {
                     if (preg_match('/^[абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ0-9]$/iu', $value)) {
-                        $city_db .= $value;
+                        $full_city_name_db .= $value;
                     }
                 }
             }
@@ -151,11 +151,11 @@
                 }
             }
     
-            $compare_result_from_db = mb_strtolower($city_db . $street_db . $house_db);
+            $compare_result_from_db = mb_strtolower($full_city_name_db . $street_db . $house_db);
 
             if ($compare_result_from_sheet === $compare_result_from_db) {
                 // Формируем массив номеров для визуальной проверки
-                $procent = compare_phones([$row_sheet[7], $row['phone']]);
+                $procent = compare_phones([$row_sheet[11], $row['phone']]);
                 $data_arr_cols[] = $procent . '%';
 
                 $phone_db = '';
@@ -183,7 +183,7 @@
                             "startRowIndex"    => $startRowIndex,
                             "endRowIndex"      => $endRowIndex,
                             "startColumnIndex" => 0,
-                            "endColumnIndex"   => 9
+                            "endColumnIndex"   => 13
                         ],
             
                         // Формат отображения данных
@@ -211,7 +211,7 @@
 
     // Выполняем запрос на внесение номеров в гугл таблицу
     sleep(1);
-    $service->spreadsheets_values->update($spreadsheetId, "Лист1!J$start_row", new Google_Service_Sheets_ValueRange(['values' => $data_arr_rows]), array('valueInputOption' => 'RAW'));
+    $service->spreadsheets_values->update($spreadsheetId, "Лист1!N$start_row", new Google_Service_Sheets_ValueRange(['values' => $data_arr_rows]), array('valueInputOption' => 'RAW'));
     
     // Выполняем запрос на подсветку строк гугл таблицы
     if ($requests) {

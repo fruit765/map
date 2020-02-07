@@ -124,7 +124,7 @@ class FormValidator{
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'sidorov.mihail.maykop@gmail.com';
-                $mail->Password = '!@45DFhgjh&^8';
+                $mail->Password = 'wmf-sever';
                 $mail->SMTPSecure = 'tls';
                 $mail->Port = 587;
                 $mail->CharSet = 'UTF-8';

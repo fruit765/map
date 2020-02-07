@@ -11,3 +11,4 @@
 /config/db-local.php
 /data/test.csv
 /data/map_cities.json
+/vendor/

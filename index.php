@@ -55,7 +55,11 @@
       </div>
     </div>
     
-    
+    <div class="map-sidebar-wrapper">
+      <div id="map"></div>
+      <div class="sidebar"></div>
+    </div>
+
     <!-- Мобильное меню -->
     <div class="mobile-menu-cover"></div>
     <div class="mobile-menu">

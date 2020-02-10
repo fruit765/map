@@ -1,3 +1,6 @@
+$menuHeight: 80px;
+
+
 @font-face {
 	font-family: "Geometria";
 	src: url("../fonts/Geometria/Geometria.eot");
@@ -54,9 +57,13 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: $menuHeight;
     background-color: #432f21;
     position: relative;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
 
     .logo {
 
@@ -96,8 +103,8 @@ html, body {
         .item {
 
             padding: 0 15px;
-            height: 80px;
-            line-height: 80px;
+            height: $menuHeight;
+            line-height: $menuHeight;
             flex-basis: auto;
             position: relative;
             list-style: none;
@@ -204,7 +211,7 @@ html, body {
 
         position: absolute;
         width: 80px;
-        height: 80px;
+        height: $menuHeight;
         top: 0;
         right: 0;
         cursor: pointer;
@@ -664,6 +671,17 @@ html, body {
             color: #fff;
             margin-top: 20px;
         }
+    }
+}
+
+.map-sidebar-wrapper {
+
+    height: 100%;
+    padding-top: $menuHeight;
+
+    #map {
+
+        height: 100%;
     }
 }
 

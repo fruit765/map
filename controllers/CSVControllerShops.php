@@ -1375,16 +1375,16 @@ class CSVClass{
     
             } 
 
-            else{
+            // else{
 
-                echo 'Cant open CSV file';
-            }
+            //     echo 'Cant open CSV file';
+            // }
 
         }
 
         else{
 
-            echo 'CSV dont exist';
+            //echo 'CSV dont exist';
 
             return false;
         }

@@ -151,7 +151,6 @@
     <script src="js/jquery.easing.compatibility.js"></script>
     <script src="js/phone-mask.js"></script>
 
-    <script src="js/mapSidebarCtrl.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/sidebar.js"></script>
     <script src="js/mapCtrl.js" type="text/javascript" charset="utf-8"></script>
 

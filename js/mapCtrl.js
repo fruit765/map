@@ -1,11 +1,9 @@
 var myApp = angular.module('myApp',[]);
 myApp.controller('myCtrl', function($scope, $http) {
-  var myMap, zoomControl = null, BalloonContentLayout, BalloonContentLayoutWithoutSite, fullCityName;
+  var myMap, zoomControl = null, BalloonContentLayout, BalloonContentLayoutWithoutSite, fullCityName, shops;
 
-  $scope.shops = [];
   $scope.shop = {};
-  $scope.inetShops = [];
-  $scope.inetShop = {};
+  $scope.cityShops = [];
 
   $scope.addZoomControls = function(){
     var mapHeight = $('#map').height();
@@ -34,7 +32,7 @@ myApp.controller('myCtrl', function($scope, $http) {
 
     myMap.geoObjects.removeAll();
 
-    $scope.shops.forEach(function(shop){
+    shops.forEach(function(shop){
       var balloonLayout;
 
       if (shop.site) {
@@ -65,24 +63,24 @@ myApp.controller('myCtrl', function($scope, $http) {
             hideIconOnBalloonOpen: false,
           }
         );
-
         if (index === 0) {
           //placemark.options.set('iconImageHref', '/img/placemark-active.svg');
           placemark.options.set('iconImageSize', [30, 50]);
           placemark.properties.set('active', 1);
         }
-
         placemark.events.add('click', function(e){
           $scope.activeShop(e.get('target').properties.get('id'));
         });
-
         myMap.geoObjects.add(placemark);
+
+        $scope.cityShops.push(shop);
 
         index++;
       }
     });
 
     $scope.setCorrectZoom();
+    $scope.$apply();
   }
 
   $scope.activeShop = function(id){
@@ -214,8 +212,10 @@ myApp.controller('myCtrl', function($scope, $http) {
   })
   // Выводим магазины на карте и в сайдбаре
   .then(function(response){
-    $scope.shops = response.data;
-    $scope.shop = getShop(fullCityName, $scope.shops);
+    shops = response.data;
+    $scope.$apply(function(){
+      $scope.shop = getShop(fullCityName, shops);
+    });
     $scope.addShops();
 
     $(window).resize(function(){

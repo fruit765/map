@@ -57,7 +57,20 @@
     
     <div class="map-sidebar-wrapper">
       <div id="map"></div>
-      <div class="sidebar"></div>
+      <div class="sidebar">
+        <div class="sidebar__city">{{shop.city}}</div>
+        <div class="sidebar__checks">
+          <span class="sidebar__check sidebar__check_active">Зоомагазины</span>
+          <span class="sidebar__check">Интернет-магазины</span>
+        </div>
+        <div class="sidebar__items">
+          <div ng-repeat="cityShop in cityShops" class="sidebar__item">
+            <div class="sidebar__item-title">{{cityShop.title}}</div>
+            <div class="sidebar__item-content">{{cityShop.street_type}} {{cityShop.street}}, {{cityShop.house}}<br>{{cityShop.hours}}<br>{{cityShop.phone}}</div>
+            <a href = "{{cityShop.site}}" class="sidebar__item-site" target="_blank">{{cityShop.site}}</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Мобильное меню -->

@@ -692,6 +692,110 @@ html, body {
         width: 400px;
         height: 597px;
         background-color: #fff;
+        padding: 30px 25px 0 25px;
+
+        .sidebar__city {
+
+            padding-left: 15px;
+            background: url('../img/city-icon.svg') 0 center no-repeat;
+            height: 20px;
+            line-height: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 0.02em;
+            color: #FF7560;
+            font-family: 'Geometria';
+        }
+
+        .sidebar__checks {
+
+            margin-top: 40px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #CCCCCC;
+            font-size: 0;
+
+            .sidebar__check {
+
+                display: inline-block;
+                font-family: 'Geometria';
+                font-style: normal;
+                font-weight: bold;
+                font-size: 1rem;
+                height: 20px;
+                line-height: 20px;
+                letter-spacing: 0.03em;
+                cursor: pointer;
+                color: #FF7560;
+
+                &.sidebar__check_active {
+
+                    color: #000;
+
+                    &::after {
+
+                        content: '';
+                        display: inline-block;
+                        width: 15px;
+                        height: 20px;
+                        background: url('../img/sidebar-check-icon.svg') right center no-repeat;
+                        vertical-align: middle;
+                    }
+                }
+
+                &:first-child {
+
+                    margin-right: 37px;
+                }
+            }
+        }
+
+        .sidebar__items {
+
+            overflow: auto;
+            margin: 0 -25px;
+
+            .sidebar__item {
+
+                padding: 25px;
+
+                .sidebar__item-title {
+
+                    font-family: 'Geometria';
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 1rem;
+                    line-height: 20px;
+                    letter-spacing: 0.02em;
+                    color: #343332;
+                }
+                
+                .sidebar__item-content {
+
+                    font-family: 'Geometria';
+                    font-size: 0.8rem;
+                    letter-spacing: 0.02em;
+                    color: #6C6C6C;
+                    margin-top: 12px;
+                }
+
+                .sidebar__item-site {
+
+                    font-family: 'Geometria';
+                    font-size: 0.8rem;
+                    letter-spacing: 0.02em;
+                    color: #FF7560;
+                    margin-top: 12px;
+                    display: block;
+                    text-decoration: underline;
+                    line-height: 20px;
+
+                    &:hover {
+
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
     }
 }
 

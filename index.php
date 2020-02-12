@@ -58,7 +58,7 @@
     <div class="map-sidebar-wrapper">
       <div id="map"></div>
       <div class="sidebar">
-        <div class="sidebar__city">{{shop.city}}</div>
+        <div class="sidebar__city">{{cityName}}</div>
         <div class="sidebar__checks">
           <span class="sidebar__check sidebar__check_active">Зоомагазины</span>
           <span class="sidebar__check">Интернет-магазины</span>

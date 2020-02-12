@@ -1,8 +1,8 @@
 var myApp = angular.module('myApp',[]);
 myApp.controller('myCtrl', function($scope, $http) {
-  var myMap, zoomControl = null, BalloonContentLayout, BalloonContentLayoutWithoutSite, fullCityName, shops;
+  var myMap, zoomControl = null, BalloonContentLayout, BalloonContentLayoutWithoutSite, fullCityName, shops = [];
 
-  $scope.shop = {};
+  $scope.cityName = '';
   $scope.cityShops = [];
 
   $scope.addZoomControls = function(){
@@ -42,7 +42,7 @@ myApp.controller('myCtrl', function($scope, $http) {
         balloonLayout = BalloonContentLayoutWithoutSite;
       }
 
-      if (shop.full_city_name === $scope.shop.full_city_name) {
+      if (shop.full_city_name === fullCityName) {
         var placemark = new ymaps.Placemark([shop.lng, shop.lat],
           {
             id: index,
@@ -225,9 +225,13 @@ myApp.controller('myCtrl', function($scope, $http) {
   // Выводим магазины на карте и в сайдбаре
   .then(function(response){
     shops = response.data;
-    $scope.$apply(function(){
-      $scope.shop = getShop(fullCityName, shops);
-    });
+
+    if (shops.length > 0) {
+      $scope.$apply(function(){
+        $scope.cityName = getCityName(fullCityName, shops);
+      });
+    }
+
     $scope.addShops();
 
     $(window).resize(function(){

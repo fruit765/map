@@ -1,11 +1,21 @@
 function getShop(fullCityName, shops){
     for (var i = 0; i < shops.length; i++) {
         if (shops[i].full_city_name === fullCityName) {
-        break;
+            break;
         }
     }
 
     return shops[i];
+}
+
+function getCityName(fullCityName, shops){
+    for (var i = 0; i < shops.length; i++) {
+        if (shops[i].full_city_name === fullCityName) {
+            break;
+        }
+    }
+
+    return shops[i].prefix + ' ' + shops[i].city;
 }
 
 function scrollToActiveShop(){

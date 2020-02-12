@@ -70,6 +70,7 @@ myApp.controller('myCtrl', function($scope, $http) {
         }
         placemark.events.add('click', function(e){
           $scope.activeShop(e.get('target').properties.get('id'));
+          scrollToActiveShop();
         });
         myMap.geoObjects.add(placemark);
 
@@ -100,7 +101,18 @@ myApp.controller('myCtrl', function($scope, $http) {
         }
       }
     });
+
+    $('.sidebar__items_shops .sidebar__item').removeClass('sidebar__item_active');
+    $($('.sidebar__items_shops .sidebar__item')[id]).addClass('sidebar__item_active');
   }
+
+
+
+  // Обработчики событий
+  $('.sidebar__items_shops').on('click', '.sidebar__item', function(){
+    $scope.activeShop($(this).attr('shop-id'));
+    myMap.balloon.close();
+  });
 
 
 
@@ -222,15 +234,4 @@ myApp.controller('myCtrl', function($scope, $http) {
       $scope.setCorrectZoom();
     });
   });
-
-  // Вспомогательные функции
-  function getShop(fullCityName, shops){
-    for (var i = 0; i < shops.length; i++) {
-      if (shops[i].full_city_name === fullCityName) {
-        break;
-      }
-    }
-
-    return shops[i];
-  }
 });

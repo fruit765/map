@@ -63,8 +63,8 @@
           <span class="sidebar__check sidebar__check_active">Зоомагазины</span>
           <span class="sidebar__check">Интернет-магазины</span>
         </div>
-        <div class="sidebar__items">
-          <div ng-repeat="cityShop in cityShops" class="sidebar__item">
+        <div class="sidebar__items sidebar__items_shops">
+          <div ng-repeat="cityShop in cityShops" class="sidebar__item" ng-class="{'sidebar__item_active':$first}" shop-id="{{$index}}">
             <div class="sidebar__item-title">{{cityShop.title}}</div>
             <div class="sidebar__item-content">{{cityShop.street_type}} {{cityShop.street}}, {{cityShop.house}}<br>{{cityShop.hours}}<br>{{cityShop.phone}}</div>
             <a href = "{{cityShop.site}}" class="sidebar__item-site" target="_blank">{{cityShop.site}}</a>
@@ -164,6 +164,7 @@
     <script src="js/jquery.easing.compatibility.js"></script>
     <script src="js/phone-mask.js"></script>
 
+    <script src="js/mapCtrlFunctions.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/sidebar.js"></script>
     <script src="js/mapCtrl.js" type="text/javascript" charset="utf-8"></script>
 

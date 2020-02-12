@@ -758,6 +758,17 @@ html, body {
 
                 padding: 25px;
 
+                &.sidebar__item_active {
+
+                    background-color: #FFEEEC;
+                }
+
+                &:hover {
+
+                    background-color: #FFEEEC;
+                    cursor: pointer;
+                }
+
                 .sidebar__item-title {
 
                     font-family: 'Geometria';
@@ -785,7 +796,7 @@ html, body {
                     letter-spacing: 0.02em;
                     color: #FF7560;
                     margin-top: 12px;
-                    display: block;
+                    display: inline-block;
                     text-decoration: underline;
                     line-height: 20px;
 

@@ -1,23 +1,3 @@
-function getShop(fullCityName, shops){
-    for (var i = 0; i < shops.length; i++) {
-        if (shops[i].full_city_name === fullCityName) {
-            break;
-        }
-    }
-
-    return shops[i];
-}
-
-function getCityName(fullCityName, shops){
-    for (var i = 0; i < shops.length; i++) {
-        if (shops[i].full_city_name === fullCityName) {
-            break;
-        }
-    }
-
-    return shops[i].prefix + ' ' + shops[i].city;
-}
-
 function scrollToActiveShop(){
     var top = 0, heightElement;
 
@@ -35,4 +15,12 @@ function scrollToActiveShop(){
     });
 
     $('.sidebar__items_shops').scrollTop(top);
+}
+
+function setSidebarItemsShopsHeight(){
+    $('.sidebar__items_shops').css('height', 567 - ($('.sidebar__city').outerHeight(true) + $('.sidebar__checks').outerHeight(true)) + 'px');
+}
+
+function setSidebarItemsInetShopsHeight(){
+    $('.sidebar__items_inet-shops').css('height', 567 - ($('.sidebar__city').outerHeight(true) + $('.sidebar__checks').outerHeight(true)) + 'px');
 }

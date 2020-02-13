@@ -59,15 +59,30 @@
       <div id="map"></div>
       <div class="sidebar">
         <div class="sidebar__city">{{cityName}}</div>
+
         <div class="sidebar__checks">
-          <span class="sidebar__check sidebar__check_active">Зоомагазины</span>
-          <span class="sidebar__check">Интернет-магазины</span>
+          <span class="sidebar__check sidebar__check_shops">Зоомагазины</span>
+          <span class="sidebar__check sidebar__check_inet-shops">Интернет-магазины</span>
+
+          <div class="sidebar__checks-content">
+            <div class="switch"></div>
+            Только с доставкой по России
+          </div>
         </div>
+
         <div class="sidebar__items sidebar__items_shops">
           <div ng-repeat="cityShop in cityShops" class="sidebar__item" ng-class="{'sidebar__item_active':$first}" shop-id="{{$index}}">
             <div class="sidebar__item-title">{{cityShop.title}}</div>
             <div class="sidebar__item-content">{{cityShop.street_type}} {{cityShop.street}}, {{cityShop.house}}<br>{{cityShop.hours}}<br>{{cityShop.phone}}</div>
             <a href = "{{cityShop.site}}" class="sidebar__item-site" target="_blank">{{cityShop.site}}</a>
+          </div>
+        </div>
+
+        <div class="sidebar__items sidebar__items_inet-shops">
+          <div ng-repeat="cityInetShop in cityInetShops" class="sidebar__item">
+            <div class="sidebar__item-title">{{cityInetShop.title}}</div>
+            <div class="sidebar__item-content">{{cityInetShop.description}}</div>
+            <a href = "{{cityInetShop.site}}" class="sidebar__item-site" target="_blank">{{cityInetShop.site}}</a>
           </div>
         </div>
       </div>
@@ -165,14 +180,15 @@
     <script src="js/phone-mask.js"></script>
 
     <script src="js/mapCtrlFunctions.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/sidebar.js"></script>
     <script src="js/mapCtrl.js" type="text/javascript" charset="utf-8"></script>
 
+    <script src="js/sidebar.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/mobile-menu.js"></script>
     <script src="js/get-call.js"></script>
     <script src="js/form-validator.js"></script>
     <script src="js/form-dispatcher.js"></script>
+    <script src="js/switch.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140125983-2"></script>

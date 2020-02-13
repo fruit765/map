@@ -1,9 +1,10 @@
 var myApp = angular.module('myApp',[]);
 myApp.controller('myCtrl', function($scope, $http) {
-  var myMap, zoomControl = null, BalloonContentLayout, BalloonContentLayoutWithoutSite, fullCityName, shops = [];
+  var myMap, zoomControl, BalloonContentLayout, BalloonContentLayoutWithoutSite, fullCityName, shops, inetShops, isPoints = false;
 
   $scope.cityName = '';
   $scope.cityShops = [];
+  $scope.cityInetShops = [];
 
   $scope.addZoomControls = function(){
     var mapHeight = $('#map').height();
@@ -24,64 +25,77 @@ myApp.controller('myCtrl', function($scope, $http) {
   }
 
   $scope.setCorrectZoom = function(){
-    myMap.setBounds(myMap.geoObjects.getBounds(), {checkZoomRange:true, zoomMargin: [0, 0, 0, 450]});
+    if (isPoints) {
+      myMap.setBounds(myMap.geoObjects.getBounds(), {checkZoomRange:true, zoomMargin: [0, 0, 0, 450]});
+    }
   }
 
-  $scope.addShops = function(){
-    var index = 0;
+  $scope.addCityShops = function(){
+    shops.forEach(function(shop){
+      if (shop.full_city_name === fullCityName) {
+        $scope.cityShops.push(shop);
+      }
+    });
+  }
 
+  $scope.addCityPoints = function(){
     myMap.geoObjects.removeAll();
 
-    shops.forEach(function(shop){
+    $scope.cityShops.forEach(function(cityShop, index){
       var balloonLayout;
 
-      if (shop.site) {
+      if (cityShop.site) {
         balloonLayout = BalloonContentLayout;
       }
       else {
         balloonLayout = BalloonContentLayoutWithoutSite;
       }
 
-      if (shop.full_city_name === fullCityName) {
-        var placemark = new ymaps.Placemark([shop.lng, shop.lat],
-          {
-            id: index,
-            type: 'shop',
-            active: 0,
-            name: shop.name,
-            address: shop.street_type + ' ' + shop.street + ', ' + shop.house,
-            hours: shop.hours,
-            phone: shop.phone,
-            site: shop.site,
-          },
-          {
-            iconLayout: 'default#image',
-            iconImageHref: '/img/placemark.svg',
-            iconImageSize: [21, 35],
-            balloonLayout: balloonLayout,
-            balloonOffset: [5, 30],
-            hideIconOnBalloonOpen: false,
-          }
-        );
-        if (index === 0) {
-          //placemark.options.set('iconImageHref', '/img/placemark-active.svg');
-          placemark.options.set('iconImageSize', [30, 50]);
-          placemark.properties.set('active', 1);
+      var placemark = new ymaps.Placemark([cityShop.lng, cityShop.lat],
+        {
+          id: index,
+          type: 'shop',
+          active: 0,
+          name: cityShop.name,
+          address: cityShop.street_type + ' ' + cityShop.street + ', ' + cityShop.house,
+          hours: cityShop.hours,
+          phone: cityShop.phone,
+          site: cityShop.site,
+        },
+        {
+          iconLayout: 'default#image',
+          iconImageHref: '/img/placemark.svg',
+          iconImageSize: [21, 35],
+          balloonLayout: balloonLayout,
+          balloonOffset: [5, 30],
+          hideIconOnBalloonOpen: false,
         }
-        placemark.events.add('click', function(e){
-          $scope.activeShop(e.get('target').properties.get('id'));
-          scrollToActiveShop();
-        });
-        myMap.geoObjects.add(placemark);
+      );
 
-        $scope.cityShops.push(shop);
-
-        index++;
+      if (index === 0) {
+        //placemark.options.set('iconImageHref', '/img/placemark-active.svg');
+        placemark.options.set('iconImageSize', [30, 50]);
+        placemark.properties.set('active', 1);
       }
+
+      placemark.events.add('click', function(e){
+        $scope.activeShop(e.get('target').properties.get('id'));
+        scrollToActiveShop();
+      });
+
+      myMap.geoObjects.add(placemark);
+      isPoints = true;
     });
 
     $scope.setCorrectZoom();
-    $scope.$apply();
+  }
+
+  $scope.addCityInetShops = function(){
+    inetShops.forEach(function(inetShop){
+      if (inetShop.full_city_name === fullCityName) {
+        $scope.cityInetShops.push(inetShop);
+      }
+    });
   }
 
   $scope.activeShop = function(id){
@@ -112,6 +126,28 @@ myApp.controller('myCtrl', function($scope, $http) {
   $('.sidebar__items_shops').on('click', '.sidebar__item', function(){
     $scope.activeShop($(this).attr('shop-id'));
     myMap.balloon.close();
+  });
+
+  $('.sidebar__check').click(function(){
+    $('.sidebar__check').removeClass('sidebar__check_active');
+    $(this).addClass('sidebar__check_active');
+    $('.sidebar__items').css('display', 'none');
+
+    if ($(this).hasClass('sidebar__check_shops')) {
+      $('.sidebar__checks-content').css('display', 'none');
+      $('.sidebar__items_shops').css('display', 'block').scrollTop(0);
+      $scope.addCityPoints();
+      $('.sidebar__items_shops .sidebar__item').removeClass('sidebar__item_active');
+      $($('.sidebar__items_shops .sidebar__item')[0]).addClass('sidebar__item_active');
+    }
+
+    if ($(this).hasClass('sidebar__check_inet-shops')) {
+      isPoints = false;
+      myMap.geoObjects.removeAll();
+      $('.sidebar__checks-content').css('display', 'block');
+      setSidebarItemsInetShopsHeight();
+      $('.sidebar__items_inet-shops').css('display', 'block').scrollTop(0);
+    }
   });
 
 
@@ -211,31 +247,65 @@ myApp.controller('myCtrl', function($scope, $http) {
   }, function(){
     return 'Москва, Россия';
   })
-  // Подгружаем все магазины из БД
+  // Подгружаем все магазины и интернет-магазины из БД
   .then(function(response){
-    fullCityName = response;
+    var promiseGetShops, promiseGetInetShops;
 
-    $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-    return $http({
+    fullCityName = response;
+    $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded"; 
+
+    promiseGetShops = $http({
       method:'post',
       url:'controllers/CSVControllerShops.php',
       data:{'points':'all'}
     });
+    promiseGetInetShops = $http({
+      method:'post',
+      url:'controllers/CSVControllerInetShops.php',
+      data:{'points':'all'}
+    });
+
+    return Promise.all([promiseGetShops, promiseGetInetShops]);
   })
-  // Выводим магазины на карте и в сайдбаре
+  // Выводим магазины и интернет-магазины на карте и в сайдбаре
   .then(function(response){
-    shops = response.data;
+    shops = response[0].data;
+    inetShops = response[1].data;
 
     if (shops.length > 0) {
-      $scope.$apply(function(){
-        $scope.cityName = getCityName(fullCityName, shops);
-      });
+      $scope.addCityShops();
+      if ($scope.cityShops.length > 0) {
+        $scope.$apply(function(){
+          $scope.cityName = $scope.cityShops[0].prefix + ' ' + $scope.cityShops[0].city;
+          $('.sidebar__city').css('display', 'block');
+          $('.sidebar__check_shops').addClass('sidebar__check_active').css('display', 'inline-block');
+          setSidebarItemsShopsHeight();
+          $('.sidebar__items_shops').css('display', 'block');
+
+          $scope.addCityPoints();
+
+          $(window).resize(function(){
+            $scope.setCorrectZoom();
+          });
+        });
+      }
     }
 
-    $scope.addShops();
-
-    $(window).resize(function(){
-      $scope.setCorrectZoom();
-    });
+    if (inetShops.length > 0) {
+      $scope.addCityInetShops();
+      if ($scope.cityInetShops.length > 0) {
+        $scope.$apply(function(){
+          $('.sidebar__check_inet-shops').css('display', 'inline-block');
+          if ($scope.cityShops.length === 0) {
+            $('.sidebar__check_inet-shops').addClass('sidebar__check_active');
+            $('.sidebar__checks-content').css('display', 'block');
+            $scope.cityName = $scope.cityInetShops[0].prefix + ' ' + $scope.cityInetShops[0].city;
+            $('.sidebar__city').css('display', 'block');
+            setSidebarItemsInetShopsHeight();
+            $('.sidebar__items_inet-shops').css('display', 'block');
+          }
+        });
+      }
+    }
   });
 });

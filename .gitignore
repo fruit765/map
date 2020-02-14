@@ -2,7 +2,6 @@
 /node_modules/
 /gulpfile.js
 /package-lock.json
-/map.sql
 /.*
 !/.gitignore
 /index_wrbl.php

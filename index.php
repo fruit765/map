@@ -79,7 +79,7 @@
         </div>
 
         <div class="sidebar__items sidebar__items_inet-shops">
-          <div ng-repeat="cityInetShop in cityInetShops" class="sidebar__item">
+          <div ng-repeat="cityInetShop in cityInetShops" class="sidebar__item" delivery-on-russia="{{cityInetShop.delivery_on_russia}}">
             <div class="sidebar__item-title">{{cityInetShop.title}}</div>
             <div class="sidebar__item-content">{{cityInetShop.description}}</div>
             <a href = "{{cityInetShop.site}}" class="sidebar__item-site" target="_blank">{{cityInetShop.site}}</a>
@@ -182,13 +182,13 @@
     <script src="js/mapCtrlFunctions.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/mapCtrl.js" type="text/javascript" charset="utf-8"></script>
 
-    <script src="js/sidebar.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/mobile-menu.js"></script>
     <script src="js/get-call.js"></script>
     <script src="js/form-validator.js"></script>
     <script src="js/form-dispatcher.js"></script>
     <script src="js/switch.js"></script>
+    <script src="js/sidebar.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140125983-2"></script>

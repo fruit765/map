@@ -95,7 +95,16 @@
         <div class="modal-window__content">
           <div class="modal-window__close"></div>
           <div class="modal-window__head">Введите свой город</div>
-          <div class="modal-window__body"></div>
+          <div class="modal-window__body">
+            <div class="search-block">
+              <input class="search-block__input" type="text" placeholder="Начните вводить название города">
+              <div class="search-block__list-wrapper">
+                <div class="search-block__list-content">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -202,6 +211,7 @@
     <script src="js/switch.js"></script>
     <script src="js/sidebar.js"></script>
     <script src="js/modal-window.js"></script>
+    <script src="js/search-block.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140125983-2"></script>

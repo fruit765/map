@@ -151,6 +151,10 @@ myApp.controller('myCtrl', function($scope, $http) {
     }
   });
 
+  $('.sidebar__city').click(function(){
+    $('#change-city').addClass('modal-window_show');
+  });
+
 
 
   // Подгружаем карту

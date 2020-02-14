@@ -945,6 +945,61 @@ html, body {
     }
 }
 
+.search-block {
+
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    .search-block__input {
+
+        width: 100%;
+        height: 48px;
+        line-height: 46px;
+        border: 1px solid #CCCCCC;
+        box-sizing: border-box;
+        border-radius: 4px;
+        padding: 0 16px;
+        font-family: 'Geometria';
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+        color: #343332;
+
+        &::placeholder {
+
+            color: #ccc;
+        }
+    }
+
+    .search-block__list-wrapper {
+
+        padding: 0 16px;
+
+        .search-block__list-content {
+
+            padding: 16px 0 24px 0;
+        }
+    }
+
+    &_writting {
+
+        border: 1px solid #343332;
+
+        .search-block__input {
+
+            border: none;
+            height: 46px;
+        }
+
+        .search-block__list-wrapper {
+
+            .search-block__list-content {
+
+                border-top: 1px solid #ccc;
+            }
+        }
+    }
+}
+
 .balloon-popup {
 
     min-width: 255px;

@@ -125,6 +125,7 @@ myApp.controller('myCtrl', function($scope, $http) {
   // Обработчики событий
   $('.sidebar__items_shops').on('click', '.sidebar__item', function(){
     $scope.activeShop($(this).attr('shop-id'));
+    $scope.setCorrectZoom();
     myMap.balloon.close();
   });
 

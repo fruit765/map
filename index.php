@@ -88,6 +88,18 @@
       </div>
     </div>
 
+    <!-- Модальное окно -->
+    <div id="change-city" class="modal-window">
+      <div class="modal-window__cover"></div>
+      <div class="modal-window__wrapper">
+        <div class="modal-window__content">
+          <div class="modal-window__close"></div>
+          <div class="modal-window__head">Введите свой город</div>
+          <div class="modal-window__body"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Мобильное меню -->
     <div class="mobile-menu-cover"></div>
     <div class="mobile-menu">
@@ -189,6 +201,7 @@
     <script src="js/form-dispatcher.js"></script>
     <script src="js/switch.js"></script>
     <script src="js/sidebar.js"></script>
+    <script src="js/modal-window.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140125983-2"></script>

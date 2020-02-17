@@ -15,9 +15,4 @@ $(document).ready(function(){
         $('.sidebar__checks-content .switch').removeClass('switch_active');
         $('.sidebar__items_inet-shops .sidebar__item[delivery-on-russia="0"]').css('display', 'block');
     });
-
-    // Открываем при клике по имени населенного пункта диалоговое окно смены населенного пункта
-    $('.sidebar__city').click(function(){
-        $('#change-city').addClass('modal-window_show');
-    });
 });

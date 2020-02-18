@@ -387,7 +387,9 @@ myApp.controller('myCtrl', function($scope, $http) {
     $scope.loadAllShops();
 
     $(window).resize(function(){
-      $scope.setCorrectZoom();
+      setTimeout(function(){
+        $scope.setCorrectZoom();
+      }, 0);
     });
   });
 });

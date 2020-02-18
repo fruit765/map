@@ -977,6 +977,7 @@ html, body {
         .search-block__list-content {
 
             padding: 16px 0 24px 0;
+            display: none;
         }
     }
 
@@ -995,8 +996,44 @@ html, body {
             .search-block__list-content {
 
                 border-top: 1px solid #ccc;
+                display: block;
             }
         }
+    }
+}
+
+.change-city {
+
+    .change-city__search-cities {
+        
+        margin: 0 -16px;
+        overflow: auto;
+        padding: 0;
+
+        .change-city__search-city {
+
+            font-family: 'Geometria';
+            font-size: 0.75rem;
+            letter-spacing: 0.02em;
+            color: #343332;
+            min-height: 22px;
+            list-style: none;
+            padding: 0 16px;
+            cursor: pointer;
+
+            &:hover {
+
+                background-color: #FFEEEC;
+            }
+        }
+    }
+
+    .change-city__error {
+
+        font-family: 'Geometria';
+        font-size: 0.75rem;
+        letter-spacing: 0.02em;
+        color: #CCCCCC;
     }
 }
 

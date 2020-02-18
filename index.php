@@ -88,8 +88,8 @@
       </div>
     </div>
 
-    <!-- Модальное окно -->
-    <div id="change-city" class="modal-window">
+    <!-- Блок для смены города-->
+    <div class="modal-window change-city">
       <div class="modal-window__cover"></div>
       <div class="modal-window__wrapper">
         <div class="modal-window__content">
@@ -97,10 +97,13 @@
           <div class="modal-window__head">Введите свой город</div>
           <div class="modal-window__body">
             <div class="search-block">
-              <input class="search-block__input" type="text" placeholder="Начните вводить название города">
+              <input class="search-block__input" type="text" placeholder="Начните вводить название города" ng-model="searchCityName" ng-change="searchCityByName()">
               <div class="search-block__list-wrapper">
                 <div class="search-block__list-content">
-                  
+                  <ul class="change-city__search-cities">
+                    <li class="change-city__search-city" ng-repeat="searchCity in searchCities">{{searchCity.full_city_name}}</li>
+                  </ul>
+                  <div class="change-city__error">Данного города нет!</div>
                 </div>
               </div>
             </div>
@@ -201,7 +204,6 @@
     <script src="js/phone-mask.js"></script>
 
     <script src="js/mapCtrlFunctions.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/mapCtrl.js" type="text/javascript" charset="utf-8"></script>
 
     <script src="js/menu.js"></script>
     <script src="js/mobile-menu.js"></script>
@@ -212,6 +214,7 @@
     <script src="js/sidebar.js"></script>
     <script src="js/modal-window.js"></script>
     <script src="js/search-block.js"></script>
+    <script src="js/mapCtrl.js" type="text/javascript" charset="utf-8"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140125983-2"></script>

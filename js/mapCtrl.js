@@ -3,8 +3,10 @@ myApp.controller('myCtrl', function($scope, $http) {
   var myMap, zoomControl, BalloonContentLayout, BalloonContentLayoutWithoutSite, fullCityName, shops, inetShops, isPoints = false;
 
   $scope.cityName = '';
+  $scope.searchCityName = '';
   $scope.cityShops = [];
   $scope.cityInetShops = [];
+  $scope.searchCities = [];
 
   $scope.addZoomControls = function(){
     var mapHeight = $('#map').height();
@@ -31,6 +33,7 @@ myApp.controller('myCtrl', function($scope, $http) {
   }
 
   $scope.addCityShops = function(){
+    $scope.cityShops = [];
     shops.forEach(function(shop){
       if (shop.full_city_name === fullCityName) {
         $scope.cityShops.push(shop);
@@ -91,6 +94,7 @@ myApp.controller('myCtrl', function($scope, $http) {
   }
 
   $scope.addCityInetShops = function(){
+    $scope.cityInetShops = [];
     inetShops.forEach(function(inetShop){
       if (inetShop.full_city_name === fullCityName) {
         $scope.cityInetShops.push(inetShop);
@@ -118,6 +122,94 @@ myApp.controller('myCtrl', function($scope, $http) {
 
     $('.sidebar__items_shops .sidebar__item').removeClass('sidebar__item_active');
     $($('.sidebar__items_shops .sidebar__item')[id]).addClass('sidebar__item_active');
+  }
+
+  $scope.searchCityByName = function(){
+    var uniqueArr, punct;
+
+    setTimeout(function(){
+      $('.change-city__search-cities').css('display', 'none');
+      $('.change-city__error').css('display', 'none');
+    }, 0);
+
+    if ($scope.searchCityName !== '') {
+      $scope.searchCities = [];
+      uniqueArr = [];
+      shops.forEach(function(shop){
+        punct = shop.full_city_name.split(', ')[0].toLowerCase().replace('ё', 'е');
+        if (punct.match($scope.searchCityName.toLowerCase().replace('ё', 'е'))) {
+          if (!uniqueArr[punct])
+          $scope.searchCities.push(shop);
+          uniqueArr[punct] = true;
+        }
+      });
+
+      if ($scope.searchCities.length > 0) {
+        setTimeout(function(){
+          $('.change-city__search-cities').css('max-height', $('.change-city .modal-window__content').height() - $('.change-city .modal-window__head').outerHeight(true) - $('.change-city .search-block').outerHeight());
+          $('.change-city__search-cities').css('display', 'block');
+          $('.change-city__error').css('display', 'none');
+        }, 0);
+      }
+      else {
+        setTimeout(function(){
+          $('.change-city__search-cities').css('display', 'none');
+          $('.change-city__error').css('display', 'block');
+        }, 0);
+      }
+    }
+  }
+
+  $scope.loadAllShops = function(){
+    if (shops.length > 0) {
+      $scope.addCityShops();
+      if ($scope.cityShops.length > 0) {
+        $scope.$apply(function(){
+          $scope.cityName = $scope.cityShops[0].prefix + ' ' + $scope.cityShops[0].city;
+
+          setTimeout(function(){
+            $('.sidebar__city').css('display', 'block');
+            $('.sidebar__check_shops').addClass('sidebar__check_active').css('display', 'inline-block');
+            setSidebarItemsShopsHeight();
+            $('.sidebar__items_shops').css('display', 'block');
+          }, 0);
+
+          $scope.addCityPoints();
+        });
+      }
+    }
+
+    if (inetShops.length > 0) {
+      $scope.addCityInetShops();
+      if ($scope.cityInetShops.length > 0) {
+        $scope.$apply(function(){
+          setTimeout(function(){
+            $('.sidebar__check_inet-shops').css('display', 'inline-block');
+          }, 0);
+
+          if ($scope.cityShops.length === 0) {
+            $scope.cityName = $scope.cityInetShops[0].prefix + ' ' + $scope.cityInetShops[0].city;
+            setTimeout(function(){
+              $('.sidebar__check_inet-shops').addClass('sidebar__check_active');
+              $('.sidebar__checks-content').css('display', 'block');
+              $('.sidebar__city').css('display', 'block');
+              setSidebarItemsInetShopsHeight();
+              $('.sidebar__items_inet-shops').css('display', 'block');
+            }, 0);
+          }
+
+          setTimeout(function(){
+            $('.change-city').removeClass('modal-window_show');
+          }, 0);
+        });
+      }
+    }
+
+    if ($scope.cityInetShops.length === 0) {
+      setTimeout(function(){
+        $('.change-city').removeClass('modal-window_show');
+      }, 0);
+    }
   }
 
 
@@ -152,7 +244,22 @@ myApp.controller('myCtrl', function($scope, $http) {
   });
 
   $('.sidebar__city').click(function(){
-    $('#change-city').addClass('modal-window_show');
+    $scope.$apply(function(){
+      $scope.searchCityName = '';
+      $scope.searchCityByName();
+      setTimeout(function(){
+        $('.change-city .search-block').removeClass('search-block_writting');
+        $('.change-city').addClass('modal-window_show');
+        $('.change-city .search-block__input').focus();
+      }, 0);
+    });
+  });
+
+  $('.change-city__search-cities').on('click', '.change-city__search-city', function(){
+    fullCityName = $(this).text();
+    $('.sidebar__city, .sidebar__check, .sidebar__checks-content, .sidebar__items').css('display', 'none');
+    $('.sidebar__check').removeClass('sidebar__check_active');
+    $scope.loadAllShops();
   });
 
 
@@ -277,40 +384,10 @@ myApp.controller('myCtrl', function($scope, $http) {
     shops = response[0].data;
     inetShops = response[1].data;
 
-    if (shops.length > 0) {
-      $scope.addCityShops();
-      if ($scope.cityShops.length > 0) {
-        $scope.$apply(function(){
-          $scope.cityName = $scope.cityShops[0].prefix + ' ' + $scope.cityShops[0].city;
-          $('.sidebar__city').css('display', 'block');
-          $('.sidebar__check_shops').addClass('sidebar__check_active').css('display', 'inline-block');
-          setSidebarItemsShopsHeight();
-          $('.sidebar__items_shops').css('display', 'block');
+    $scope.loadAllShops();
 
-          $scope.addCityPoints();
-
-          $(window).resize(function(){
-            $scope.setCorrectZoom();
-          });
-        });
-      }
-    }
-
-    if (inetShops.length > 0) {
-      $scope.addCityInetShops();
-      if ($scope.cityInetShops.length > 0) {
-        $scope.$apply(function(){
-          $('.sidebar__check_inet-shops').css('display', 'inline-block');
-          if ($scope.cityShops.length === 0) {
-            $('.sidebar__check_inet-shops').addClass('sidebar__check_active');
-            $('.sidebar__checks-content').css('display', 'block');
-            $scope.cityName = $scope.cityInetShops[0].prefix + ' ' + $scope.cityInetShops[0].city;
-            $('.sidebar__city').css('display', 'block');
-            setSidebarItemsInetShopsHeight();
-            $('.sidebar__items_inet-shops').css('display', 'block');
-          }
-        });
-      }
-    }
+    $(window).resize(function(){
+      $scope.setCorrectZoom();
+    });
   });
 });

@@ -64,6 +64,7 @@ html, body {
     width: 100%;
     top: 0;
     left: 0;
+    z-index: 1;
 
     .logo {
 
@@ -678,6 +679,7 @@ html, body {
 
     height: 100%;
     padding-top: $menuHeight;
+    position: relative;
 
     .sidebar {
 
@@ -734,7 +736,7 @@ html, body {
             cursor: pointer;
             color: #FF7560;
 
-            &.sidebar__check_active {
+            &_active {
 
                 color: #000;
 
@@ -754,21 +756,21 @@ html, body {
                 margin-right: 37px;
             }
         }
+    }
 
-        .sidebar__checks-content {
+    .sidebar__switch {
 
-            margin-top: 25px;
-            font-family: 'Geometria';
-            font-size: 1rem;
-            line-height: 18px;
-            letter-spacing: 0.02em;
-            display: none;
+        margin-top: 25px;
+        font-family: 'Geometria';
+        font-size: 1rem;
+        line-height: 18px;
+        letter-spacing: 0.02em;
+        display: none;
 
-            .switch {
+        .switch {
 
-                vertical-align: middle;
-                margin-right: 40px;
-            }
+            vertical-align: middle;
+            margin-right: 40px;
         }
     }
 
@@ -1260,3 +1262,6 @@ html, body {
         }
     }
 }
+
+
+@import 'mobile';

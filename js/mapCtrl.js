@@ -191,7 +191,7 @@ myApp.controller('myCtrl', function($scope, $http) {
             $scope.cityName = $scope.cityInetShops[0].prefix + ' ' + $scope.cityInetShops[0].city;
             setTimeout(function(){
               $('.sidebar__check_inet-shops').addClass('sidebar__check_active');
-              $('.sidebar__checks-content').css('display', 'block');
+              $('.sidebar__switch').css('display', 'block');
               $('.sidebar__city').css('display', 'block');
               setSidebarItemsInetShopsHeight();
               $('.sidebar__items_inet-shops').css('display', 'block');
@@ -227,7 +227,7 @@ myApp.controller('myCtrl', function($scope, $http) {
     $('.sidebar__items').css('display', 'none');
 
     if ($(this).hasClass('sidebar__check_shops')) {
-      $('.sidebar__checks-content').css('display', 'none');
+      $('.sidebar__switch').css('display', 'none');
       $('.sidebar__items_shops').css('display', 'block').scrollTop(0);
       $scope.addCityPoints();
       $('.sidebar__items_shops .sidebar__item').removeClass('sidebar__item_active');
@@ -237,7 +237,7 @@ myApp.controller('myCtrl', function($scope, $http) {
     if ($(this).hasClass('sidebar__check_inet-shops')) {
       isPoints = false;
       myMap.geoObjects.removeAll();
-      $('.sidebar__checks-content').css('display', 'block');
+      $('.sidebar__switch').css('display', 'block');
       setSidebarItemsInetShopsHeight();
       $('.sidebar__items_inet-shops').css('display', 'block').scrollTop(0);
     }
@@ -257,7 +257,7 @@ myApp.controller('myCtrl', function($scope, $http) {
 
   $('.change-city__search-cities').on('click', '.change-city__search-city', function(){
     fullCityName = $(this).text();
-    $('.sidebar__city, .sidebar__check, .sidebar__checks-content, .sidebar__items').css('display', 'none');
+    $('.sidebar__city, .sidebar__check, .sidebar__switch, .sidebar__items').css('display', 'none');
     $('.sidebar__check').removeClass('sidebar__check_active');
     $scope.loadAllShops();
   });

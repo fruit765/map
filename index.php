@@ -204,10 +204,10 @@
     <script src="js/jquery.easing.compatibility.js"></script>
     <script src="js/phone-mask.js"></script>
 
+    <script src="js/mapCtrlFunctions.js" type="text/javascript" charset="utf-8"></script>
+    
     <script src="js/mobile/sidebar.js"></script>
     <script src="js/mobile/map-sidebar-wrapper.js"></script>
-    
-    <script src="js/mapCtrlFunctions.js" type="text/javascript" charset="utf-8"></script>
 
     <script src="js/menu.js"></script>
     <script src="js/mobile-menu.js"></script>

@@ -193,12 +193,12 @@ myApp.controller('myCtrl', function($scope, $http) {
               $('.sidebar__check_inet-shops').addClass('sidebar__check_active');
               $('.sidebar__switch').css('display', 'block');
               $('.sidebar__city').css('display', 'block');
-              setSidebarItemsInetShopsHeight();
               $('.sidebar__items_inet-shops').css('display', 'block');
             }, 0);
           }
 
           setTimeout(function(){
+            setSidebarItemsInetShopsHeight();
             $('.change-city').removeClass('modal-window_show');
           }, 0);
         });
@@ -238,7 +238,6 @@ myApp.controller('myCtrl', function($scope, $http) {
       isPoints = false;
       myMap.geoObjects.removeAll();
       $('.sidebar__switch').css('display', 'block');
-      setSidebarItemsInetShopsHeight();
       $('.sidebar__items_inet-shops').css('display', 'block').scrollTop(0);
     }
   });

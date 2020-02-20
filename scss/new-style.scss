@@ -680,6 +680,7 @@ html, body {
     height: 100%;
     padding-top: $menuHeight;
     position: relative;
+    overflow: hidden;
 
     .sidebar {
 
@@ -720,7 +721,7 @@ html, body {
 
         margin-top: 40px;
         padding-bottom: 25px;
-        border-bottom: 1px solid #CCCCCC;
+        border-bottom: 1px solid red;
         font-size: 0;
 
         .sidebar__check {

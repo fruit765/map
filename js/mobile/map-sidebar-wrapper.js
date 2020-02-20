@@ -1,5 +1,5 @@
 if (window.innerWidth <= 1000) {
-    var sidebarBottom = window.innerHeight - $('.header').outerHeight() - $('.map-sidebar-wrapper .sidebar__checks').outerHeight() - $('.map-sidebar-wrapper .sidebar__check').outerHeight() - 40;
+    var sidebarBottom = window.innerHeight - $('.header').outerHeight() - $('.map-sidebar-wrapper .sidebar__checks').innerHeight() - $('.map-sidebar-wrapper .sidebar__check').outerHeight() - 40;
     $('.map-sidebar-wrapper').addClass('map-sidebar-wrapper_mobile');
     $('.map-sidebar-wrapper .sidebar').css('bottom', -sidebarBottom + 'px');
 

@@ -66,3 +66,28 @@
         }
     }
 }
+
+
+@media screen and (max-width:400px) {
+
+    .sidebar_mobile {
+
+        .sidebar__checks {
+
+            .sidebar__check {
+
+                font-size: 0.8rem;
+            }
+        }
+    
+        .sidebar__switch {
+
+            font-size: 0.8rem;
+
+            .switch {
+
+                margin-right: 20px;
+            }
+        }
+    }
+}

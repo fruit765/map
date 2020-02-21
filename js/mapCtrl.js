@@ -171,7 +171,7 @@ myApp.controller('myCtrl', function($scope, $http) {
             $('.sidebar__city').css('display', 'block');
             $('.sidebar__check_shops').addClass('sidebar__check_active').css('display', 'inline-block');
             setSidebarItemsShopsHeight();
-            $('.sidebar__items_shops').css('display', 'block');
+            $('.sidebar__items_shops').css('display', 'block').scrollTop(0);
           }, 0);
 
           $scope.addCityPoints();
@@ -193,7 +193,7 @@ myApp.controller('myCtrl', function($scope, $http) {
               $('.sidebar__check_inet-shops').addClass('sidebar__check_active');
               $('.sidebar__switch').css('display', 'block');
               $('.sidebar__city').css('display', 'block');
-              $('.sidebar__items_inet-shops').css('display', 'block');
+              $('.sidebar__items_inet-shops').css('display', 'block').scrollTop(0);
             }, 0);
           }
 

@@ -6,6 +6,13 @@ $(window).resize(function(){
     if (!((sidebarVersionWidth <= 1000 && window.innerWidth <= 1000) || (sidebarVersionWidth > 1000 && window.innerWidth > 1000))) {
         initSidebarVersion();
     }
+    else {
+        if (sidebarVersionWidth <= 1000 && window.innerWidth <= 1000) {
+            $('.sidebar').css('height', window.innerHeight - $('.header').outerHeight() - 40 + 'px');
+            setSidebarItemsShopsHeight();
+            setSidebarItemsInetShopsHeight();
+        }
+    }
     sidebarVersionWidth = window.innerWidth;
 });
 

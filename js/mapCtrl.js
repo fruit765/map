@@ -242,7 +242,7 @@ myApp.controller('myCtrl', function($scope, $http) {
     }
   });
 
-  $('.sidebar__city').click(function(){
+  $('.sidebar__city, .header__change-city-btn').click(function(){
     $scope.$apply(function(){
       $scope.searchCityName = '';
       $scope.searchCityByName();

@@ -58,7 +58,7 @@ html, body {
     justify-content: space-between;
     align-items: center;
     height: $menuHeight;
-    background-color: #432f21;
+    background-color: rgba(255, 255, 255, 0.5);
     position: relative;
     position: absolute;
     width: 100%;
@@ -71,6 +71,11 @@ html, body {
         display: inline-block;
         margin-left: 40px;
         min-width: 224px;
+    }
+
+    .header__change-city-btn {
+
+        display: none;
     }
 
     #get-call {
@@ -115,7 +120,7 @@ html, body {
                 display: inline-block;
                 font-size: 16px;
                 font-family: 'Geometria-Bold',Arial,sans-serif;
-                color: #fff;
+                color: #343332;
                 line-height: 20px;
                 text-decoration: none;
                 transition: color 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -524,7 +529,7 @@ html, body {
     left: 0;
     background-color: #432f21;
     opacity: 0;
-    z-index: 9;
+    z-index: 1002;
     display: none;
 }
 
@@ -539,7 +544,7 @@ html, body {
     overflow: auto;
     display: flex;
     flex-direction: column;
-    z-index: 10;
+    z-index: 1003;
     transition: right 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
     &.open {
@@ -884,13 +889,14 @@ html, body {
     top: 0;
     left: 0;
     display: none;
-    opacity: 0;
+    z-index: 1000;
 
     .modal-window__cover {
 
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: #000;
+        opacity: 0;
     }
 
     .modal-window__wrapper {
@@ -904,7 +910,8 @@ html, body {
         justify-content: center;
         align-items: center;
         transform: translate(0, 120px) scale(0.9);
-        transition: transform ease-in-out 0.3s;
+        opacity: 0;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
         .modal-window__content {
 
@@ -950,6 +957,7 @@ html, body {
         .modal-window__wrapper {
         
             transform: none;
+            opacity: 1;
         }
     }
 }

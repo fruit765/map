@@ -16,7 +16,9 @@
   <body ng-controller="myCtrl">
 
     <div class="header">
-      <a href="http://karmypet.ru" class="logo"><img src="img/logo.png" alt=""></a>
+      <a href="http://karmypet.ru" class="logo"><img src="img/logo.svg" alt=""></a>
+
+      <div class="header__change-city-btn">{{cityName}}</div>
 
       <ul class="menu">
         <li class="item has-sub-menu">
@@ -208,6 +210,8 @@
     
     <script src="js/mobile/sidebar.js"></script>
     <script src="js/mobile/map-sidebar-wrapper.js"></script>
+    <script src="js/mobile/header.js"></script>
+    <script src="js/mobile/change-city.js"></script>
 
     <script src="js/menu.js"></script>
     <script src="js/mobile-menu.js"></script>

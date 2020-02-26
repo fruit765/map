@@ -3,9 +3,9 @@ $('.modal-window').each(function(index, element){
         var self = res[0].target;
         
         if ($(self).attr('class').indexOf('modal-window_show') + 1) {
-            $(self).stop().animate(
+            $(self).find('.modal-window__cover').stop().animate(
                 {
-                    opacity: '1'
+                    opacity: '0.6'
                 },
                 {
                     duration: 300,
@@ -20,7 +20,7 @@ $('.modal-window').each(function(index, element){
             );
         }
         else {
-            $(self).stop().animate(
+            $(self).find('.modal-window__cover').stop().animate(
                 {
                     opacity: 0
                 },

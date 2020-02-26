@@ -67,6 +67,109 @@
     }
 }
 
+.header_mobile {
+
+    padding-right: 54px;
+    background-color: #fff;
+    z-index: 1001;
+
+    .logo {
+
+        min-width: 0;
+    }
+
+    .header__change-city-btn {
+
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'Geometria';
+        font-weight: bold;
+        font-size: 1rem;
+        line-height: 20px;
+        letter-spacing: 0.02em;
+        color: #343332;
+        cursor: pointer;
+    }
+
+    .mobile-btn {
+
+        span {
+
+            background-color: #343332;
+        }
+    }
+}
+
+.change-city_mobile {
+
+    .modal-window__wrapper {
+
+        display: block;
+        transition: none;
+        transform: none;
+        opacity: 1;
+
+        .modal-window__content {
+
+            max-width: none;
+            top: -170px;
+            transition: top 0.3s ease-in-out;
+            padding: 20px;
+            padding-top: 0;
+            border-radius: 0 0 4px 4px;
+            min-height: 250px;
+
+            .modal-window__close {
+
+                display: none;
+            }
+
+            .modal-window__head {
+
+                font-weight: normal;
+                font-size: 1.5rem;
+                margin-bottom: 12px;
+                font-family: 'Geometria';
+                line-height: 30px;
+            }
+
+            .modal-window__body {
+
+                .search-block {
+
+                    .search-block__input {
+
+                        height: 30px;
+                        line-height: 28px;
+                        padding-left: 6px;
+                        padding-right: 6px;
+                    }
+
+                    &_writting {
+
+                        .search-block__input {
+                        
+                            height: 28px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.modal-window_animate {
+
+        .modal-window__wrapper {
+        
+            .modal-window__content {
+            
+                top: 80px;
+            }
+        }
+    }
+}
+
 
 @media screen and (max-width:400px) {
 

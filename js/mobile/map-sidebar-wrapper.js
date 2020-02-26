@@ -37,8 +37,8 @@ function initMapSidebarVersion(){
                     bottom: 0
                 },
                 {
-                    duration: 1000,
-                    easing: 'easeInCubic',
+                    duration: 300,
+                    easing: 'easeInOut',
                     queue: false,
                 }
             );
@@ -48,8 +48,8 @@ function initMapSidebarVersion(){
                     opacity: 0.6
                 },
                 {
-                    duration: 1000,
-                    easing: 'easeInCubic',
+                    duration: 300,
+                    easing: 'easeInOut',
                     queue: false,
                     start: function(){
                         $(this).css('display', 'block');
@@ -66,8 +66,8 @@ function initMapSidebarVersion(){
                     bottom: -sidebarBottom + 'px'
                 },
                 {
-                    duration: 1000,
-                    easing: 'easeInCubic',
+                    duration: 300,
+                    easing: 'easeInOut',
                     queue: false,
                 }
             );
@@ -77,8 +77,8 @@ function initMapSidebarVersion(){
                     opacity: 0
                 },
                 {
-                    duration: 1000,
-                    easing: 'easeInCubic',
+                    duration: 300,
+                    easing: 'easeInOut',
                     queue: false,
                     complete: function(){
                         $(this).css('display', 'none');
@@ -95,8 +95,8 @@ function initMapSidebarVersion(){
                     bottom: -sidebarBottom + 'px'
                 },
                 {
-                    duration: 1000,
-                    easing: 'easeInCubic',
+                    duration: 300,
+                    easing: 'easeInOut',
                     queue: false,
                 }
             );
@@ -106,8 +106,8 @@ function initMapSidebarVersion(){
                     opacity: 0
                 },
                 {
-                    duration: 1000,
-                    easing: 'easeInCubic',
+                    duration: 300,
+                    easing: 'easeInOut',
                     queue: false,
                     complete: function(){
                         $(this).css('display', 'none');

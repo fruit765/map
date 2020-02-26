@@ -1,6 +1,45 @@
 $('.modal-window').each(function(index, element){
     var observer = new MutationObserver(function(res){
-        console.log($(res[0].target).attr('class'));
+        var self = res[0].target;
+        
+        if ($(self).attr('class').indexOf('modal-window_show') + 1) {
+            // $(self).stop().animate(
+            //     {
+            //         opacity: 1
+            //     },
+            //     {
+            //         duration: 300,
+            //         easing: 'easeInOut',
+            //         queue: false,
+            //         start: function(){
+            //             $(self).css('display', 'block');
+            //             $(self).css('width');
+            //             $(self).addClass('modal-window_animate');
+            //         },
+            //     },
+            // );
+            $(self).css('display', 'block');
+            $(self).css('width');
+            $(self).addClass('modal-window_animate');
+        }
+        // else {
+        //     $(self).stop().animate(
+        //         {
+        //             opacity: 0
+        //         },
+        //         {
+        //             duration: 300,
+        //             easing: 'easeInOut',
+        //             queue: false,
+        //             start: function(){
+        //                 $(self).removeClass('modal-window_animate');
+        //             },
+        //             complete: function(){
+        //                 $(self).css('display', 'none');
+        //             },
+        //         }
+        //     );
+        // }
     });
     observer.observe(element, {attributes: true, attributeFilter: ['class']});
 });

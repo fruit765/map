@@ -883,19 +883,14 @@ html, body {
     height: 100%;
     top: 0;
     left: 0;
-    display: none;
-
-    &_show {
-
-        display: block;
-    }
+    //display: none;
+    //opacity: 0;
 
     .modal-window__cover {
 
         width: 100%;
         height: 100%;
-        background-color: #000;
-        opacity: 0.6;
+        background-color: rgba(0, 0, 0, 0.6);
     }
 
     .modal-window__wrapper {
@@ -908,6 +903,8 @@ html, body {
         display: flex;
         justify-content: center;
         align-items: center;
+        transform: translate(0, 100px) scale(0.9);
+        transition: transform 0.3s ease;
 
         .modal-window__content {
 
@@ -945,6 +942,14 @@ html, body {
                 color: #343332;
                 margin-bottom: 32px;
             }
+        }
+    }
+
+    &_animate {
+
+        .modal-window__wrapper {
+        
+            transform: none;
         }
     }
 }

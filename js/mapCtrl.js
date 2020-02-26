@@ -249,7 +249,9 @@ myApp.controller('myCtrl', function($scope, $http) {
       setTimeout(function(){
         $('.change-city .search-block').removeClass('search-block_writting');
         $('.change-city').addClass('modal-window_show');
-        $('.change-city .search-block__input').focus();
+        setTimeout(function(){
+          $('.change-city .search-block__input').focus();
+        }, 0);
       }, 0);
     });
   });
@@ -345,7 +347,7 @@ myApp.controller('myCtrl', function($scope, $http) {
   })
   // Пытаемся определить полное наименование населенного пункта
   .then(function(){
-    return ymaps.geolocation.get(
+    return ymapss.geolocation.get(
       {
         provider: 'auto',
         autoReverseGeocode: true,
@@ -360,6 +362,7 @@ myApp.controller('myCtrl', function($scope, $http) {
   })
   // Подгружаем все магазины и интернет-магазины из БД
   .then(function(response){
+    console.log(response);
     var promiseGetShops, promiseGetInetShops;
 
     fullCityName = response;

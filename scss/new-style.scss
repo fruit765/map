@@ -883,8 +883,8 @@ html, body {
     height: 100%;
     top: 0;
     left: 0;
-    //display: none;
-    //opacity: 0;
+    display: none;
+    opacity: 0;
 
     .modal-window__cover {
 
@@ -903,15 +903,15 @@ html, body {
         display: flex;
         justify-content: center;
         align-items: center;
-        transform: translate(0, 100px) scale(0.9);
-        transition: transform 0.3s ease;
+        transform: translate(0, 120px) scale(0.9);
+        transition: transform ease-in-out 0.3s;
 
         .modal-window__content {
 
             width: 100%;
             max-width: 460px;
             min-height: 440px;
-            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.02), 0px 10px 30px rgba(0, 0, 0, 0.04);
+            //box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.02), 0px 10px 30px rgba(0, 0, 0, 0.04);
             border-radius: 4px;
             background-color: #fff;
             padding: 50px;

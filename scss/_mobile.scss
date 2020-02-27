@@ -88,8 +88,17 @@
         font-size: 1rem;
         line-height: 20px;
         letter-spacing: 0.02em;
-        color: #343332;
+        color: #ff7560;
         cursor: pointer;
+        padding-left: 15px;
+        background: url(../img/city-icon.svg) 0 center no-repeat;
+
+        &_active {
+
+            color: #343332;
+            padding-left: 0;
+            background: transparent;
+        }
     }
 
     .mobile-btn {

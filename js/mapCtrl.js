@@ -200,6 +200,7 @@ myApp.controller('myCtrl', function($scope, $http) {
           setTimeout(function(){
             setSidebarItemsInetShopsHeight();
             $('.change-city').removeClass('modal-window_show');
+            $('.header__change-city-btn').removeClass('header__change-city-btn_active');
           }, 0);
         });
       }
@@ -208,6 +209,7 @@ myApp.controller('myCtrl', function($scope, $http) {
     if ($scope.cityInetShops.length === 0) {
       setTimeout(function(){
         $('.change-city').removeClass('modal-window_show');
+        $('.header__change-city-btn').removeClass('header__change-city-btn_active');
       }, 0);
     }
   }
@@ -249,6 +251,7 @@ myApp.controller('myCtrl', function($scope, $http) {
       setTimeout(function(){
         $('.change-city .search-block').removeClass('search-block_writting');
         $('.change-city').addClass('modal-window_show');
+        $('.header__change-city-btn').addClass('header__change-city-btn_active');
         setTimeout(function(){
           $('.change-city .search-block__input').focus();
         }, 0);

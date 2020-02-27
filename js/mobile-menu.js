@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    var date = new Date();
+
+    $('#site-year').text(' ' + date.getFullYear());
+
     $('.mobile-btn').on('click', function(){
         openMobileMenu();
     });
@@ -19,8 +23,8 @@ $(document).ready(function(){
                 opacity: '0.6',
             },
             {
-                duration: 400,
-                easing: 'easeInCubic',
+                duration: 300,
+                easing: 'easeInOut',
                 queue: false,
                 start: function(){
                     $(this).css('display', 'block');
@@ -37,8 +41,8 @@ $(document).ready(function(){
                 opacity: '0',
             },
             {
-                duration: 400,
-                easing: 'easeInCubic',
+                duration: 300,
+                easing: 'easeInOut',
                 queue: false,
                 complete: function(){
                     $(this).css('display', 'none');

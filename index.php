@@ -158,7 +158,7 @@
           </a>
         </div>
         <div class="mobile-menu-footer-right">
-          © 2016 Your company
+          © <span id="site-year"></span> karmypet.ru
         </div>
       </div>
     </div>

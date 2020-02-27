@@ -21,12 +21,8 @@ function initMapSidebarVersion(){
     if (window.innerWidth <= 1000) {
         $('.map-sidebar-wrapper__cover').css({display: 'none', opacity: '0'});
 
-        if ($('.map-sidebar-wrapper .sidebar__check').css('display') === 'none') {
-            sidebarChecksHeight = $('.map-sidebar-wrapper .sidebar__checks').innerHeight() + $('.map-sidebar-wrapper .sidebar__check').outerHeight();
-        }
-        else {
-            sidebarChecksHeight = $('.map-sidebar-wrapper .sidebar__checks').innerHeight();
-        }
+        sidebarChecksHeight = getSidebarChecksHeight();
+
         sidebarBottom = window.innerHeight - $('.header').outerHeight() - sidebarChecksHeight - 40;
         $('.map-sidebar-wrapper').addClass('map-sidebar-wrapper_mobile');
         $('.map-sidebar-wrapper .sidebar').css('bottom', -sidebarBottom + 'px');

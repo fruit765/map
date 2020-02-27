@@ -71,6 +71,10 @@ html, body {
         display: inline-block;
         margin-left: 40px;
         min-width: 224px;
+
+        .logo-img-mobile {
+            display: none;
+        }
     }
 
     .header__change-city-btn {
@@ -986,6 +990,7 @@ html, body {
         font-size: 1rem;
         letter-spacing: 0.02em;
         color: #343332;
+        outline: none;
 
         &::placeholder {
 

@@ -10,6 +10,10 @@ myApp.controller('myCtrl', function($scope, $http) {
 
   $scope.addZoomControls = function(){
     var mapHeight = $('#map').height();
+
+    if (window.innerWidth <= 1000) {
+      mapHeight -= getSidebarChecksHeight();
+    }
     
     if (zoomControl) {
       myMap.controls.remove(zoomControl);
@@ -27,8 +31,17 @@ myApp.controller('myCtrl', function($scope, $http) {
   }
 
   $scope.setCorrectZoom = function(){
+    var sidebarChecksHeight;
+
     if (isPoints) {
-      myMap.setBounds(myMap.geoObjects.getBounds(), {checkZoomRange:true, zoomMargin: [0, 0, 0, 450]});
+      sidebarChecksHeight = getSidebarChecksHeight();
+
+      if (window.innerWidth > 1000) {
+        myMap.setBounds(myMap.geoObjects.getBounds(), {checkZoomRange:true, zoomMargin: [100, 20, sidebarChecksHeight + 20, 460]});
+      }
+      else {
+        myMap.setBounds(myMap.geoObjects.getBounds(), {checkZoomRange:true, zoomMargin: [20, 20, sidebarChecksHeight + 20, 20]});
+      }
     }
   }
 
@@ -67,17 +80,17 @@ myApp.controller('myCtrl', function($scope, $http) {
         },
         {
           iconLayout: 'default#image',
-          iconImageHref: '/img/placemark.svg',
-          iconImageSize: [21, 35],
+          iconImageHref: '/img/city-icon.svg',
+          iconImageSize: [21, 39],
           balloonLayout: balloonLayout,
-          balloonOffset: [5, 30],
+          balloonOffset: [5, 40],
           hideIconOnBalloonOpen: false,
         }
       );
 
       if (index === 0) {
         //placemark.options.set('iconImageHref', '/img/placemark-active.svg');
-        placemark.options.set('iconImageSize', [30, 50]);
+        placemark.options.set('iconImageSize', [30, 55]);
         placemark.properties.set('active', 1);
       }
 
@@ -108,13 +121,13 @@ myApp.controller('myCtrl', function($scope, $http) {
         if (geoObject.properties.get('id') == id) {
           geoObject.properties.set('active', 1);
           //geoObject.options.set('iconImageHref', '/img/placemark-active.svg');
-          geoObject.options.set('iconImageSize', [30, 50]);
+          geoObject.options.set('iconImageSize', [30, 55]);
         }
         else {
           if (geoObject.properties.get('active') == 1) {
             geoObject.properties.set('active', 0);
-            //geoObject.options.set('iconImageHref', '/img/placemark.svg');
-            geoObject.options.set('iconImageSize', [21, 35]);
+            //geoObject.options.set('iconImageHref', '/img/city-icon.svg');
+            geoObject.options.set('iconImageSize', [21, 39]);
           }
         }
       }
@@ -147,7 +160,7 @@ myApp.controller('myCtrl', function($scope, $http) {
       if ($scope.searchCities.length > 0) {
         setTimeout(function(){
           $('.change-city__search-cities').css('max-height', $('.change-city .modal-window__content').height() - $('.change-city .modal-window__head').outerHeight(true) - $('.change-city .search-block').outerHeight());
-          $('.change-city__search-cities').css('display', 'block');
+          $('.change-city__search-cities').css('display', 'block').scrollTop(0);
           $('.change-city__error').css('display', 'none');
         }, 0);
       }
@@ -350,7 +363,7 @@ myApp.controller('myCtrl', function($scope, $http) {
   })
   // Пытаемся определить полное наименование населенного пункта
   .then(function(){
-    return ymapss.geolocation.get(
+    return ymaps.geolocation.get(
       {
         provider: 'auto',
         autoReverseGeocode: true,
@@ -365,7 +378,6 @@ myApp.controller('myCtrl', function($scope, $http) {
   })
   // Подгружаем все магазины и интернет-магазины из БД
   .then(function(response){
-    console.log(response);
     var promiseGetShops, promiseGetInetShops;
 
     fullCityName = response;

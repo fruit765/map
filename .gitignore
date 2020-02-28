@@ -3,7 +3,6 @@
 /gulpfile.js
 /package-lock.json
 /package.json
-/map.sql
 /.*
 !/.gitignore
 /index_wrbl.php

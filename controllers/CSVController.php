@@ -251,7 +251,7 @@ class CSVClass{
 
                 echo '<hr><h4>New CSV data contains: '.$new_CSV_data_count.' rows</h4>'; 
 
-                echo '<h4>New data List: ';
+                echo '<h4 id="save-db">New data List: ';
 
                 $this->printData($this->_new_file_data,['mode'=>'show', 'no_rows_markup'=>true, 'markup_rows'=>[]]);                
 
@@ -375,7 +375,7 @@ class CSVClass{
         
                 }
 
-                echo '<br><br><a href="/data_checker.php" class="btn btn-primary"> Back to Start </a>';
+                echo '<br><br><a href="/data_checker.php" class="btn btn-primary"> Back to Start </a><br><br><a href="#save-db" class="btn btn-primary"> Go to save DB </a>';
                 
         }
         

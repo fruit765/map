@@ -345,7 +345,7 @@ myApp.controller('myCtrl', function($scope, $http) {
         .then(function(response) {
             $scope.cities = response.data["cities"];
             /* Preload Shop Points */
-            $scope.city = $scope.cities[190];
+            $scope.city = $scope.cities[191];
         
             /* Run AJAX POST Shop Points request */
             $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
@@ -397,7 +397,7 @@ myApp.controller('myCtrl', function($scope, $http) {
                             $scope.showCityPopup('auto-city');
                         },
                         function(){
-                            $scope.autoCity = $scope.cities[190];
+                            $scope.autoCity = $scope.cities[191];
                             $scope.$apply();
                             $scope.showCityPopup('auto-city');
                         }

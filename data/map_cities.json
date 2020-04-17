@@ -135,6 +135,7 @@
     {"Name":"Клин","Slug":"Klin","Long": "56.3313", "Lat":"36.7128", "Scale": "12"},
     {"Name":"Клин-5","Slug":"gorodok_Klin_5","Long": "56.3711", "Lat":"36.7041", "Scale": "16"},
     {"Name":"Ковров","Slug":"Kovrov","Long": "56.3371", "Lat":"41.3104", "Scale": "13"},
+    {"Name":"Кола","Slug":"Kola","Long": "68.882", "Lat":"33.0134", "Scale": "12"},
     {"Name":"Коломна","Slug":"Kolomna","Long": "55.0862", "Lat":"38.7537", "Scale": "14"},
     {"Name":"Кольчугино","Slug":"Kolchugino","Long": "56.3003", "Lat":"39.3572", "Scale": "14"},
     {"Name":"Конаково","Slug":"Konakovo","Long": "56.695", "Lat":"36.7751", "Scale": "15"},

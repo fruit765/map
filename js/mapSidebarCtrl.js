@@ -25,7 +25,7 @@ function getCityObject(city, cities){
     });
 
     if (!cityResult) {
-        cityResult = cities[196];
+        cityResult = cities[197];
     }
 
     return cityResult;

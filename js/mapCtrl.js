@@ -365,7 +365,7 @@ myApp.controller('myCtrl', function($scope, $http) {
   .then(function(){
     return ymaps.geolocation.get(
       {
-        provider: 'auto',
+        provider: 'yandex',
         autoReverseGeocode: true,
       }
     );

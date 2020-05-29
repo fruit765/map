@@ -736,8 +736,21 @@ html, body {
 
         margin-top: 40px;
         padding-bottom: 25px;
-        border-bottom: 1px solid #ccc;
         font-size: 0;
+        position: relative;
+        display: flex;
+
+        &::before {
+
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: #ccc;
+            left: 0;
+            bottom: 10px;
+        }
 
         .sidebar__check {
 
@@ -750,26 +763,39 @@ html, body {
             line-height: 20px;
             letter-spacing: 0.03em;
             cursor: pointer;
-            color: #FF7560;
+            color: #000;
+            padding: 0 5px;
 
             &_active {
 
-                color: #000;
+                position: relative;
 
-                &::after {
+                &::before {
 
                     content: '';
                     display: inline-block;
                     width: 15px;
                     height: 20px;
-                    background: url('../img/sidebar-check-icon.svg') right center no-repeat;
+                    background: url('../img/sidebar-check-icon.svg') left center no-repeat;
                     vertical-align: middle;
+                }
+
+                &::after {
+
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 100%;
+                    height: 3px;
+                    bottom: -15px;
+                    left: 0;
+                    background-color: #FF7560;
                 }
             }
 
             &:first-child {
 
-                margin-right: 37px;
+                margin-right: auto;
             }
         }
     }

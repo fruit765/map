@@ -1,8 +1,9 @@
 /css/new-style.css
 /node_modules/
+/vendor/
 /gulpfile.js
 /package-lock.json
-/package.json
+/composer.lock
 /.*
 !/.gitignore
 /index_wrbl.php

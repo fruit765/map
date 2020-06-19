@@ -68,10 +68,10 @@
           <span class="sidebar__check sidebar__check_inet-shops">Интернет-магазины</span>
         </div>
 
-        <div class="sidebar__switch">
+        <!-- <div class="sidebar__switch">
           <div class="switch"></div>
           Только с доставкой по России
-        </div>
+        </div> -->
 
         <div class="sidebar__items sidebar__items_shops">
           <div ng-repeat="cityShop in cityShops" class="sidebar__item" ng-class="{'sidebar__item_active':$first}" shop-id="{{$index}}">
@@ -83,9 +83,14 @@
 
         <div class="sidebar__items sidebar__items_inet-shops">
           <div ng-repeat="cityInetShop in cityInetShops" class="sidebar__item" delivery-on-russia="{{cityInetShop.delivery_on_russia}}">
-            <div class="sidebar__item-title">{{cityInetShop.title}}</div>
-            <div class="sidebar__item-content">{{cityInetShop.description}}</div>
-            <a href = "{{cityInetShop.site}}" class="sidebar__item-site" target="_blank">{{cityInetShop.site}}</a>
+            <!-- <div class="sidebar__item-title">{{cityInetShop.title}}</div> -->
+            <div class="sidebar__item-content">
+              <div class="sidebar__item-content-img">
+                <img src="{{cityInetShop.logo}}">
+              </div>
+              <div class="sidebar__item-content-desc">{{cityInetShop.description}}</div>
+            </div>
+            <a href = "{{cityInetShop.site}}" class="sidebar__item-site" target="_blank">перейти ></a>
           </div>
         </div>
       </div>

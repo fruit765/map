@@ -847,15 +847,21 @@ html, body {
                 line-height: 20px;
                 letter-spacing: 0.02em;
                 color: #343332;
+                margin-bottom: 12px;
             }
             
             .sidebar__item-content {
 
+                display: flex;
                 font-family: 'Geometria';
                 font-size: 0.8rem;
                 letter-spacing: 0.02em;
                 color: #6C6C6C;
-                margin-top: 12px;
+
+                .sidebar__item-content-img {
+
+                    margin-right: 16px;
+                }
             }
 
             .sidebar__item-site {

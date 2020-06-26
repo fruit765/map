@@ -257,6 +257,7 @@
     {"Name":"Подмошье","Slug":"d_Podmoshe","Long": "56.3771", "Lat":"37.4089", "Scale": "12"},
     {"Name":"Подольск","Slug":"Podolsk","Long": "55.4731", "Lat":"37.566", "Scale": "12"},
     {"Name":"Подосинки","Slug":"d_Podosinki","Long": "56.205", "Lat":"37.5378", "Scale": "12"},
+    {"Name":"Покачи","Slug":"Pokachi","Long": "61.7425", "Lat":"75.5953", "Scale": "13"},
     {"Name":"Покрово-Пригородное","Slug":"s_Pokrovo_Prigorodnoe","Long": "52.684", "Lat":"41.427", "Scale": "13"},
     {"Name":"Покровское","Slug":"d_Pokrovskoe","Long": "55.8107", "Lat":"37.0137", "Scale": "12"},
     {"Name":"Починок","Slug":"Pochinok","Long": "54.406", "Lat":"32.4416", "Scale": "15"},

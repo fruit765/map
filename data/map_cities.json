@@ -55,6 +55,7 @@
     {"Name":"Воронеж","Slug":"Voronezh","Long": "51.6778", "Lat":"39.2312", "Scale": "13"},
     {"Name":"Воскресенск","Slug":"Voskresensk","Long": "55.3412", "Lat":"38.729", "Scale": "12"},
     {"Name":"Выборг","Slug":"Vyborg","Long": "60.7138", "Lat":"28.7521", "Scale": "12.5"},
+    {"Name":"Выкса","Slug":"Vyksa","Long": "55.3208", "Lat":"42.1686", "Scale": "12"},
     {"Name":"Высоковск","Slug":"Vysokovsk","Long": "56.3253", "Lat":"36.5482", "Scale": "13"},
     {"Name":"Вязьма","Slug":"Vyazma","Long": "55.2064", "Lat":"34.2937", "Scale": "13"},
     {"Name":"Вялки","Slug":"d_Vyalki","Long": "55.6569", "Lat":"38.0864", "Scale": "13"},

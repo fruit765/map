@@ -45,6 +45,7 @@
     {"Name":"Витебск","Slug":"Vitebsk","Long": "55.1873", "Lat":"30.2316", "Scale": "13"},
     {"Name":"Витязево","Slug":"selo_Vityazevo","Long": "44.9947", "Lat":"37.2821", "Scale": "14"},
     {"Name":"Владикавказ","Slug":"Vladikavkaz","Long": "43.028", "Lat":"44.687", "Scale": "13"},
+    {"Name":"Владивосток","Slug":"Vladivostok","Long": "43.1671", "Lat":"131.9294", "Scale": "13"},
     {"Name":"Владимир","Slug":"Vladimir","Long": "56.1333", "Lat":"40.4345", "Scale": "13"},
     {"Name":"Волгоград","Slug":"Volgograd","Long": "48.7546", "Lat":"44.5434", "Scale": "12"},
     {"Name":"Вологда","Slug":"Vologda","Long": "59.2149", "Lat":"39.923", "Scale": "13"},

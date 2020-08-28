@@ -364,6 +364,7 @@
     {"Name":"Феодосия","Slug":"Feodosiya","Long": "45.0422", "Lat":"35.3729", "Scale": "14"},
     {"Name":"Фрязино","Slug":"Fryazino","Long": "55.9548", "Lat":"38.0591", "Scale": "12"},
     {"Name":"Фряново","Slug":"pgt_Fryanovo","Long": "56.1182", "Lat":"38.4182", "Scale": "12"},
+    {"Name":"Хабаровск","Slug":"Habarovsk","Long": "48.4718", "Lat":"135.0926", "Scale": "13"},
     {"Name":"Хадыженск","Slug":"Hadyzhensk","Long": "44.4196", "Lat":"39.5337", "Scale": "14"},
     {"Name":"Ханты-Мансийск","Slug":"Hanty_Mansijsk","Long": "61.0043", "Lat":"69.0459", "Scale": "13"},
     {"Name":"Химки","Slug":"Himki","Long": "55.9512", "Lat":"37.2981", "Scale": "12"},

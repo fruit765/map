@@ -17,8 +17,8 @@
   </head>
   <body ng-controller="myCtrl">
 
-    <div class="header">
-      <!-- <h1>Karmy YmapsAPI Test</h1> -->
+    <!-- <div class="header">
+      <h1>Karmy YmapsAPI Test</h1>
 
       <a href="http://karmypet.ru" class="logo"><img src="img/logo.png" alt=""></a>
 
@@ -57,11 +57,11 @@
         <span></span>
         <span></span>
       </div>
-    </div>
+    </div> -->
     
     
     <!-- Мобильное меню -->
-    <div class="mobile-menu-cover"></div>
+    <!-- <div class="mobile-menu-cover"></div>
     <div class="mobile-menu">
       <div class="mobile-menu-close"></div>
       <div class="mobile-menu-body">
@@ -106,7 +106,7 @@
           © 2016 Your company
         </div>
       </div>
-    </div>
+    </div> -->
 
 
     <div class="wrapper map-sidebar-wrapper">     
@@ -201,21 +201,21 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/jquery.easing.compatibility.js"></script>
-    <script src="js/phone-mask.js"></script>
+    <!-- <script src="js/phone-mask.js"></script> -->
 
     <script src="js/mapSidebarCtrl.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/sidebar.js"></script>
     <script src="js/mapCtrl.js" type="text/javascript" charset="utf-8"></script>
     <!-- <script src="node_modules/motion-ui/dist/motion-ui.min.js"></script> -->
 
-    <script src="js/menu.js"></script>
+    <!-- <script src="js/menu.js"></script>
     <script src="js/mobile-menu.js"></script>
     <script src="js/get-call.js"></script>
     <script src="js/form-validator.js"></script>
-    <script src="js/form-dispatcher.js"></script>
+    <script src="js/form-dispatcher.js"></script> -->
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140125983-2"></script>
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140125983-2"></script>
     <script>
       
       window.dataLayer = window.dataLayer || [];
@@ -225,14 +225,9 @@
       gtag('config', 'UA-140125983-2');
       
       setTimeout(function(){
-          
-          //console.log($('form'));
-          
-          $('#get-call-modal form').append('<input type="hidden" name="ga_cid-ga_cid-!" value='+ga.getAll()[0].get('clientId')+'>');
-          
-          //console.log(ga.getAll()[0].get('clientId'));
+        $('#get-call-modal form').append('<input type="hidden" name="ga_cid-ga_cid-!" value='+ga.getAll()[0].get('clientId')+'>');
       }, 3000)
-    </script>
+    </script> -->
     
   </body>
 </html>

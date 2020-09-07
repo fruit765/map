@@ -11,7 +11,7 @@ function sidebarInit(){
 
     viewPortHeight = window.innerHeight;
 
-    sidebarHeight = viewPortHeight - 80;
+    sidebarHeight = viewPortHeight;
 
     $('.map-sidebar-wrapper').css('height', sidebarHeight + 'px');
 

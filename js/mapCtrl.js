@@ -178,7 +178,7 @@ myApp.controller('myCtrl', function($scope, $http) {
       $scope.addCityShops();
       if ($scope.cityShops.length > 0) {
         $scope.$apply(function(){
-          $scope.cityName = $scope.cityShops[0].prefix + ' ' + $scope.cityShops[0].city;
+          $scope.cityName = $scope.cityShops[0].full_city_name;
 
           setTimeout(function(){
             $('.sidebar__city').css('display', 'block');
@@ -399,7 +399,8 @@ myApp.controller('myCtrl', function($scope, $http) {
   // Выводим магазины и интернет-магазины на карте и в сайдбаре
   .then(function(response){
     shops = response[0].data;
-    inetShops = response[1].data;
+    //inetShops = response[1].data;
+    inetShops = [];
 
     $scope.loadAllShops();
 

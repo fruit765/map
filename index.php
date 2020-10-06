@@ -15,7 +15,7 @@
   </head>
   <body ng-controller="myCtrl">
 
-    <div class="header">
+    <!-- <div class="header">
       <a href="http://karmypet.ru" class="logo"><img src="img/logo.svg" alt="" class="logo-img"><img src="img/logo-mobile.svg" alt="" class="logo-img-mobile"></a>
 
       <div class="header__change-city-btn">{{cityName}}</div>
@@ -55,7 +55,7 @@
         <span></span>
         <span></span>
       </div>
-    </div>
+    </div> -->
     
     <div class="map-sidebar-wrapper">
       <div id="map"></div>

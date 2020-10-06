@@ -35,7 +35,7 @@ class CSVModel{
     // }
 
     public function getPoints(){    
-        $query = "SELECT * FROM `shops`";
+        $query = "SELECT * FROM shops INNER JOIN moder_statuses WHERE (moder_statuses.moder_status = 'accept' AND shops.isActive = 1)";
         $result = $this->_pdo->getQuery($this->_pdo->getConnection(), $query);         
         return  $result;
     }

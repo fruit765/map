@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/models/PDOModel.php');
+require_once(dirname(dirname(__FILE__)).'/models/PDOModel.php');
 
 class PDOController extends PDOModel{
 
@@ -17,13 +17,13 @@ class PDOController extends PDOModel{
 
     function __construct(){ 
         
-        if (file_exists($_SERVER['DOCUMENT_ROOT'].'/config/db-local.php')) {
+        if (file_exists(dirname(dirname(__FILE__)).'/config/db-local.php')) {
 
-            $this->_config = require_once($_SERVER['DOCUMENT_ROOT'].'/config/db-local.php');
+            $this->_config = require_once(dirname(dirname(__FILE__)).'/config/db-local.php');
         }
         else {
 
-            $this->_config = require_once($_SERVER['DOCUMENT_ROOT'].'/config/db.php');
+            $this->_config = require_once(dirname(dirname(__FILE__)).'/config/db.php');
         }
 
         $this->_host = $this->_config['host'];        

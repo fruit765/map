@@ -1345,10 +1345,10 @@ class CSVClass{
 
         $row = 0;
 
-        if(file_exists ($_SERVER['DOCUMENT_ROOT'].$url)){
+        if(file_exists (dirname(dirname(__FILE__)).$url)){
             
 
-            $handle = fopen($_SERVER['DOCUMENT_ROOT'].$url, "r");
+            $handle = fopen(dirname(dirname(__FILE__)).$url, "r");
 
             if($handle){
             

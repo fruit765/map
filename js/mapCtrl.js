@@ -402,6 +402,10 @@ myApp.controller('myCtrl', function($scope, $http) {
     //inetShops = response[1].data;
     inetShops = [];
 
+    if (shops.find(function(shop){if (shop.full_city_name === fullCityName) return true; else return false}) === undefined && shops.length > 0) {
+      fullCityName = shops[0].full_city_name;
+    }
+
     $scope.loadAllShops();
 
     $(window).resize(function(){

@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/models/CSVModelShops.php');
+require_once(dirname(dirname(__FILE__)).'/models/CSVModelShops.php');
 
 if(isset($_POST) && !empty($_POST)){    
     $post = array();    

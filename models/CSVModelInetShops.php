@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/controllers/PDOController.php');
+require_once(dirname(dirname(__FILE__)).'/controllers/PDOController.php');
 
 class CSVModel{
     private $_pdo;

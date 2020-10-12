@@ -149,11 +149,10 @@ myApp.controller('myCtrl', function($scope, $http) {
       $scope.searchCities = [];
       uniqueArr = [];
       shops.forEach(function(shop){
-        punct = shop.full_city_name.split(', ')[0].toLowerCase().replace('ё', 'е');
-        if (punct.match($scope.searchCityName.toLowerCase().replace('ё', 'е'))) {
-          if (!uniqueArr[punct])
+        if (shop.full_city_name.toLowerCase().replace('ё', 'е').match($scope.searchCityName.toLowerCase().replace('ё', 'е'))) {
+          if (!uniqueArr[shop.full_city_name])
           $scope.searchCities.push(shop);
-          uniqueArr[punct] = true;
+          uniqueArr[shop.full_city_name] = true;
         }
       });
 

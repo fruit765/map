@@ -241,6 +241,7 @@
     {"Name":"Орехово-Зуево","Slug":"Orekhovo-Zuevo","Long": "55.8122", "Lat":"38.9668", "Scale": "12"},
     {"Name":"Орёл","Slug":"Orel","Long": "52.9653", "Lat":"36.0973", "Scale": "13"},
     {"Name":"Оричи","Slug":"pgt_Orichi","Long": "58.4017", "Lat":"49.059", "Scale": "14"},
+    {"Name":"Орск","Slug":"Orsk","Long": "51.2554", "Lat":"58.4456", "Scale": "14"},
     {"Name":"Осташков","Slug":"Ostashkov","Long": "57.1429", "Lat":"33.1154", "Scale": "14"},
     {"Name":"Островцы","Slug":"derevnya_Ostrovcy","Long": "55.6024", "Lat":"37.98", "Scale": "16"},
     {"Name":"Павловская Слобода","Slug":"s_Pavlovskaya_Sloboda","Long": "55.8178", "Lat":"37.089", "Scale": "13"},

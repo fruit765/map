@@ -402,7 +402,12 @@ myApp.controller('myCtrl', function($scope, $http) {
     inetShops = [];
 
     if (shops.find(function(shop){if (shop.full_city_name === fullCityName) return true; else return false}) === undefined && shops.length > 0) {
-      fullCityName = shops[0].full_city_name;
+      if (shops.find(function(shop){if (shop.full_city_name === 'Москва, Россия') return true; else return false}) !== undefined) {
+        fullCityName = 'Москва, Россия';
+      }
+      else {
+        fullCityName = shops[0].full_city_name;
+      }
     }
 
     $scope.loadAllShops();

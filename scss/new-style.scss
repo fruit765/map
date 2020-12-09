@@ -848,6 +848,13 @@ html, body {
                 letter-spacing: 0.02em;
                 color: #343332;
                 margin-bottom: 12px;
+
+                span {
+
+                    color: #ff7560;
+                    font-size: 0.8rem;
+                    padding-left: 30px;
+                }
             }
             
             .sidebar__item-content {

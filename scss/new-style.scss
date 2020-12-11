@@ -1229,6 +1229,28 @@ html, body {
                 }
             }
         }
+
+        .balloon-popup-item {
+
+            span {
+
+                display: none;
+                color: #ff7560;
+                font-size: .6rem;
+                background: url('../img/sidebar-item-title-star.svg') no-repeat 0 50%;
+                padding-left: 13px;
+                font-weight: 400;
+                text-transform: none;
+            }
+        }
+
+        .balloon-popup-item.active {
+
+            span {
+
+                display: block;
+            }
+        }
     }
 }
 

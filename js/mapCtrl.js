@@ -58,7 +58,7 @@ myApp.controller('myCtrl', function($scope, $http) {
     myMap.geoObjects.removeAll();
 
     $scope.cityShops.forEach(function(cityShop, index){
-      var balloonLayout, iconImageHref, iconImageSize, active, isGeneralPartner;
+      var balloonLayout, iconImageHref, iconImageSize, active, isGeneralPartner, showStarInPopap;
 
       if (cityShop.site) {
         balloonLayout = BalloonContentLayout;
@@ -94,12 +94,20 @@ myApp.controller('myCtrl', function($scope, $http) {
         }
       }
 
+      if (isGeneralPartner == 1) {
+        showStarInPopap = ' active';
+      }
+      else {
+        showStarInPopap = '';
+      }
+
       var placemark = new ymaps.Placemark([cityShop.lng, cityShop.lat],
         {
           id: index,
           type: 'shop',
           active: active,
           isGeneralPartner: isGeneralPartner,
+          showStarInPopap: showStarInPopap,
           name: cityShop.title,
           address: cityShop.street + ', ' + cityShop.house,
           hours: cityShop.hours,
@@ -330,7 +338,7 @@ myApp.controller('myCtrl', function($scope, $http) {
           '<a class="balloon-popup-close" href="#">X</a>',
           '<div class="balloon-popup-content">',
             '<ul>',
-              '<li>{{properties.name}}</li>',
+              '<li class="balloon-popup-item{{properties.showStarInPopap}}">{{properties.name}}<span>(генеральный партнер)</span></li>',
               '<li>{{properties.address}}</li>',
               '<li>{{properties.hours}}</li>',
               '<li>{{properties.phone}}</li>',
@@ -360,7 +368,7 @@ myApp.controller('myCtrl', function($scope, $http) {
           '<a class="balloon-popup-close" href="#">X</a>',
           '<div class="balloon-popup-content">',
             '<ul>',
-              '<li>{{properties.name}}</li>',
+              '<li class="balloon-popup-item{{properties.showStarInPopap}}">{{properties.name}}<span>(генеральный партнер)</span></li>',
               '<li>{{properties.address}}</li>',
               '<li>{{properties.hours}}</li>',
               '<li>{{properties.phone}}</li>',

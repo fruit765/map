@@ -75,7 +75,7 @@
 
         <div class="sidebar__items sidebar__items_shops">
           <div ng-repeat="cityShop in cityShops" class="sidebar__item" ng-class="{'sidebar__item_active':$first}" shop-id="{{$index}}">
-            <div class="sidebar__item-title">{{cityShop.title}} <span>{{cityShop.isGeneralPartner == 1 ? 'генеральный партнер' : ''}}</span></div>
+            <div class="sidebar__item-title{{cityShop.isGeneralPartner == 1 ? ' sidebar__item-title_star' : ''}}">{{cityShop.title}} <span>{{cityShop.isGeneralPartner == 1 ? '(генеральный партнер)' : ''}}</span></div>
             <div class="sidebar__item-content">{{cityShop.street_type}} {{cityShop.street}}, {{cityShop.house}}<br>{{cityShop.hours}}<br>{{cityShop.phone}}</div>
             <a href = "{{cityShop.site}}" class="sidebar__item-site" target="_blank">{{cityShop.site}}</a>
           </div>

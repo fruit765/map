@@ -720,7 +720,10 @@ html, body {
     .sidebar__city {
 
         padding-left: 15px;
-        background: url('../img/city-icon.svg') 0 center no-repeat;
+        background-image: url('../img/city-icon.svg');
+        background-repeat: no-repeat;
+        background-position: 0 50%;
+        background-size: 7px 13px;
         height: 20px;
         line-height: 20px;
         font-size: 1rem;
@@ -851,9 +854,20 @@ html, body {
 
                 span {
 
+                    display: none;
                     color: #ff7560;
                     font-size: 0.8rem;
-                    padding-left: 30px;
+                    background: url('../img/sidebar-item-title-star.svg') no-repeat 100% 50%;
+                    padding-right: 13px;
+                    font-weight: normal;
+                }
+
+                &_star {
+
+                    span {
+
+                        display: inline-block;
+                    }
                 }
             }
             

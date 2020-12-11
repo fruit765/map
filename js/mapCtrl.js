@@ -58,7 +58,7 @@ myApp.controller('myCtrl', function($scope, $http) {
     myMap.geoObjects.removeAll();
 
     $scope.cityShops.forEach(function(cityShop, index){
-      var balloonLayout;
+      var balloonLayout, iconImageHref, iconImageSize, active, isGeneralPartner;
 
       if (cityShop.site) {
         balloonLayout = BalloonContentLayout;
@@ -67,11 +67,39 @@ myApp.controller('myCtrl', function($scope, $http) {
         balloonLayout = BalloonContentLayoutWithoutSite;
       }
 
+      if (index === 0) {
+        iconImageSize = [30, 55];
+        active = 1;
+
+        if (cityShop.isGeneralPartner == 1) {
+          isGeneralPartner = 1;
+          iconImageHref = '/img/city-icon-partner-active.svg';
+        }
+        else {
+          isGeneralPartner = 0;
+          iconImageHref = '/img/city-icon-active.svg';
+        }
+      }
+      else {
+        iconImageSize = [21, 39];
+        active = 0;
+
+        if (cityShop.isGeneralPartner == 1) {
+          isGeneralPartner = 1;
+          iconImageHref = '/img/city-icon-partner.svg';
+        }
+        else {
+          isGeneralPartner = 0;
+          iconImageHref = '/img/city-icon.svg';
+        }
+      }
+
       var placemark = new ymaps.Placemark([cityShop.lng, cityShop.lat],
         {
           id: index,
           type: 'shop',
-          active: 0,
+          active: active,
+          isGeneralPartner: isGeneralPartner,
           name: cityShop.title,
           address: cityShop.street + ', ' + cityShop.house,
           hours: cityShop.hours,
@@ -80,19 +108,13 @@ myApp.controller('myCtrl', function($scope, $http) {
         },
         {
           iconLayout: 'default#image',
-          iconImageHref: '/img/city-icon.svg',
-          iconImageSize: [21, 39],
+          iconImageHref: iconImageHref,
+          iconImageSize: iconImageSize,
           balloonLayout: balloonLayout,
           balloonOffset: [5, 40],
           hideIconOnBalloonOpen: false,
         }
       );
-
-      if (index === 0) {
-        //placemark.options.set('iconImageHref', '/img/placemark-active.svg');
-        placemark.options.set('iconImageSize', [30, 55]);
-        placemark.properties.set('active', 1);
-      }
 
       placemark.events.add('click', function(e){
         $scope.activeShop(e.get('target').properties.get('id'));
@@ -120,14 +142,24 @@ myApp.controller('myCtrl', function($scope, $http) {
       if (geoObject.properties.get('type') == 'shop') {
         if (geoObject.properties.get('id') == id) {
           geoObject.properties.set('active', 1);
-          //geoObject.options.set('iconImageHref', '/img/placemark-active.svg');
           geoObject.options.set('iconImageSize', [30, 55]);
+          if (geoObject.properties.get('isGeneralPartner') == 1) {
+            geoObject.options.set('iconImageHref', '/img/city-icon-partner-active.svg');
+          }
+          else {
+            geoObject.options.set('iconImageHref', '/img/city-icon-active.svg');
+          }
         }
         else {
           if (geoObject.properties.get('active') == 1) {
             geoObject.properties.set('active', 0);
-            //geoObject.options.set('iconImageHref', '/img/city-icon.svg');
             geoObject.options.set('iconImageSize', [21, 39]);
+            if (geoObject.properties.get('isGeneralPartner') == 1) {
+              geoObject.options.set('iconImageHref', '/img/city-icon-partner.svg');
+            }
+            else {
+              geoObject.options.set('iconImageHref', '/img/city-icon.svg');
+            }
           }
         }
       }

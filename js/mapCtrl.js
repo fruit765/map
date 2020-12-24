@@ -137,12 +137,14 @@ myApp.controller('myCtrl', function($scope, $http) {
   }
 
   $scope.addCityInetShops = function(){
-    $scope.cityInetShops = [];
-    inetShops.forEach(function(inetShop){
-      if (inetShop.full_city_name === fullCityName) {
-        $scope.cityInetShops.push(inetShop);
-      }
-    });
+    // $scope.cityInetShops = [];
+    // inetShops.forEach(function(inetShop){
+    //   if (inetShop.full_city_name === fullCityName) {
+    //     $scope.cityInetShops.push(inetShop);
+    //   }
+    // });
+
+    $scope.cityInetShops = inetShops;
   }
 
   $scope.activeShop = function(id){
@@ -438,8 +440,7 @@ myApp.controller('myCtrl', function($scope, $http) {
   // Выводим магазины и интернет-магазины на карте и в сайдбаре
   .then(function(response){
     shops = response[0].data;
-    //inetShops = response[1].data;
-    inetShops = [];
+    inetShops = response[1].data;
 
     if (shops.find(function(shop){if (shop.full_city_name === fullCityName) return true; else return false}) === undefined && shops.length > 0) {
       if (shops.find(function(shop){if (shop.full_city_name === 'Москва, Россия') return true; else return false}) !== undefined) {

@@ -90,7 +90,7 @@
               </div>
               <div class="sidebar__item-content-desc">{{cityInetShop.description}}</div>
             </div>
-            <a href = "{{cityInetShop.site}}" class="sidebar__item-site" target="_blank">перейти ></a>
+            <a href = "{{cityInetShop.site}}" class="sidebar__item-site sidebar__item-site_otstup" target="_blank">перейти ></a>
           </div>
         </div>
       </div>
@@ -213,10 +213,10 @@
 
     <script src="js/mapCtrlFunctions.js" type="text/javascript" charset="utf-8"></script>
     
-    <script src="js/mobile/sidebar.js"></script>
-    <script src="js/mobile/map-sidebar-wrapper.js"></script>
-    <script src="js/mobile/header.js"></script>
-    <script src="js/mobile/change-city.js"></script>
+    <script src="js/mobile-sidebar.js"></script>
+    <script src="js/mobile-map-sidebar-wrapper.js"></script>
+    <script src="js/mobile-header.js"></script>
+    <script src="js/mobile-change-city.js"></script>
 
     <script src="js/menu.js"></script>
     <script src="js/mobile-menu.js"></script>

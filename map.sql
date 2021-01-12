@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Дек 24 2020 г., 10:50
+-- Время создания: Янв 12 2021 г., 08:20
 -- Версия сервера: 10.4.17-MariaDB
 -- Версия PHP: 7.4.13
 
@@ -44,11 +44,11 @@ CREATE TABLE `inet_shops` (
 --
 
 INSERT INTO `inet_shops` (`id`, `full_city_name`, `city`, `prefix`, `logo`, `title`, `description`, `site`, `delivery_on_russia`) VALUES
-(11, '', '', '', '/img/inet-shop-logo-1.png', '', 'Миллионы товаров! Электроника, одежда, косметика, зоотовары. Новая услуга экспресс-доставки.', 'https://www.ozon.ru/brand/karmy-76037614/', 0),
-(12, '', '', '', '/img/inet-shop-logo-2.png', '', 'Международный интернет-магазин. Скидки и акции - каждый день! ', 'https://www.wildberries.ru/brands/karmy', 0),
-(13, '', '', '', '/img/inet-shop-logo-3.png', '', 'Новые скидки каждый день. Миллионы товаров с бесплатной доставкой.', 'https://market.yandex.ru/brands--karmy/16641880', 0),
-(14, '', '', '', '/img/inet-shop-logo-4.png', '', 'Товары для вашего питомца. Работаем 24/7.', 'https://www.petshop.ru/brand/karmy/', 0),
-(15, '', '', '', '/img/inet-shop-logo-5.png', '', 'Экономия до 50% от стоимости ваших покупок. Проверка на качества каждого товара.', 'https://goods.ru/catalog/?q=Karmy', 0);
+(11, '', '', '', '/img/inet-shop-logo-1.png', 'OZON', 'Миллионы товаров! Электроника, одежда, косметика, зоотовары. Новая услуга экспресс-доставки.', 'https://www.ozon.ru/brand/karmy-76037614/', 0),
+(12, '', '', '', '/img/inet-shop-logo-2.png', 'Wildberries', 'Международный интернет-магазин. Скидки и акции - каждый день! ', 'https://www.wildberries.ru/brands/karmy', 0),
+(13, '', '', '', '/img/inet-shop-logo-3.png', 'Яндекс-Маркет', 'Новые скидки каждый день. Миллионы товаров с бесплатной доставкой.', 'https://market.yandex.ru/brands--karmy/16641880', 0),
+(14, '', '', '', '/img/inet-shop-logo-4.png', 'Petshop.ru', 'Товары для вашего питомца. Работаем 24/7.', 'https://www.petshop.ru/brand/karmy/', 0),
+(15, '', '', '', '/img/inet-shop-logo-5.png', 'Goods.ru', 'Экономия до 50% от стоимости ваших покупок. Проверка на качества каждого товара.', 'https://goods.ru/catalog/?q=Karmy', 0);
 
 -- --------------------------------------------------------
 

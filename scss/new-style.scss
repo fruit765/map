@@ -796,6 +796,17 @@ html, body {
                 }
             }
 
+            &.sidebar__check_shops {
+
+                &.sidebar__check_active {
+
+                    &::after {
+
+                        width: 115%;
+                    }
+                }
+            }
+
             &:first-child {
 
                 margin-right: auto;
@@ -843,9 +854,8 @@ html, body {
 
             .sidebar__item-title {
 
-                font-family: 'Geometria';
+                font-family: 'Geometria-Medium';
                 font-style: normal;
-                font-weight: bold;
                 font-size: 1rem;
                 line-height: 20px;
                 letter-spacing: 0.02em;

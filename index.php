@@ -83,12 +83,14 @@
 
         <div class="sidebar__items sidebar__items_inet-shops">
           <div ng-repeat="cityInetShop in cityInetShops" class="sidebar__item" delivery-on-russia="{{cityInetShop.delivery_on_russia}}">
-            <!-- <div class="sidebar__item-title">{{cityInetShop.title}}</div> -->
             <div class="sidebar__item-content">
               <div class="sidebar__item-content-img">
                 <img src="{{cityInetShop.logo}}">
               </div>
-              <div class="sidebar__item-content-desc">{{cityInetShop.description}}</div>
+              <div class="sidebar__item-content-desc-title">
+                <div class="sidebar__item-title">{{cityInetShop.title}}</div>
+                <div class="sidebar__item-content-desc">{{cityInetShop.description}}</div>
+              </div>
             </div>
             <a href = "{{cityInetShop.site}}" class="sidebar__item-site sidebar__item-site_otstup" target="_blank">перейти ></a>
           </div>

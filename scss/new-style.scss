@@ -702,6 +702,7 @@ html, body {
         position: absolute;
         top: $menuHeight + 26px;
         left: 40px;
+        z-index: 3;
     }
 }
 
@@ -1267,6 +1268,41 @@ html, body {
                 display: block;
             }
         }
+    }
+}
+
+.mobile-change-city {
+
+    display: none;
+    align-items: center;
+    min-height: 30px;
+    line-height: 18px;
+    padding: 5px 16px;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #fff;
+
+    &_show {
+
+        display: flex;
+    }
+
+    &__btn {
+
+        display: inline-block;
+        font-size: 16px;
+        color: #FF7560;
+        font-weight: bold;
+        font-family: 'Geometria';
+        padding-left: 15px;
+        background-image: url('../img/city-icon.svg');
+        background-repeat: no-repeat;
+        background-position: 0 50%;
+        background-size: 7px 13px;
+        cursor: pointer;
     }
 }
 

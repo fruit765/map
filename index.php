@@ -58,6 +58,9 @@
     </div> -->
     
     <div class="map-sidebar-wrapper">
+      <div class="mobile-change-city">
+        <span class="mobile-change-city__btn">{{cityName}}</span>
+      </div>
       <div id="map"></div>
       <div class="map-sidebar-wrapper__cover"></div>
       <div class="sidebar">

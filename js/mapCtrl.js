@@ -1,3 +1,13 @@
+$(document).ready(function(){
+  var user = detect.parse(navigator.userAgent);
+  var deviceType = user.device.type;
+
+  if (!(deviceType === 'Desktop' && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+    $('.mobile-change-city').addClass('mobile-change-city_show');
+    $('#map').css('paddingTop', $('.mobile-change-city').innerHeight() + 'px');
+  }
+});
+
 var myApp = angular.module('myApp',[]);
 myApp.controller('myCtrl', function($scope, $http) {
   var myMap, zoomControl, BalloonContentLayout, BalloonContentLayoutWithoutSite, fullCityName, shops, inetShops, isPoints = false;
@@ -298,7 +308,7 @@ myApp.controller('myCtrl', function($scope, $http) {
     }
   });
 
-  $('.sidebar__city, .header__change-city-btn').click(function(){
+  $('.sidebar__city, .header__change-city-btn, .mobile-change-city__btn').click(function(){
     $scope.$apply(function(){
       $scope.searchCityName = '';
       $scope.searchCityByName();
@@ -318,6 +328,10 @@ myApp.controller('myCtrl', function($scope, $http) {
     $('.sidebar__city, .sidebar__check, .sidebar__switch, .sidebar__items').css('display', 'none');
     $('.sidebar__check').removeClass('sidebar__check_active');
     $scope.loadAllShops();
+    if (!(deviceType === 'Desktop' && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+      $('#map').css('paddingTop', $('.mobile-change-city').innerHeight() + 'px');
+      alert($('#map').css('paddingTop'));
+    }
   });
 
 
@@ -454,6 +468,9 @@ myApp.controller('myCtrl', function($scope, $http) {
     $scope.loadAllShops();
 
     $(window).resize(function(){
+      if (!(deviceType === 'Desktop' && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+        $('#map').css('paddingTop', $('.mobile-change-city').innerHeight() + 'px');
+      }
       setTimeout(function(){
         $scope.setCorrectZoom();
       }, 0);

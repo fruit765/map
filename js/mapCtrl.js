@@ -330,7 +330,6 @@ myApp.controller('myCtrl', function($scope, $http) {
     $scope.loadAllShops();
     if (!(deviceType === 'Desktop' && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
       $('#map').css('paddingTop', $('.mobile-change-city').innerHeight() + 'px');
-      alert($('#map').css('paddingTop'));
     }
   });
 

@@ -133,6 +133,7 @@ myApp.controller('myCtrl', function($scope, $http) {
             balloonLayout: balloonLayout,
             balloonOffset: [5, 40],
             hideIconOnBalloonOpen: false,
+            zIndex: 0,
           }
         );
 
@@ -174,6 +175,7 @@ myApp.controller('myCtrl', function($scope, $http) {
           else {
             geoObject.options.set('iconImageHref', '/img/city-icon-active.svg');
           }
+          geoObject.options.set('zIndex', 1);
         }
         else {
           if (geoObject.properties.get('active') == 1) {
@@ -185,6 +187,7 @@ myApp.controller('myCtrl', function($scope, $http) {
             else {
               geoObject.options.set('iconImageHref', '/img/city-icon.svg');
             }
+            geoObject.options.set('zIndex', 0);
           }
         }
       }
@@ -322,6 +325,7 @@ myApp.controller('myCtrl', function($scope, $http) {
       //myMap.geoObjects.removeAll();
       if (deviceType === 'Desktop' && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         hidePlacemark(myMap);
+        myMap.balloon.close();
       }
       $('.sidebar__switch').css('display', 'block');
       $('.sidebar__items_inet-shops').css('display', 'block').scrollTop(0);

@@ -1,7 +1,7 @@
-$(document).ready(function(){
-  var user = detect.parse(navigator.userAgent);
-  var deviceType = user.device.type;
+var user = detect.parse(navigator.userAgent);
+var deviceType = user.device.type;
 
+$(document).ready(function(){
   if (!(deviceType === 'Desktop' && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
     $('.mobile-change-city').addClass('mobile-change-city_show');
     $('#map').css('paddingTop', $('.mobile-change-city').innerHeight() + 'px');
@@ -65,85 +65,87 @@ myApp.controller('myCtrl', function($scope, $http) {
   }
 
   $scope.addCityPoints = function(){
-    myMap.geoObjects.removeAll();
+    if (myMap.geoObjects.getLength() === 0) {
+      //myMap.geoObjects.removeAll();
 
-    $scope.cityShops.forEach(function(cityShop, index){
-      var balloonLayout, iconImageHref, iconImageSize, active, isGeneralPartner, showStarInPopap;
+      shops.forEach(function(cityShop, index){
+        var balloonLayout, iconImageHref, iconImageSize, active, isGeneralPartner, showStarInPopap;
 
-      if (cityShop.site) {
-        balloonLayout = BalloonContentLayout;
-      }
-      else {
-        balloonLayout = BalloonContentLayoutWithoutSite;
-      }
-
-      if (index === 0) {
-        iconImageSize = [30, 55];
-        active = 1;
-
-        if (cityShop.isGeneralPartner == 1) {
-          isGeneralPartner = 1;
-          iconImageHref = '/img/city-icon-partner-active.svg';
+        if (cityShop.site) {
+          balloonLayout = BalloonContentLayout;
         }
         else {
-          isGeneralPartner = 0;
-          iconImageHref = '/img/city-icon-active.svg';
+          balloonLayout = BalloonContentLayoutWithoutSite;
         }
-      }
-      else {
-        iconImageSize = [21, 39];
-        active = 0;
 
-        if (cityShop.isGeneralPartner == 1) {
-          isGeneralPartner = 1;
-          iconImageHref = '/img/city-icon-partner.svg';
+        // if ($scope.cityShops[0].lng === cityShop.lng && $scope.cityShops[0].lat === cityShop.lat) {
+        //   iconImageSize = [30, 55];
+        //   active = 1;
+
+        //   if (cityShop.isGeneralPartner == 1) {
+        //     isGeneralPartner = 1;
+        //     iconImageHref = '/img/city-icon-partner-active.svg';
+        //   }
+        //   else {
+        //     isGeneralPartner = 0;
+        //     iconImageHref = '/img/city-icon-active.svg';
+        //   }
+        // }
+        //else {
+          iconImageSize = [21, 39];
+          active = 0;
+
+          if (cityShop.isGeneralPartner == 1) {
+            isGeneralPartner = 1;
+            iconImageHref = '/img/city-icon-partner.svg';
+          }
+          else {
+            isGeneralPartner = 0;
+            iconImageHref = '/img/city-icon.svg';
+          }
+        //}
+
+        if (isGeneralPartner == 1) {
+          showStarInPopap = ' active';
         }
         else {
-          isGeneralPartner = 0;
-          iconImageHref = '/img/city-icon.svg';
+          showStarInPopap = '';
         }
-      }
 
-      if (isGeneralPartner == 1) {
-        showStarInPopap = ' active';
-      }
-      else {
-        showStarInPopap = '';
-      }
+        var placemark = new ymaps.Placemark([cityShop.lng, cityShop.lat],
+          {
+            id: cityShop.lng + ',' + cityShop.lat,
+            type: 'shop',
+            active: active,
+            isGeneralPartner: isGeneralPartner,
+            showStarInPopap: showStarInPopap,
+            name: cityShop.title,
+            address: cityShop.street + ', ' + cityShop.house,
+            hours: cityShop.hours,
+            phone: cityShop.phone,
+            site: cityShop.site,
+          },
+          {
+            iconLayout: 'default#image',
+            iconImageHref: iconImageHref,
+            iconImageSize: iconImageSize,
+            balloonLayout: balloonLayout,
+            balloonOffset: [5, 40],
+            hideIconOnBalloonOpen: false,
+          }
+        );
 
-      var placemark = new ymaps.Placemark([cityShop.lng, cityShop.lat],
-        {
-          id: index,
-          type: 'shop',
-          active: active,
-          isGeneralPartner: isGeneralPartner,
-          showStarInPopap: showStarInPopap,
-          name: cityShop.title,
-          address: cityShop.street + ', ' + cityShop.house,
-          hours: cityShop.hours,
-          phone: cityShop.phone,
-          site: cityShop.site,
-        },
-        {
-          iconLayout: 'default#image',
-          iconImageHref: iconImageHref,
-          iconImageSize: iconImageSize,
-          balloonLayout: balloonLayout,
-          balloonOffset: [5, 40],
-          hideIconOnBalloonOpen: false,
-        }
-      );
+        placemark.events.add('click', function(e){
+          $scope.activeShop(e.get('target').properties.get('id'));
+          scrollToActiveShop();
+        });
 
-      placemark.events.add('click', function(e){
-        $scope.activeShop(e.get('target').properties.get('id'));
-        scrollToActiveShop();
+        myMap.geoObjects.add(placemark);
+        isPoints = true;
       });
 
-      myMap.geoObjects.add(placemark);
-      isPoints = true;
-    });
-
-    $scope.setCorrectZoom();
+      //$scope.setCorrectZoom();
+    }
   }
 
   $scope.addCityInetShops = function(){
@@ -158,6 +160,8 @@ myApp.controller('myCtrl', function($scope, $http) {
   }
 
   $scope.activeShop = function(id){
+    var coords = id.split(',');
+
     myMap.geoObjects.each(function(geoObject){
       if (geoObject.properties.get('type') == 'shop') {
         if (geoObject.properties.get('id') == id) {
@@ -186,7 +190,9 @@ myApp.controller('myCtrl', function($scope, $http) {
     });
 
     $('.sidebar__items_shops .sidebar__item').removeClass('sidebar__item_active');
-    $($('.sidebar__items_shops .sidebar__item')[id]).addClass('sidebar__item_active');
+    $('.sidebar__items_shops .sidebar__item[shop-id="' + id + '"]').addClass('sidebar__item_active');
+
+    myMap.setCenter([coords[0], coords[1]], 10);
   }
 
   $scope.searchCityByName = function(){
@@ -239,6 +245,11 @@ myApp.controller('myCtrl', function($scope, $http) {
           }, 0);
 
           $scope.addCityPoints();
+
+          setTimeout(function(){
+            $scope.activeShop($scope.cityShops[0].lng + ',' + $scope.cityShops[0].lat);
+            myMap.balloon.close();
+          }, 0);
         });
       }
     }
@@ -283,7 +294,7 @@ myApp.controller('myCtrl', function($scope, $http) {
   // Обработчики событий
   $('.sidebar__items_shops').on('click', '.sidebar__item', function(){
     $scope.activeShop($(this).attr('shop-id'));
-    $scope.setCorrectZoom();
+    //$scope.setCorrectZoom();
     myMap.balloon.close();
   });
 
@@ -295,14 +306,22 @@ myApp.controller('myCtrl', function($scope, $http) {
     if ($(this).hasClass('sidebar__check_shops')) {
       $('.sidebar__switch').css('display', 'none');
       $('.sidebar__items_shops').css('display', 'block').scrollTop(0);
-      $scope.addCityPoints();
-      $('.sidebar__items_shops .sidebar__item').removeClass('sidebar__item_active');
-      $($('.sidebar__items_shops .sidebar__item')[0]).addClass('sidebar__item_active');
+      if (deviceType === 'Desktop' && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        showPlacemark(myMap);
+      }
+      // $scope.addCityPoints();
+      // $('.sidebar__items_shops .sidebar__item').removeClass('sidebar__item_active');
+      // $($('.sidebar__items_shops .sidebar__item')[0]).addClass('sidebar__item_active');
+      $scope.activeShop($($('.sidebar__items_shops .sidebar__item')[0]).attr('shop-id'));
+      myMap.balloon.close();
     }
 
     if ($(this).hasClass('sidebar__check_inet-shops')) {
       isPoints = false;
-      myMap.geoObjects.removeAll();
+      //myMap.geoObjects.removeAll();
+      if (deviceType === 'Desktop' && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        hidePlacemark(myMap);
+      }
       $('.sidebar__switch').css('display', 'block');
       $('.sidebar__items_inet-shops').css('display', 'block').scrollTop(0);
     }
@@ -426,6 +445,7 @@ myApp.controller('myCtrl', function($scope, $http) {
   })
   // Возвращаем определенное наименование населенного пункта или Москву, если не удалось определить
   .then(function(response){
+    //console.log(response.geoObjects.get(0).geometry.getCoordinates());
     return response.geoObjects.get(0).properties.get('metaDataProperty').GeocoderMetaData.text.split(', ').reverse().join(', ');
   }, function(){
     return 'Москва, Россия';
@@ -471,7 +491,10 @@ myApp.controller('myCtrl', function($scope, $http) {
         $('#map').css('paddingTop', $('.mobile-change-city').innerHeight() + 'px');
       }
       setTimeout(function(){
-        $scope.setCorrectZoom();
+        //$scope.setCorrectZoom();
+        if ($('div').is('.sidebar__items_shops .sidebar__item_active')) {
+          $scope.activeShop($('.sidebar__items_shops .sidebar__item_active').attr('shop-id'));
+        }
       }, 0);
     });
   });

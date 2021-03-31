@@ -256,6 +256,7 @@
       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
       ym(71099074, "init", {
+            trustedDomains:["karmypet.ru"],
             clickmap:true,
             trackLinks:true,
             accurateTrackBounce:true,

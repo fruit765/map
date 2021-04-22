@@ -730,7 +730,7 @@ html, body {
         font-size: 1rem;
         font-weight: bold;
         letter-spacing: 0.02em;
-        color: #FF7560;
+        color: #1A8F4F;
         font-family: 'Geometria';
         cursor: pointer;
         display: none;
@@ -793,7 +793,7 @@ html, body {
                     height: 3px;
                     bottom: -15px;
                     left: 0;
-                    background-color: #FF7560;
+                    background-color: #1A8F4F;
                 }
             }
 
@@ -844,12 +844,12 @@ html, body {
 
             &.sidebar__item_active {
 
-                background-color: #FFEEEC;
+                background-color: #D1E9DC;
             }
 
             &:hover {
 
-                background-color: #FFEEEC;
+                background-color: #D1E9DC;
                 cursor: pointer;
             }
 
@@ -901,7 +901,7 @@ html, body {
                 font-family: 'Geometria';
                 font-size: 0.8rem;
                 letter-spacing: 0.02em;
-                color: #FF7560;
+                color: #1A8F4F;
                 margin-top: 12px;
                 display: inline-block;
                 text-decoration: underline;
@@ -975,7 +975,7 @@ html, body {
 
         width: 100%;
         height: 100%;
-        background-color: #000;
+        background-color: #c4c4c4;
         opacity: 0;
     }
 
@@ -996,8 +996,8 @@ html, body {
         .modal-window__content {
 
             width: 100%;
-            max-width: 460px;
-            min-height: 440px;
+            max-width: 509px;
+            min-height: 385px;
             //box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.02), 0px 10px 30px rgba(0, 0, 0, 0.04);
             border-radius: 4px;
             background-color: #fff;
@@ -1023,11 +1023,12 @@ html, body {
             .modal-window__head {
 
                 font-family: 'Geometria-Bold';
-                font-size: 2.6rem;
-                line-height: 3rem;
+                font-size: 2.3rem;
+                line-height: 2.5rem;
                 letter-spacing: 0.02em;
                 color: #343332;
                 margin-bottom: 32px;
+                text-align: center;
             }
         }
     }
@@ -1121,7 +1122,7 @@ html, body {
 
             &:hover {
 
-                background-color: #FFEEEC;
+                background-color: #D1E9DC;
             }
         }
     }
@@ -1296,7 +1297,7 @@ html, body {
 
         display: inline-block;
         font-size: 16px;
-        color: #FF7560;
+        color: #1A8F4F;
         font-weight: bold;
         font-family: 'Geometria';
         padding-left: 15px;

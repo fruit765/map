@@ -35,7 +35,7 @@ class CSVModel{
     // }
 
     public function getPoints(){    
-        $query = "SELECT * FROM `inet_shops`";
+        $query = "SELECT * FROM `inet_shops` WHERE `is_karmy` = 1";
         $result = $this->_pdo->getQuery($this->_pdo->getConnection(), $query);         
         return  $result;
     }

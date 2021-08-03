@@ -48,13 +48,18 @@ function getSidebarChecksHeight(){
 }
 
 function hidePlacemark(map){
-    map.geoObjects.each(function(geoObject){
-        geoObject.options.set('visible', false);
+    map.geoObjects.each(function(cluster){
+        map.setZoom(10);
+        cluster.getGeoObjects().forEach(function(geoObject){
+            geoObject.options.set('visible', false);
+        });
     });
 }
 
 function showPlacemark(map){
-    map.geoObjects.each(function(geoObject){
-        geoObject.options.set('visible', true);
+    map.geoObjects.each(function(cluster){
+        cluster.getGeoObjects().forEach(function(geoObject){
+            geoObject.options.set('visible', true);
+        });
     });
 }

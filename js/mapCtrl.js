@@ -68,6 +68,19 @@ myApp.controller('myCtrl', function($scope, $http) {
     if (myMap.geoObjects.getLength() === 0) {
       //myMap.geoObjects.removeAll();
 
+      var clusterer = new ymaps.Clusterer({
+        preset: 'islands#invertedVioletClusterIcons',
+        groupByCoordinates: false,
+        clusterDisableClickZoom: true,
+        clusterHideIconOnBalloonOpen: false,
+        geoObjectHideIconOnBalloonOpen: false,
+        openBalloonOnClick: false,
+        maxZoom: 9,
+        gridSize: 80,
+      });
+
+      var geoObjects = [];
+
       shops.forEach(function(cityShop, index){
         var balloonLayout, iconImageHref, iconImageSize, active, isGeneralPartner, showStarInPopap;
 
@@ -142,9 +155,13 @@ myApp.controller('myCtrl', function($scope, $http) {
           scrollToActiveShop();
         });
 
-        myMap.geoObjects.add(placemark);
+        geoObjects.push(placemark);
+
         isPoints = true;
       });
+
+      clusterer.add(geoObjects);
+      myMap.geoObjects.add(clusterer);
 
       //$scope.setCorrectZoom();
     }
@@ -164,33 +181,35 @@ myApp.controller('myCtrl', function($scope, $http) {
   $scope.activeShop = function(id){
     var coords = id.split(',');
 
-    myMap.geoObjects.each(function(geoObject){
-      if (geoObject.properties.get('type') == 'shop') {
-        if (geoObject.properties.get('id') == id) {
-          geoObject.properties.set('active', 1);
-          geoObject.options.set('iconImageSize', [30, 55]);
-          if (geoObject.properties.get('isGeneralPartner') == 1) {
-            geoObject.options.set('iconImageHref', '/img/city-icon-partner-active.svg');
-          }
-          else {
-            geoObject.options.set('iconImageHref', '/img/city-icon-active.svg');
-          }
-          geoObject.options.set('zIndex', 1);
-        }
-        else {
-          if (geoObject.properties.get('active') == 1) {
-            geoObject.properties.set('active', 0);
-            geoObject.options.set('iconImageSize', [21, 39]);
+    myMap.geoObjects.each(function(cluster){
+      cluster.getGeoObjects().forEach(function(geoObject){
+        if (geoObject.properties.get('type') == 'shop') {
+          if (geoObject.properties.get('id') == id) {
+            geoObject.properties.set('active', 1);
+            geoObject.options.set('iconImageSize', [30, 55]);
             if (geoObject.properties.get('isGeneralPartner') == 1) {
-              geoObject.options.set('iconImageHref', '/img/city-icon-partner.svg');
+              geoObject.options.set('iconImageHref', '/img/city-icon-partner-active.svg');
             }
             else {
-              geoObject.options.set('iconImageHref', '/img/city-icon.svg');
+              geoObject.options.set('iconImageHref', '/img/city-icon-active.svg');
             }
-            geoObject.options.set('zIndex', 0);
+            geoObject.options.set('zIndex', 1);
+          }
+          else {
+            if (geoObject.properties.get('active') == 1) {
+              geoObject.properties.set('active', 0);
+              geoObject.options.set('iconImageSize', [21, 39]);
+              if (geoObject.properties.get('isGeneralPartner') == 1) {
+                geoObject.options.set('iconImageHref', '/img/city-icon-partner.svg');
+              }
+              else {
+                geoObject.options.set('iconImageHref', '/img/city-icon.svg');
+              }
+              geoObject.options.set('zIndex', 0);
+            }
           }
         }
-      }
+      });
     });
 
     $('.sidebar__items_shops .sidebar__item').removeClass('sidebar__item_active');

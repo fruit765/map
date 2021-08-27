@@ -50,7 +50,7 @@ INSERT INTO `inet_shops` (`id`, `full_city_name`, `city`, `prefix`, `logo`, `tit
 (12, '', '', '', '/img/inet-shop-logo-1.png', 'OZON', 'Миллионы товаров! Электроника, одежда, косметика, зоотовары. Новая услуга экспресс-доставки.', 'https://www.ozon.ru/brand/karmy-76037614/', 0, 1, 0),
 (13, '', '', '', '/img/inet-shop-logo-3.png', 'Яндекс-Маркет', 'Новые скидки каждый день. Миллионы товаров с бесплатной доставкой.', 'https://market.yandex.ru/brands--karmy/16641880', 0, 1, 0),
 (14, '', '', '', '/img/inet-shop-logo-4.png', 'Petshop.ru', 'Товары для вашего питомца. Работаем 24/7.', 'https://www.petshop.ru/brand/karmy/', 0, 1, 0),
-(15, '', '', '', '/img/inet-shop-logo-5.png', 'Goods.ru', 'Экономия до 50% от стоимости ваших покупок. Проверка на качества каждого товара.', 'https://goods.ru/catalog/?q=Karmy', 0, 1, 0);
+(15, '', '', '', '/img/inet-shop-logo-5.png', 'Goods.ru', 'Экономия до 50% от стоимости ваших покупок. Проверка на качества каждого товара.', 'https://sbermegamarket.ru/catalog/?q=%D0%BA%D0%BE%D1%80%D0%BC%D0%B0%20karmy', 0, 1, 0);
 
 -- --------------------------------------------------------
 

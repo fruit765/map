@@ -69,7 +69,7 @@ myApp.controller('myCtrl', function($scope, $http) {
       //myMap.geoObjects.removeAll();
 
       var clusterer = new ymaps.Clusterer({
-        preset: 'islands#invertedDarkOrangeClusterIcons',
+        preset: 'islands#invertedGrayClusterIcons',
         groupByCoordinates: false,
         clusterDisableClickZoom: false,
         clusterHideIconOnBalloonOpen: false,

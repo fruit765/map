@@ -1,6 +1,4 @@
-/css/new-style.css
 /node_modules/
-/gulpfile.js
 /package-lock.json
 /.*
 !/.gitignore

@@ -1,11 +1,11 @@
 function scrollToActiveShop(){
     var top = 0, heightElement;
 
-    if ($('.sidebar__items_shops .sidebar__item_active').length === 0) {
-        $('.sidebar__items_shops').scrollTop(top);
-        alert('Данный магазин находится за пределами выбранного населенного пункта!');
-        return;
-    }
+    // if ($('.sidebar__items_shops .sidebar__item_active').length === 0) {
+    //     $('.sidebar__items_shops').scrollTop(top);
+    //     alert('Данный магазин находится за пределами выбранного населенного пункта!');
+    //     return;
+    // }
 
     $('.sidebar__items_shops .sidebar__item').css('height', 'auto');
 

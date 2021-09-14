@@ -133,6 +133,7 @@ myApp.controller('myCtrl', function($scope, $http) {
             isGeneralPartner: isGeneralPartner,
             showStarInPopap: showStarInPopap,
             name: cityShop.title,
+            //contractor: cityShop.contractor,
             city: cityShop.full_city_name,
             address: cityShop.street + ', ' + cityShop.house,
             hours: cityShop.hours,
